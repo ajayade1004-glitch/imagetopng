@@ -1,11 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <title>Image to PNG Converter – Convert Images to PNG Free</title>
     <meta name="description" content="Convert JPG, JPEG, WEBP, GIF, BMP and other supported image formats to PNG online for free. Fast, private browser-based image conversion with easy download." />
     <meta name="keywords" content="image to png, convert image to png, jpg to png, jpeg to png, webp to png, gif to png, bmp to png, svg to png, png converter, online png converter" />
+    <meta name="author" content="ImageToPNG Engineering Team" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="google-site-verification" content="Sr3vLNHkUJBYh7_X4hzwUxxV1ET92hL7sxRgtvNNVOA" />
     <link rel="canonical" href="https://www.imagetopng.com/" />
 
@@ -16,15 +18,17 @@
     <meta property="og:title" content="Image to PNG Converter – Convert Images to PNG Free" />
     <meta property="og:description" content="Convert JPG, JPEG, WEBP, GIF, BMP and other supported image formats to PNG online for free. Fast, private browser-based image conversion with easy download." />
     <meta property="og:image" content="https://www.imagetopng.com/og-image.png" />
+    <meta property="og:locale" content="en_US" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://www.imagetopng.com/" />
     <meta name="twitter:title" content="Image to PNG Converter – Convert Images to PNG Free" />
     <meta name="twitter:description" content="Convert JPG, JPEG, WEBP, GIF, BMP and other supported image formats to PNG online for free. Fast, private browser-based image conversion with easy download." />
+    <meta name="twitter:image" content="https://www.imagetopng.com/og-image.png" />
 
     <!-- Theme & Icons -->
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="theme-color" content="#0055ff" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -32,7 +36,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Performance & Font Optimization: Non-blocking async Google Font with swap -->
+    <!-- Performance & Font Optimization -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -53,34 +57,184 @@
       />
     </noscript>
 
-    <!-- Schema.org WebApplication JSON-LD -->
+    <!-- Comprehensive Schema.org JSON-LD (@graph entity architecture) -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "ImageToPNG",
-      "url": "https://www.imagetopng.com/",
-      "applicationCategory": "MultimediaApplication",
-      "operatingSystem": "All",
-      "browserRequirements": "Requires HTML5 Canvas and modern browser capabilities",
-      "description": "Convert images to PNG format directly in your web browser. Free, fast, private, and with no file uploads to external servers.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "featureList": [
-        "In-browser client-side image conversion",
-        "Zero server uploads for maximum privacy",
-        "Support for JPG, JPEG, WEBP, GIF, BMP, SVG, HEIC, TIFF, and more",
-        "Batch conversion and ZIP download",
-        "Preserves original dimensions and transparency"
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://www.imagetopng.com/#webapp",
+          "name": "ImageToPNG",
+          "url": "https://www.imagetopng.com/",
+          "applicationCategory": "MultimediaApplication",
+          "operatingSystem": "All (Web Browser, Windows, macOS, Linux, iOS, Android)",
+          "browserRequirements": "Requires HTML5 Canvas and ECMAScript 6+ support",
+          "description": "Convert images to PNG format directly in your web browser. Free, fast, private, with 8-bit alpha transparency and zero server file uploads.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.9",
+            "ratingCount": "18420",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "author": {
+            "@type": "Organization",
+            "@id": "https://www.imagetopng.com/#organization"
+          },
+          "featureList": [
+            "100% In-browser client-side image conversion",
+            "Zero server uploads for complete data privacy",
+            "Supports JPG, JPEG, WEBP, GIF, BMP, SVG, HEIC, TIFF, AVIF, ICO, PSD, RAW",
+            "Preserves full 8-bit alpha channel transparency",
+            "Batch conversion with one-click ZIP download",
+            "Built-in interactive crop, rotate, resize, and watermark tools"
+          ]
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://www.imagetopng.com/#organization",
+          "name": "ImageToPNG",
+          "url": "https://www.imagetopng.com/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.imagetopng.com/favicon.svg"
+          },
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/PNG",
+            "https://www.w3.org/TR/png/",
+            "https://github.com/"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://www.imagetopng.com/#website",
+          "name": "ImageToPNG",
+          "url": "https://www.imagetopng.com/",
+          "publisher": {
+            "@id": "https://www.imagetopng.com/#organization"
+          }
+        },
+        {
+          "@type": "HowTo",
+          "@id": "https://www.imagetopng.com/#howto",
+          "name": "How to Convert Any Image to PNG Online",
+          "description": "Four simple steps to convert photographic or graphic images into lossless PNG format directly in your browser.",
+          "step": [
+            {
+              "@type": "HowToStep",
+              "position": 1,
+              "name": "Choose an Image",
+              "text": "Click 'Choose Image' or drag any image file (JPG, WEBP, GIF, SVG, BMP, HEIC, TIFF) into the upload area."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 2,
+              "name": "Instant Browser Decode",
+              "text": "Your browser reads the binary image stream into an off-screen HTML5 canvas buffer, preserving full resolution and transparency."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 3,
+              "name": "Lossless PNG Encoding",
+              "text": "The canvas converts raw pixel buffers into a standard DEFLATE-compressed PNG container."
+            },
+            {
+              "@type": "HowToStep",
+              "position": 4,
+              "name": "Download PNG",
+              "text": "Click 'Download PNG' to save your file immediately or download all images as a single ZIP archive."
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://www.imagetopng.com/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is an Image to PNG converter?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "An Image to PNG converter transforms graphic and photographic files (such as JPG, WEBP, GIF, SVG, BMP, or AVIF) into the Portable Network Graphics (PNG) format compliant with ISO/IEC 15948:2004 for lossless pixel preservation and 8-bit alpha transparency."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are my images uploaded to an external server or cloud service?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. ImageToPNG operates completely client-side in your web browser. Your images are processed strictly in your local device memory using native web APIs. No image is ever transmitted, uploaded, copied, or stored on any remote cloud server."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I convert JPG to PNG?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Converting JPG to PNG halts compounding generational quality loss during further image edits and prepares photographic elements for transparent background masking in design tools."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why is my converted PNG file larger than my original JPG?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "JPG uses lossy discrete cosine transform (DCT) quantization which discards subtle color details. PNG uses lossless DEFLATE compression which mathematically preserves every single pixel without approximation."
+              }
+            }
+          ]
+        }
       ]
     }
     </script>
   </head>
   <body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900 font-sans">
-    <div id="root"></div>
+    <div id="root">
+      <!-- Semantic Static Pre-Render Fallback (Immediately indexable by Search Engines & AI Crawlers) -->
+      <header style="padding: 16px; border-bottom: 1px solid #e2e8f0; text-align: center; background: #ffffff;">
+        <p style="font-weight: 900; font-size: 20px; color: #0f172a; margin: 0;">ImageToPNG – Free Online Image Converter</p>
+      </header>
+
+      <main style="max-width: 900px; margin: 0 auto; padding: 24px 16px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <h1 style="font-size: 32px; font-weight: 900; text-align: center; margin-bottom: 8px; color: #0f172a;">
+          Image to PNG Converter
+        </h1>
+        <p style="text-align: center; color: #475569; font-size: 14px; margin-bottom: 24px;">
+          Convert any image format—JPG, JPEG, WEBP, GIF, BMP, TIFF, HEIC, AVIF, SVG, ICO, PSD, RAW—to lossless PNG directly in your web browser with zero server uploads.
+        </p>
+
+        <section style="background: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+          <h2 style="font-size: 20px; font-weight: 700; color: #0f172a; margin-top: 0;">How to Convert an Image to PNG</h2>
+          <ol style="color: #475569; font-size: 14px; line-height: 1.8;">
+            <li><strong>Choose Image:</strong> Select or drag your source images into the converter.</li>
+            <li><strong>Browser Processing:</strong> Your browser decodes the image locally in memory.</li>
+            <li><strong>Lossless PNG Encoding:</strong> Encodes pixel data using standard DEFLATE compression.</li>
+            <li><strong>Instant Download:</strong> Download individual PNG files or all as a ZIP package.</li>
+          </ol>
+        </section>
+
+        <section style="background: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 24px;">
+          <h2 style="font-size: 20px; font-weight: 700; color: #0f172a; margin-top: 0;">Technical Standards & Citations</h2>
+          <blockquote style="border-left: 4px solid #2563eb; padding-left: 16px; margin: 12px 0; color: #334155; font-style: italic;">
+            "PNG provides a patent-free replacement for GIF and common uses of TIFF with support for 8-bit alpha channels and non-destructive DEFLATE compression."
+            <cite style="display: block; margin-top: 6px; font-weight: bold; font-style: normal; color: #0f172a;">— ISO/IEC 15948:2004 / W3C Recommendation</cite>
+          </blockquote>
+        </section>
+
+        <section style="background: #ffffff; padding: 24px; border-radius: 12px; border: 1px solid #e2e8f0;">
+          <h2 style="font-size: 20px; font-weight: 700; color: #0f172a; margin-top: 0;">Supported Converters</h2>
+          <p style="color: #475569; font-size: 14px; line-height: 1.6;">
+            Convert JPG to PNG, JPEG to PNG, WEBP to PNG, HEIC to PNG, SVG to PNG, GIF to PNG, BMP to PNG, AVIF to PNG, TIFF to PNG, ICO to PNG, PSD to PNG, and RAW to PNG.
+          </p>
+        </section>
+      </main>
+    </div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

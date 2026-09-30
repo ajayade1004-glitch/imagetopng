@@ -49,9 +49,9 @@ export const SecurityPage: React.FC<SecurityPageProps> = ({ onNavigate }) => {
 
         {/* Technical Security Layers */}
         <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200">
-          <h3 className="text-lg font-bold text-slate-900 mb-4">
+          <h2 className="text-lg font-bold text-slate-900 mb-4">
             Security Defense Mechanisms
-          </h3>
+          </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-100">
               <div className="flex items-center gap-2 font-semibold text-slate-900 text-sm mb-1">
@@ -97,9 +97,9 @@ export const SecurityPage: React.FC<SecurityPageProps> = ({ onNavigate }) => {
 
         {/* Verification Checklist */}
         <section className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200">
-          <h3 className="text-lg font-bold text-slate-900 mb-3">
+          <h2 className="text-lg font-bold text-slate-900 mb-3">
             How You Can Verify Locally
-          </h3>
+          </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
             You do not have to take our word for it. You can independently verify that zero image bytes leave your machine:
           </p>

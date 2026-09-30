@@ -101,7 +101,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
 
               {section.callout && (
                 <div className="my-6 p-4 rounded-xl bg-blue-50/70 border border-blue-200">
-                  <h4 className="font-bold text-blue-900 text-sm mb-1">{section.callout.title}</h4>
+                  <h3 className="font-bold text-blue-900 text-sm mb-1">{section.callout.title}</h3>
                   <p className="text-xs sm:text-sm text-blue-800 leading-relaxed">
                     {section.callout.text}
                   </p>
@@ -136,7 +136,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
           <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200">
             <div className="flex items-center gap-2 mb-4">
               <BookOpen className="w-4 h-4 text-blue-600" />
-              <h3 className="font-bold text-slate-900 text-base">Recommended Reading</h3>
+              <h2 className="font-bold text-slate-900 text-base">Recommended Reading</h2>
             </div>
             <div className="flex flex-wrap gap-2">
               {guide.relatedGuides.map((relSlug) => (

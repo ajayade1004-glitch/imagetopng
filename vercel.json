@@ -29,11 +29,24 @@
           "value": "public, max-age=3600, s-maxage=3600"
         }
       ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
     }
   ],
   "rewrites": [
     {
-      "source": "/((?!api/|sitemap\\.xml|robots\\.txt|favicon\\.ico|favicon\\.svg|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|json|webmanifest|xml|txt)$).*)",
+      "source": "/((?!api/|sitemap\\.xml|robots\\.txt|llms\\.txt|favicon\\.ico|favicon\\.svg|.*\\.(?:png|jpg|jpeg|gif|webp|svg|ico|json|webmanifest|xml|txt)$).*)",
       "destination": "/index.html"
     }
   ]

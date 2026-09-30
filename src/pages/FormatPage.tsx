@@ -310,7 +310,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
                   {step.step}
                 </span>
                 <div>
-                  <h4 className="font-semibold text-slate-900 text-sm">{step.title}</h4>
+                  <h3 className="font-semibold text-slate-900 text-sm">{step.title}</h3>
                   <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
                     {step.description}
                   </p>
@@ -329,9 +329,9 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
             <div className="space-y-3">
               {format.troubleshooting.map((item, idx) => (
                 <div key={idx} className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                  <h4 className="font-semibold text-slate-900 text-xs sm:text-sm">
+                  <h3 className="font-semibold text-slate-900 text-xs sm:text-sm">
                     {item.issue}
-                  </h4>
+                  </h3>
                   <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                     {item.solution}
                   </p>
@@ -380,9 +380,9 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
 
         {/* Section: Related Converters */}
         <section className="bg-slate-100/70 p-6 sm:p-8 rounded-2xl border border-slate-200">
-          <h3 className="font-bold text-slate-900 text-base mb-4">
+          <h2 className="font-bold text-slate-900 text-base mb-4">
             Related Converters & Formats
-          </h3>
+          </h2>
           <div className="flex flex-wrap gap-2">
             {format.relatedFormats.map((rel) => (
               <a

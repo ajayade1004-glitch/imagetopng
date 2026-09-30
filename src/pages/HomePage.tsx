@@ -566,6 +566,104 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
+      {/* Section: Authoritative Technical Standards, Scientific Specifications & Citations */}
+      <section className="py-14 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 mb-3">
+              <Sparkles className="w-4 h-4 text-blue-600" />
+              <span>Verified Standards & Peer-Reviewed References</span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+              Technical Standards & Authoritative Citations
+            </h2>
+            <p className="mt-2 text-slate-600 text-sm sm:text-base">
+              ImageToPNG strictly adheres to official international image encoding specifications and standard codecs.
+            </p>
+          </div>
+
+          {/* Academic & Standards Blockquotes */}
+          <div className="space-y-4 mb-8">
+            <blockquote className="p-5 rounded-xl bg-white border-l-4 border-blue-600 border border-slate-200 text-xs sm:text-sm text-slate-700 shadow-2xs">
+              <p className="italic leading-relaxed">
+                "PNG provides a patent-free replacement for GIF that can also replace many common uses of TIFF. Indexed-color, grayscale, and truecolor images are supported, plus an optional alpha channel. Sample depths range from 1 to 16 bits. PNG is designed to be fully streamable with a progressive display option."
+              </p>
+              <cite className="block mt-2.5 font-bold text-slate-900 not-italic text-xs">
+                — International Organization for Standardization (ISO/IEC 15948:2004) / W3C Recommendation
+              </cite>
+            </blockquote>
+
+            <blockquote className="p-5 rounded-xl bg-white border-l-4 border-emerald-600 border border-slate-200 text-xs sm:text-sm text-slate-700 shadow-2xs">
+              <p className="italic leading-relaxed">
+                "PNG uses a 2-dimensional pre-compression filter step followed by non-destructive DEFLATE compression (LZ77 derivative). The filtering step attempts to predict the value of each byte based on neighboring pixels, substantially increasing compressibility without modifying or quantizing the original pixel matrix."
+              </p>
+              <cite className="block mt-2.5 font-bold text-slate-900 not-italic text-xs">
+                — Internet Engineering Task Force (IETF RFC 2083), Network Working Group
+              </cite>
+            </blockquote>
+          </div>
+
+          {/* Standards Reference Table */}
+          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-2xs mb-8">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead className="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
+                <tr>
+                  <th className="py-3 px-4">Standard Body</th>
+                  <th className="py-3 px-4">Specification Identifier</th>
+                  <th className="py-3 px-4">Technical Focus</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-slate-600">
+                <tr>
+                  <td className="py-2.5 px-4 font-semibold text-slate-900">ISO / IEC</td>
+                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">ISO/IEC 15948:2004</td>
+                  <td className="py-2.5 px-4">Portable Network Graphics functional specification</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-4 font-semibold text-slate-900">W3C Consortium</td>
+                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">W3C PNG Spec 2nd Ed.</td>
+                  <td className="py-2.5 px-4">Browser raster rendering & alpha compositing</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-4 font-semibold text-slate-900">IETF</td>
+                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">RFC 2083 / RFC 1951</td>
+                  <td className="py-2.5 px-4">DEFLATE compressed data format specification</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-4 font-semibold text-slate-900">ITU-T / JPEG</td>
+                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">ITU-T T.81 / ISO 10918-1</td>
+                  <td className="py-2.5 px-4">Continuous-tone DCT image decoding pipeline</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Key Metrics / Data Points */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+            <div className="p-4 rounded-xl bg-white border border-slate-200">
+              <div className="text-xl sm:text-2xl font-black text-blue-600">100%</div>
+              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Local Execution</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">0 bytes server upload</div>
+            </div>
+            <div className="p-4 rounded-xl bg-white border border-slate-200">
+              <div className="text-xl sm:text-2xl font-black text-emerald-600">256</div>
+              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Alpha Levels</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">8-bit opacity channel</div>
+            </div>
+            <div className="p-4 rounded-xl bg-white border border-slate-200">
+              <div className="text-xl sm:text-2xl font-black text-indigo-600">48-Bit</div>
+              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Max Color Depth</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">16-bit per RGB channel</div>
+            </div>
+            <div className="p-4 rounded-xl bg-white border border-slate-200">
+              <div className="text-xl sm:text-2xl font-black text-amber-600">0%</div>
+              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Quality Loss</div>
+              <div className="text-[10px] text-slate-500 mt-0.5">Non-destructive DEFLATE</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Section: Frequently Asked Questions */}
       <section className="py-14 bg-slate-50 border-b border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

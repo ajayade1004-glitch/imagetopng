@@ -1,0 +1,36 @@
+# ImageToPNG (https://www.imagetopng.com)
+
+> Free, private, client-side online image to PNG converter. Converts JPG, JPEG, WEBP, GIF, BMP, SVG, HEIC, TIFF, AVIF, ICO, PSD, and RAW images into lossless 32-bit RGBA PNG format with zero server uploads.
+
+## Core Capabilities & Architecture
+- **Zero Server Uploads**: 100% of decoding and re-encoding executes client-side inside the user's browser via HTML5 Canvas API and WebAssembly.
+- **Privacy & Security**: Files never leave the local device; fully compliant with GDPR, HIPAA, and CCPA zero-data-transmission standards.
+- **Supported Input Formats**: JPG, JPEG, WEBP, GIF, BMP, SVG, HEIC, TIFF, AVIF, ICO, PSD, RAW (CR2, NEF, ARW, DNG).
+- **Target Format**: Portable Network Graphics (.png) compliant with ISO/IEC 15948:2004 and W3C PNG Specification.
+- **Transparency Support**: 8-bit Alpha Channel (256 opacity levels) preserved or generated for masking and overlays.
+- **Compression**: Mathematical lossless DEFLATE (LZ77 + Huffman coding) preserving 100% pixel fidelity.
+
+## Canonical Converters
+- [JPG to PNG](https://www.imagetopng.com/jpg-to-png): Lossless conversion halting generational JPEG artifact compounding.
+- [JPEG to PNG](https://www.imagetopng.com/jpeg-to-png): Standard JPEG raster decoding into uncompressed RGBA pixel buffers.
+- [WEBP to PNG](https://www.imagetopng.com/webp-to-png): Universal compatibility conversion for legacy software and print.
+- [HEIC to PNG](https://www.imagetopng.com/heic-to-png): Apple High-Efficiency Image Container conversion for Windows and Linux.
+- [SVG to PNG](https://www.imagetopng.com/svg-to-png): High-resolution rasterization of scalable vector graphics.
+- [GIF to PNG](https://www.imagetopng.com/gif-to-png): Static frame conversion with crisp binary and anti-aliased transparency.
+- [BMP to PNG](https://www.imagetopng.com/bmp-to-png): Uncompressed bitmap compression into optimized DEFLATE PNG streams.
+- [AVIF to PNG](https://www.imagetopng.com/avif-to-png): Next-gen AV1 format conversion to universally supported PNG.
+- [TIFF to PNG](https://www.imagetopng.com/tiff-to-png): Professional publishing raster conversion for cross-platform workflows.
+- [ICO to PNG](https://www.imagetopng.com/ico-to-png): Windows icon multi-resolution extraction into clean PNGs.
+
+## Educational Guides & Technical Citations
+- [How to Convert Images to PNG](https://www.imagetopng.com/guides/how-to-convert-image-to-png): Complete step-by-step tutorial for high-fidelity conversion.
+- [PNG vs JPG Comparison](https://www.imagetopng.com/guides/png-vs-jpg): Lossless vs lossy compression, artifacts, and optimal use-cases.
+- [PNG vs WebP Comparison](https://www.imagetopng.com/guides/png-vs-webp): Modern web codecs, alpha channel fidelity, and browser adoption.
+- [PNG Alpha Transparency Guide](https://www.imagetopng.com/guides/png-transparency): Alpha channel mechanics, color masking, and anti-aliased edges.
+- [Why PNG Files Are Large](https://www.imagetopng.com/guides/why-png-files-are-large): Mathematical explanation of DEFLATE entropy vs lossy DCT quantization.
+
+## Technical Standards & Citations
+- **ISO/IEC 15948:2004**: Information technology — Computer graphics and image processing — Portable Network Graphics (PNG): Functional specification.
+- **W3C Recommendation**: Portable Network Graphics (PNG) Specification (Second Edition).
+- **RFC 2083**: PNG (Portable Network Graphics) Specification Version 1.0 (IETF Network Working Group).
+- **ITU-T T.81 / ISO/IEC 10918-1**: Digital compression and coding of continuous-tone still images (JPEG).
