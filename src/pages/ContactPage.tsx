@@ -15,7 +15,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Honest client-side dispatch: constructs mailto URI to user's default email client
-    const mailtoRecipient = 'support@imagetopng.com';
+    const mailtoRecipient = 'ajayade1004@gmail.com';
     const emailBody = `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`;
     const mailtoUrl = `mailto:${mailtoRecipient}?subject=${encodeURIComponent(
       subject || 'ImageToPNG Inquiry'
@@ -49,7 +49,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate }) => {
             <MessageSquare className="w-4 h-4 shrink-0 mt-0.5 text-blue-600" />
             <p>
               Submitting this form prepares an email directly through your local email software to{' '}
-              <strong className="font-mono">support@imagetopng.com</strong>. We do not store your message on an unencrypted database.
+              <strong className="font-mono">ajayade1004@gmail.com</strong>. We do not store your message on an unencrypted database.
             </p>
           </div>
 

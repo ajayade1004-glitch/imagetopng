@@ -54,7 +54,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onNavigate }) => {
 
           <h2 className="text-xl font-bold text-slate-900 mt-6 mb-3">8. Contact Information</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            For questions regarding these Terms, contact us at <strong className="font-mono text-slate-800">legal@imagetopng.com</strong>.
+            For questions regarding these Terms, contact us at <strong className="font-mono text-slate-800">ajayade1004@gmail.com</strong>.
           </p>
         </div>
       </div>

@@ -43,7 +43,7 @@ export const CookiePolicyPage: React.FC<CookiePolicyPageProps> = ({ onNavigate }
 
           <h2 className="text-xl font-bold text-slate-900 mt-6 mb-3">5. Contact Us</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            If you have questions regarding our use of cookies, email us at <strong className="font-mono text-slate-800">support@imagetopng.com</strong>.
+            If you have questions regarding our use of cookies, email us at <strong className="font-mono text-slate-800">ajayade1004@gmail.com</strong>.
           </p>
         </div>
       </div>

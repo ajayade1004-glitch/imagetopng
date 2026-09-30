@@ -63,7 +63,7 @@ export const PrivacyPolicyPage: React.FC<PrivacyPolicyPageProps> = ({ onNavigate
 
           <h2 className="text-xl font-bold text-slate-900 mt-6 mb-3">7. Contact Information</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <strong className="font-mono text-slate-800">privacy@imagetopng.com</strong>.
+            If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us at <strong className="font-mono text-slate-800">ajayade1004@gmail.com</strong>.
           </p>
         </div>
       </div>

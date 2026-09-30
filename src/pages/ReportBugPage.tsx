@@ -17,7 +17,7 @@ export const ReportBugPage: React.FC<ReportBugPageProps> = ({ onNavigate }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const mailtoRecipient = 'bugs@imagetopng.com';
+    const mailtoRecipient = 'ajayade1004@gmail.com';
     const emailSubject = `Bug Report [${category}] - ${format} to PNG`;
     const emailBody = `Reporter: ${name} (${email})\nOperating System: ${os}\nBrowser: ${browser}\nImage Format: ${format}\nCategory: ${category}\n\nBug Description:\n${description}`;
     

@@ -26,9 +26,9 @@ export const ImprintPage: React.FC<ImprintPageProps> = ({ onNavigate }) => {
 
           <h2 className="text-lg font-bold text-slate-900 mt-6 mb-2">Contact Details</h2>
           <p className="text-sm text-slate-600 leading-relaxed">
-            <strong>General Inquiries:</strong> support@imagetopng.com<br />
-            <strong>Privacy & Security:</strong> privacy@imagetopng.com<br />
-            <strong>Legal Correspondence:</strong> legal@imagetopng.com
+            <strong>Direct Email:</strong> ajayade1004@gmail.com<br />
+            <strong>Support & Feedback:</strong> ajayade1004@gmail.com<br />
+            <strong>Legal & Privacy:</strong> ajayade1004@gmail.com
           </p>
 
           <h2 className="text-lg font-bold text-slate-900 mt-6 mb-2">Technical Delivery & Architecture</h2>
