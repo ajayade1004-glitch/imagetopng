@@ -130,6 +130,15 @@ export default function App() {
     if (canonicalLink) {
       canonicalLink.setAttribute('href', `https://www.imagetopng.com${currentPath === '/' ? '' : currentPath}`);
     }
+
+    // Google Analytics 4: Client-side SPA route tracking (No PII or sensitive data transmitted)
+    if (typeof window !== 'undefined' && typeof (window as unknown as { gtag?: Function }).gtag === 'function') {
+      (window as unknown as { gtag: Function }).gtag('config', 'G-TNTXK0GCC7', {
+        page_path: currentPath,
+        page_title: document.title,
+        page_location: window.location.href,
+      });
+    }
   }, [currentPath]);
 
   // Navigate handler that updates URL via history API
