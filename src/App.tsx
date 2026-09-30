@@ -128,7 +128,7 @@ export default function App() {
 
     const canonicalLink = document.querySelector('link[rel="canonical"]');
     if (canonicalLink) {
-      canonicalLink.setAttribute('href', `https://imagetopng.com${currentPath === '/' ? '' : currentPath}`);
+      canonicalLink.setAttribute('href', `https://www.imagetopng.com${currentPath === '/' ? '' : currentPath}`);
     }
   }, [currentPath]);
 

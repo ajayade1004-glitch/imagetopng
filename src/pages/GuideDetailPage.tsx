@@ -25,11 +25,11 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
       name: 'ImageToPNG',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://imagetopng.com/icon.svg',
+        url: 'https://www.imagetopng.com/favicon.svg',
       },
     },
     dateModified: '2026-09-30',
-    mainEntityOfPage: `https://imagetopng.com/guides/${guide.slug}`,
+    mainEntityOfPage: `https://www.imagetopng.com/guides/${guide.slug}`,
   };
 
   return (
