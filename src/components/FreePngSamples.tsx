@@ -210,7 +210,7 @@ export const FreePngSamples: React.FC = () => {
 
           {/* Interactive Background Toggle */}
           <div className="mt-6 inline-flex items-center gap-1 bg-slate-100 p-1.5 rounded-xl border border-slate-200 text-xs font-semibold">
-            <span className="text-slate-500 px-2 flex items-center gap-1">
+            <span className="text-slate-700 font-bold px-2 flex items-center gap-1">
               <Eye className="w-3.5 h-3.5" />
               <span>Backdrop:</span>
             </span>

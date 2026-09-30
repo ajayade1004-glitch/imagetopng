@@ -426,43 +426,43 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-semibold text-slate-900">Alpha Transparency</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-medium">Full 8-bit (256 levels)</td>
-                    <td className="py-3 px-4 text-red-600">None (Opaque only)</td>
-                    <td className="py-3 px-4 text-slate-600">Full 8-bit (256 levels)</td>
-                    <td className="py-3 px-4 text-slate-600">1-bit Binary (On/Off)</td>
-                    <td className="py-3 px-4 text-slate-600">Full 8-bit or higher</td>
+                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Full 8-bit (256 levels)</td>
+                    <td className="py-3 px-4 text-red-900 font-bold">None (Opaque only)</td>
+                    <td className="py-3 px-4 text-slate-700">Full 8-bit (256 levels)</td>
+                    <td className="py-3 px-4 text-slate-700">1-bit Binary (On/Off)</td>
+                    <td className="py-3 px-4 text-slate-700">Full 8-bit or higher</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-semibold text-slate-900">Color Palette</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-medium">Up to 48-bit Truecolor</td>
-                    <td className="py-3 px-4 text-slate-600">24-bit Truecolor</td>
-                    <td className="py-3 px-4 text-slate-600">24-bit Truecolor</td>
-                    <td className="py-3 px-4 text-amber-600">Max 256 colors (8-bit)</td>
-                    <td className="py-3 px-4 text-slate-600">10-bit / 12-bit HDR</td>
+                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Up to 48-bit Truecolor</td>
+                    <td className="py-3 px-4 text-slate-700">24-bit Truecolor</td>
+                    <td className="py-3 px-4 text-slate-700">24-bit Truecolor</td>
+                    <td className="py-3 px-4 text-amber-900 font-bold">Max 256 colors (8-bit)</td>
+                    <td className="py-3 px-4 text-slate-700">10-bit / 12-bit HDR</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-semibold text-slate-900">Best For Photographs</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-medium">Large file sizes</td>
-                    <td className="py-3 px-4 text-emerald-600 font-semibold">Excellent (Small size)</td>
-                    <td className="py-3 px-4 text-emerald-600 font-semibold">Outstanding for Web</td>
-                    <td className="py-3 px-4 text-red-600">Poor (Color banding)</td>
-                    <td className="py-3 px-4 text-emerald-600 font-semibold">Highest compression</td>
+                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Large file sizes</td>
+                    <td className="py-3 px-4 text-emerald-900 font-bold">Excellent (Small size)</td>
+                    <td className="py-3 px-4 text-emerald-900 font-bold">Outstanding for Web</td>
+                    <td className="py-3 px-4 text-red-900 font-bold">Poor (Color banding)</td>
+                    <td className="py-3 px-4 text-emerald-900 font-bold">Highest compression</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-semibold text-slate-900">Best For Logos & UI</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-semibold">Industry Gold Standard</td>
-                    <td className="py-3 px-4 text-red-600">Poor (Ringing noise)</td>
-                    <td className="py-3 px-4 text-slate-600">Great for web assets</td>
-                    <td className="py-3 px-4 text-slate-600">Legacy only</td>
-                    <td className="py-3 px-4 text-slate-600">Good for web delivery</td>
+                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Industry Gold Standard</td>
+                    <td className="py-3 px-4 text-red-900 font-bold">Poor (Ringing noise)</td>
+                    <td className="py-3 px-4 text-slate-700">Great for web assets</td>
+                    <td className="py-3 px-4 text-slate-700">Legacy only</td>
+                    <td className="py-3 px-4 text-slate-700">Good for web delivery</td>
                   </tr>
                   <tr>
                     <td className="py-3 px-4 font-semibold text-slate-900">Software Support</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-semibold">Broad / Universal</td>
-                    <td className="py-3 px-4 text-emerald-600">Broad / Universal</td>
-                    <td className="py-3 px-4 text-amber-600">Modern Web & Browsers</td>
-                    <td className="py-3 px-4 text-emerald-600">Broad / Universal</td>
-                    <td className="py-3 px-4 text-amber-600">Limited desktop tools</td>
+                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Broad / Universal</td>
+                    <td className="py-3 px-4 text-emerald-900 font-bold">Broad / Universal</td>
+                    <td className="py-3 px-4 text-amber-900 font-bold">Modern Web & Browsers</td>
+                    <td className="py-3 px-4 text-emerald-900 font-bold">Broad / Universal</td>
+                    <td className="py-3 px-4 text-amber-900 font-bold">Limited desktop tools</td>
                   </tr>
                 </tbody>
               </table>
@@ -712,12 +712,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </section>
 
       {/* Final Call to Action Box */}
-      <section className="py-16 bg-blue-600 text-white text-center">
+      <section className="py-16 bg-blue-700 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
             Ready to Convert Your Images to PNG?
           </h2>
-          <p className="mt-3 text-blue-100 text-sm sm:text-base max-w-xl mx-auto">
+          <p className="mt-3 text-white text-sm sm:text-base max-w-xl mx-auto font-medium">
             Fast, browser-based, and free to use. No registration required. Your images are processed locally on your device.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
@@ -726,7 +726,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 document.getElementById('image-file-input')?.click();
               }}
-              className="px-6 py-3 rounded-xl bg-white text-blue-700 font-bold text-sm sm:text-base hover:bg-blue-50 shadow-lg shadow-blue-900/20 transition-all active:scale-95 cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-white text-blue-900 font-extrabold text-sm sm:text-base hover:bg-blue-50 shadow-lg shadow-blue-950/20 transition-all active:scale-95 cursor-pointer"
             >
               Choose Image to Convert
             </button>
@@ -735,7 +735,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onNavigate('/guides');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="px-6 py-3 rounded-xl bg-blue-700/60 text-white font-medium text-sm sm:text-base hover:bg-blue-700 border border-blue-400/40 transition-all cursor-pointer"
+              className="px-6 py-3 rounded-xl bg-blue-800 text-white font-bold text-sm sm:text-base hover:bg-blue-900 border border-blue-400/50 transition-all cursor-pointer shadow-sm"
             >
               Explore PNG Guides
             </button>

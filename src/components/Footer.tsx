@@ -33,9 +33,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* 1. Tools Column */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
+            <p className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Tools
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -141,9 +141,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* 2. Resources Column */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
+            <p className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Resources
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -186,9 +186,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* 3. Company Column */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
+            <p className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Company
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -222,9 +222,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           {/* 4. Legal Column */}
           <div>
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider mb-3">
+            <p className="text-xs font-bold text-white uppercase tracking-wider mb-3">
               Legal
-            </h4>
+            </p>
             <ul className="space-y-2 text-xs">
               <li>
                 <a
@@ -266,10 +266,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           </div>
         </div>
 
-        {/* Bottom Bar: Copyright Only */}
-        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+        {/* Bottom Bar: Copyright Only with High Contrast */}
+        <div className="pt-6 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-2">
           <p>© 2026 ImageToPNG. All rights reserved.</p>
-          <p className="text-slate-500">
+          <p className="text-slate-400">
             Free online image conversion utility.
           </p>
         </div>

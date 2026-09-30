@@ -458,9 +458,9 @@ export const MainConverter: React.FC<MainConverterProps> = ({
               <UploadCloud className="w-6 h-6 sm:w-7 sm:h-7 text-white group-hover:-translate-y-0.5 transition-transform" />
             </div>
 
-            <h3 className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
+            <p className="text-lg sm:text-xl font-bold text-slate-900 tracking-tight">
               Drop an image here
-            </h3>
+            </p>
             <p className="text-xs text-slate-500 mt-1 mb-4">
               or click below to choose • <span className="font-semibold text-blue-600">Ctrl+V</span> to paste
             </p>

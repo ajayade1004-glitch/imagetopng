@@ -116,7 +116,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
               theme === 'dark' ? 'text-white' : 'text-slate-900'
             }`}
           >
-            Image<span className="text-blue-600 font-extrabold mx-[1px]">To</span><span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 bg-clip-text text-transparent font-black">PNG</span>
+            Image<span className={`${theme === 'dark' ? 'text-blue-400' : 'text-blue-600'} font-extrabold mx-[1px]`}>To</span><span className="bg-gradient-to-r from-emerald-500 via-teal-500 to-emerald-600 bg-clip-text text-transparent font-black">PNG</span>
           </span>
         </div>
 
