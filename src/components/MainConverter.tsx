@@ -877,6 +877,7 @@ export const MainConverter: React.FC<MainConverterProps> = ({
           isOpen={!!cloudImportSource}
           onClose={() => setCloudImportSource(null)}
           onImportFile={handleCloudFileImported}
+          onImportFiles={handleFilesSelected}
           onSelectDevice={() => fileInputRef.current?.click()}
         />
       )}

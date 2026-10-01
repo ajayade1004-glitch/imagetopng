@@ -51,14 +51,14 @@ export default function App() {
 
   // Update dynamic document title, description, and canonical link
   useEffect(() => {
-    let title = 'Image to PNG Converter – Convert Images to PNG Online Free';
+    let title = 'Image to PNG Converter – Convert Images to PNG Free';
     let description =
-      'Convert JPG, JPEG, WEBP, GIF, BMP, and all formats with our fast, free Image to PNG converter online. 100% private in-browser image to PNG conversion with transparent alpha support.';
+      'Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss.';
 
     if (currentPath === '/' || currentPath === '' || currentPath === '/image-to-png') {
-      title = 'Image to PNG Converter – Convert Images to PNG Online Free';
+      title = 'Image to PNG Converter – Convert Images to PNG Free';
       description =
-        'Convert JPG, JPEG, WEBP, GIF, BMP, and all formats with our fast, free Image to PNG converter online. 100% private in-browser image to PNG conversion with transparent alpha support.';
+        'Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss.';
     } else if (currentPath === '/guides' || currentPath === '/blog') {
       title = 'Blog & Guides – ImageToPNG Knowledge Hub';
       description =

@@ -11,15 +11,29 @@ import {
   Copy,
   ArrowRight,
   Folder,
+  CheckSquare,
+  Square,
+  Image as ImageIcon,
+  Loader2,
+  ExternalLink,
+  Layers,
 } from 'lucide-react';
 
 export type ImportSourceType = 'url' | 'drive' | 'dropbox' | 'onedrive';
+
+export interface ExtractedImageItem {
+  url: string;
+  name: string;
+  alt?: string;
+  selected?: boolean;
+}
 
 interface CloudImportModalProps {
   source: ImportSourceType | null;
   isOpen: boolean;
   onClose: () => void;
   onImportFile: (file: File) => void;
+  onImportFiles?: (files: File[]) => void;
   onSelectDevice?: () => void;
 }
 
@@ -28,12 +42,19 @@ export const CloudImportModal: React.FC<CloudImportModalProps> = ({
   isOpen,
   onClose,
   onImportFile,
+  onImportFiles,
   onSelectDevice,
 }) => {
   const [urlInput, setUrlInput] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  const [isExtracting, setIsExtracting] = useState(false);
+  const [isImporting, setIsImporting] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  // Extracted images state
+  const [extractedImages, setExtractedImages] = useState<ExtractedImageItem[]>([]);
+  const [pageTitle, setPageTitle] = useState<string | null>(null);
+  const [isDirect, setIsDirect] = useState(false);
 
   if (!isOpen || !source) return null;
 
@@ -68,7 +89,7 @@ export const CloudImportModal: React.FC<CloudImportModalProps> = ({
           title: 'Import from Dropbox',
           badge: 'Direct CDN',
           placeholder: 'Paste Dropbox shared link (e.g. https://www.dropbox.com/s/.../photo.jpg)',
-          help: 'Paste any Dropbox shared link. We automatically stream the direct image asset (raw=1) with zero login required.',
+          help: 'Paste any Dropbox shared link. We automatically stream the direct image asset with zero login required.',
           iconBg: 'bg-blue-600',
           samples: [
             {
@@ -103,19 +124,19 @@ export const CloudImportModal: React.FC<CloudImportModalProps> = ({
         };
       default:
         return {
-          title: 'Import Image from URL',
-          badge: 'Direct Web Fetch',
-          placeholder: 'https://example.com/image.jpg (or webp, png, avif, svg)',
-          help: 'Paste any web image URL or Data URI. Our built-in image pipeline will fetch and convert it into a crisp PNG.',
+          title: 'Import Image from Any Web URL or Page',
+          badge: 'Smart Multi-Image Extractor',
+          placeholder: 'Paste any webpage link or image URL (e.g. Wikipedia, Unsplash, Blog, or Direct Link)',
+          help: 'Paste any webpage URL or image link. Our smart scanner extracts ALL images on that page so you can select and convert them all at once!',
           iconBg: 'bg-indigo-600',
           samples: [
             {
-              name: 'Unsplash Nature (JPG)',
-              url: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
-            },
-            {
               name: 'Wikimedia PNG Demonstration',
               url: 'https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png',
+            },
+            {
+              name: 'Unsplash Nature HD (JPG)',
+              url: 'https://images.unsplash.com/photo-1579783902614-a3fb3927b675?auto=format&fit=crop&w=800&q=80',
             },
             {
               name: 'Sample WebP Photo',
@@ -129,163 +150,150 @@ export const CloudImportModal: React.FC<CloudImportModalProps> = ({
 
   const details = getSourceDetails();
 
-  // Helper: Normalize Cloud and CDN Links
-  const normalizeUrlCandidates = (raw: string): string[] => {
-    let u = raw.trim();
-    if (!u) return [];
-
-    // Base64 Data URL
-    if (u.startsWith('data:image/')) {
-      return [u];
-    }
-
-    const candidates: string[] = [];
-
-    // 1. Google Drive URLs
-    if (u.includes('drive.google.com')) {
-      const match = u.match(/\/d\/([a-zA-Z0-9_-]+)/) || u.match(/id=([a-zA-Z0-9_-]+)/);
-      if (match && match[1]) {
-        const fileId = match[1];
-        candidates.push(`https://lh3.googleusercontent.com/d/${fileId}`);
-        candidates.push(`https://drive.google.com/uc?export=download&id=${fileId}`);
-      }
-    }
-
-    // 2. Dropbox URLs
-    if (u.includes('dropbox.com')) {
-      let direct = u.replace('www.dropbox.com', 'dl.dropboxusercontent.com');
-      if (direct.includes('?dl=0')) direct = direct.replace('?dl=0', '?raw=1');
-      else if (!direct.includes('raw=1')) direct += direct.includes('?') ? '&raw=1' : '?raw=1';
-      candidates.push(direct);
-      candidates.push(u);
-    }
-
-    // 3. Imgur URLs
-    if (u.includes('imgur.com') && !u.includes('i.imgur.com')) {
-      const match = u.match(/imgur\.com\/([a-zA-Z0-9]+)/);
-      if (match && match[1]) {
-        candidates.push(`https://i.imgur.com/${match[1]}.png`);
-      }
-    }
-
-    // Standard candidate
-    if (!candidates.includes(u)) {
-      candidates.push(u);
-    }
-
-    return candidates;
-  };
-
-  // Convert Base64 Data URL to Blob
-  const dataUrlToBlob = (dataUrl: string): Blob => {
-    const arr = dataUrl.split(',');
-    const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/png';
-    const bstr = atob(arr[1]);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new Blob([u8arr], { type: mime });
-  };
-
-  const handleImport = async () => {
+  // Step 1: Extract all images from URL
+  const handleFetchImages = async () => {
     setError(null);
     const raw = urlInput.trim();
 
     if (!raw) {
-      setError('Please paste an image URL or link to continue.');
+      setError('Please paste a web link or image URL to continue.');
       return;
     }
 
-    setIsLoading(true);
-    setStatusMessage('Connecting to image source...');
+    setIsExtracting(true);
+    setStatusMessage('Scanning webpage and extracting all images...');
+    setExtractedImages([]);
 
     try {
       // 1. Check if Base64 Data URI
       if (raw.startsWith('data:image/')) {
-        const blob = dataUrlToBlob(raw);
+        const arr = raw.split(',');
+        const mime = arr[0].match(/:(.*?);/)?.[1] || 'image/png';
+        const bstr = atob(arr[1]);
+        let n = bstr.length;
+        const u8arr = new Uint8Array(n);
+        while (n--) {
+          u8arr[n] = bstr.charCodeAt(n);
+        }
+        const blob = new Blob([u8arr], { type: mime });
         const file = new File([blob], `imported-${Date.now()}.png`, {
           type: blob.type || 'image/png',
           lastModified: Date.now(),
         });
-        onImportFile(file);
-        onClose();
-        setUrlInput('');
+        if (onImportFiles) onImportFiles([file]);
+        else onImportFile(file);
+        handleClose();
         return;
       }
 
-      const candidates = normalizeUrlCandidates(raw);
-      let blob: Blob | null = null;
-      let usedUrl = candidates[0] || raw;
+      // 2. Call backend /api/extract-images
+      const extractApi = `/api/extract-images?url=${encodeURIComponent(raw)}`;
+      const res = await fetch(extractApi);
 
-      // 2. Stage 1: Try Local Server Proxy endpoint (/api/proxy-image)
-      for (const targetUrl of candidates) {
+      if (res.ok) {
+        const data = await res.json();
+        if (data.images && data.images.length > 0) {
+          setPageTitle(data.pageTitle || 'Web Images');
+          setIsDirect(data.isDirect || data.images.length === 1);
+          setExtractedImages(
+            data.images.map((img: any) => ({
+              url: img.url,
+              name: img.name || 'image.png',
+              alt: img.alt || 'Web Photo',
+              selected: true, // Default all checked
+            }))
+          );
+          setStatusMessage(null);
+          setIsExtracting(false);
+          return;
+        }
+      }
+
+      // Fallback: Direct candidate
+      setPageTitle('Direct Image Link');
+      setIsDirect(true);
+      setExtractedImages([
+        {
+          url: raw,
+          name: 'web-image.png',
+          alt: 'Direct Web Image',
+          selected: true,
+        },
+      ]);
+      setStatusMessage(null);
+    } catch (err: any) {
+      console.warn('Extraction fallback:', err);
+      setPageTitle('Direct Image Link');
+      setIsDirect(true);
+      setExtractedImages([
+        {
+          url: raw,
+          name: 'web-image.png',
+          alt: 'Web Image',
+          selected: true,
+        },
+      ]);
+    } finally {
+      setIsExtracting(false);
+      setStatusMessage(null);
+    }
+  };
+
+  // Helper: Fetch a single image URL into a File object with fast proxy
+  const fetchSingleImageAsFile = async (item: ExtractedImageItem): Promise<File | null> => {
+    let blob: Blob | null = null;
+    const targetUrl = item.url;
+
+    // 1. Try local server proxy
+    try {
+      const proxyApi = `/api/proxy-image?url=${encodeURIComponent(targetUrl)}`;
+      const res = await fetch(proxyApi);
+      if (res.ok) {
+        const b = await res.blob();
+        if (b && b.size > 100) blob = b;
+      }
+    } catch {
+      // Fall through
+    }
+
+    // 2. Try direct CORS fetch
+    if (!blob) {
+      try {
+        const res = await fetch(targetUrl, { mode: 'cors' });
+        if (res.ok) {
+          const b = await res.blob();
+          if (b && b.size > 100) blob = b;
+        }
+      } catch {
+        // Fall through
+      }
+    }
+
+    // 3. Try high-availability CDN proxy
+    if (!blob) {
+      const proxies = [
+        `https://corsproxy.io/?url=${encodeURIComponent(targetUrl)}`,
+        `https://api.allorigins.win/raw?url=${encodeURIComponent(targetUrl)}`,
+      ];
+      for (const p of proxies) {
         try {
-          setStatusMessage('Streaming image via secure proxy...');
-          const proxyApiUrl = `/api/proxy-image?url=${encodeURIComponent(targetUrl)}`;
-          const res = await fetch(proxyApiUrl);
+          const res = await fetch(p);
           if (res.ok) {
             const b = await res.blob();
             if (b && b.size > 100) {
               blob = b;
-              usedUrl = targetUrl;
               break;
             }
           }
         } catch {
-          // Fall through
+          // Next
         }
       }
+    }
 
-      // 3. Stage 2: Direct CORS fetch
-      if (!blob) {
-        for (const targetUrl of candidates) {
-          try {
-            setStatusMessage('Attempting direct connection...');
-            const res = await fetch(targetUrl, { mode: 'cors' });
-            if (res.ok) {
-              const b = await res.blob();
-              if (b && b.size > 100) {
-                blob = b;
-                usedUrl = targetUrl;
-                break;
-              }
-            }
-          } catch {
-            // CORS blocked, continue
-          }
-        }
-      }
-
-      // 4. Stage 3: Public High-Availability Image Proxies
-      if (!blob) {
-        const proxyUrls = [
-          `https://api.allorigins.win/raw?url=${encodeURIComponent(usedUrl)}`,
-          `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(usedUrl)}`,
-          `https://corsproxy.io/?url=${encodeURIComponent(usedUrl)}`,
-        ];
-
-        for (const proxyUrl of proxyUrls) {
-          try {
-            setStatusMessage('Routing through CDN proxy...');
-            const res = await fetch(proxyUrl);
-            if (res.ok) {
-              const b = await res.blob();
-              if (b && b.size > 200) {
-                blob = b;
-                break;
-              }
-            }
-          } catch {
-            // Next proxy
-          }
-        }
-      }
-
-      // 5. Stage 4: Canvas Image element fallback
-      if (!blob) {
-        setStatusMessage('Rendering via canvas pipeline...');
+    // 4. Canvas Image fallback
+    if (!blob) {
+      try {
         blob = await new Promise<Blob>((resolve, reject) => {
           const img = new Image();
           img.crossOrigin = 'anonymous';
@@ -296,243 +304,395 @@ export const CloudImportModal: React.FC<CloudImportModalProps> = ({
               canvas.height = img.naturalHeight || img.height;
               const ctx = canvas.getContext('2d');
               if (!ctx) {
-                reject(new Error('Canvas context unavailable'));
+                reject(new Error('Canvas error'));
                 return;
               }
               ctx.drawImage(img, 0, 0);
               canvas.toBlob(
                 (b) => {
                   if (b && b.size > 0) resolve(b);
-                  else reject(new Error('Failed to convert canvas to blob'));
+                  else reject(new Error('Blob error'));
                 },
                 'image/png',
                 1.0
               );
-            } catch (canvasErr) {
-              reject(canvasErr);
+            } catch (err) {
+              reject(err);
             }
           };
-          img.onerror = () => {
-            reject(new Error('Image could not be rendered.'));
-          };
-          img.src = usedUrl;
+          img.onerror = () => reject(new Error('Image render error'));
+          img.src = targetUrl;
         });
-      }
-
-      if (!blob || blob.size === 0) {
-        throw new Error('Image could not be retrieved.');
-      }
-
-      // Generate a clean filename
-      let filename = 'imported-photo.png';
-      try {
-        const parsed = new URL(usedUrl);
-        const segs = parsed.pathname.split('/');
-        const last = segs[segs.length - 1];
-        if (last && last.includes('.')) {
-          filename = decodeURIComponent(last);
-        } else {
-          filename = `${source || 'imported'}-${Date.now().toString().slice(-4)}.png`;
-        }
       } catch {
-        filename = `${source || 'imported'}-${Date.now().toString().slice(-4)}.png`;
+        // Failed
       }
+    }
 
-      const file = new File([blob], filename, {
-        type: blob.type.startsWith('image/') ? blob.type : 'image/png',
+    if (blob) {
+      const safeName = item.name.endsWith('.png') ? item.name : `${item.name.replace(/\.[^.]+$/, '')}.png`;
+      return new File([blob], safeName, {
+        type: blob.type || 'image/png',
         lastModified: Date.now(),
       });
-
-      onImportFile(file);
-      onClose();
-      setUrlInput('');
-    } catch (err: any) {
-      console.error(err);
-      setError(
-        'Could not fetch image directly from this URL due to CORS security rules on the remote server. Try clicking one of the sample test links below, or save the image to your phone/computer and use "From Device".'
-      );
-    } finally {
-      setIsLoading(false);
-      setStatusMessage(null);
     }
+
+    return null;
   };
 
-  const handlePasteClipboard = async () => {
-    try {
-      const text = await navigator.clipboard.readText();
-      if (text) {
-        setUrlInput(text.trim());
+  // Step 2: Import all selected images in parallel
+  const handleImportSelected = async () => {
+    const selectedItems = extractedImages.filter((img) => img.selected);
+    if (selectedItems.length === 0) {
+      setError('Please select at least one image to convert.');
+      return;
+    }
+
+    setIsImporting(true);
+    setError(null);
+    setStatusMessage(`Importing ${selectedItems.length} image(s)...`);
+
+    // Fetch images with fast parallel pool
+    const fetchPromises = selectedItems.map((item) => fetchSingleImageAsFile(item));
+    const results = await Promise.allSettled(fetchPromises);
+
+    const validFiles: File[] = [];
+    results.forEach((r) => {
+      if (r.status === 'fulfilled' && r.value) {
+        validFiles.push(r.value);
       }
-    } catch {
-      // Permission denied
+    });
+
+    setIsImporting(false);
+    setStatusMessage(null);
+
+    if (validFiles.length > 0) {
+      if (onImportFiles) {
+        onImportFiles(validFiles);
+      } else {
+        validFiles.forEach((f) => onImportFile(f));
+      }
+      handleClose();
+    } else {
+      setError('Could not download the selected images due to strict host CORS protection. You can download the image to your device and use "From Device" instead.');
     }
   };
+
+  const toggleSelectImage = (index: number) => {
+    setExtractedImages((prev) =>
+      prev.map((img, i) => (i === index ? { ...img, selected: !img.selected } : img))
+    );
+  };
+
+  const selectAll = (select: boolean) => {
+    setExtractedImages((prev) => prev.map((img) => ({ ...img, selected: select })));
+  };
+
+  const handleClose = () => {
+    setUrlInput('');
+    setExtractedImages([]);
+    setPageTitle(null);
+    setError(null);
+    setStatusMessage(null);
+    onClose();
+  };
+
+  const selectedCount = extractedImages.filter((img) => img.selected).length;
 
   return (
-    <div
-      className="fixed inset-0 z-50 bg-black/80 backdrop-blur-xs flex items-center justify-center p-3 sm:p-5 animate-fade-in text-xs font-sans"
-      onClick={onClose}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/65 backdrop-blur-xs animate-fade-in font-sans">
       <div
-        className="bg-white rounded-2xl max-w-lg w-full shadow-2xl flex flex-col max-h-[90vh] overflow-hidden relative"
+        className="w-full max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[90vh] animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="px-5 py-3.5 border-b border-slate-200 flex items-center justify-between bg-slate-50/90 shrink-0">
-          <div className="flex items-center gap-2.5">
-            <span className={`p-2 rounded-xl ${details.iconBg} text-white shadow-xs`}>
+        <div className="px-5 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/80 shrink-0">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 rounded-xl ${details.iconBg} text-white flex items-center justify-center shadow-md shadow-blue-500/10`}>
               {details.logo}
-            </span>
+            </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <h3 className="font-bold text-slate-900 text-sm sm:text-base leading-tight">
+              <div className="flex items-center gap-2">
+                <h3 className="font-extrabold text-slate-900 text-sm sm:text-base">
                   {details.title}
                 </h3>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-blue-100 text-blue-800">
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-blue-100 text-blue-800 rounded-full">
                   {details.badge}
                 </span>
               </div>
-              <p className="text-[11px] text-slate-500">
-                100% In-Browser • Zero Credentials Stored
+              <p className="text-xs text-slate-500 mt-0.5">
+                Paste link to find, select, and convert all images to PNG
               </p>
             </div>
           </div>
-
           <button
             type="button"
-            onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-200 rounded-lg cursor-pointer"
+            onClick={handleClose}
+            className="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 rounded-xl transition-colors cursor-pointer"
+            title="Close"
           >
-            <X className="w-4 h-4" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Scrollable Content Body */}
-        <div className="p-4 sm:p-5 space-y-3.5 overflow-y-auto max-h-[calc(90vh-120px)]">
-          <div>
-            <div className="flex items-center justify-between mb-1.5">
-              <label className="text-xs font-bold text-slate-800">
-                Paste Image URL or File Link:
-              </label>
+        {/* Modal Body */}
+        <div className="p-5 sm:p-6 overflow-y-auto space-y-5 flex-1">
+          {/* URL Input Form */}
+          <div className="space-y-2">
+            <label htmlFor="import-url-input" className="block text-xs font-bold text-slate-700 uppercase tracking-wider">
+              Paste Web Page URL or Direct Image Link:
+            </label>
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <input
+                  id="import-url-input"
+                  type="url"
+                  value={urlInput}
+                  onChange={(e) => {
+                    setUrlInput(e.target.value);
+                    setError(null);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleFetchImages();
+                  }}
+                  placeholder={details.placeholder}
+                  disabled={isExtracting || isImporting}
+                  className="w-full pl-9 pr-8 py-2.5 sm:py-3 text-xs sm:text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-hidden focus:border-blue-500 focus:ring-3 focus:ring-blue-100 text-slate-800 transition-all placeholder:text-slate-400 font-mono disabled:opacity-50"
+                  autoFocus
+                />
+                <LinkIcon className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                {urlInput && (
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setUrlInput('');
+                      setExtractedImages([]);
+                    }}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 p-0.5 rounded cursor-pointer"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
+              </div>
               <button
                 type="button"
-                onClick={handlePasteClipboard}
-                className="text-[11px] text-blue-600 hover:text-blue-800 font-semibold cursor-pointer inline-flex items-center gap-1"
+                onClick={handleFetchImages}
+                disabled={!urlInput.trim() || isExtracting || isImporting}
+                className="px-4 sm:px-5 py-2.5 sm:py-3 bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:pointer-events-none text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-blue-500/20 cursor-pointer flex items-center gap-1.5 shrink-0"
               >
-                <Copy className="w-3 h-3" />
-                <span>Paste from Clipboard</span>
+                {isExtracting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Scanning...</span>
+                  </>
+                ) : (
+                  <>
+                    <Sparkles className="w-4 h-4" />
+                    <span>Fetch Images</span>
+                  </>
+                )}
               </button>
             </div>
+          </div>
 
-            <div className="relative">
-              <input
-                type="url"
-                value={urlInput}
-                onChange={(e) => setUrlInput(e.target.value)}
-                placeholder={details.placeholder}
-                className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-xs sm:text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 font-mono"
-                autoFocus
-              />
-              {urlInput && (
-                <button
-                  type="button"
-                  onClick={() => setUrlInput('')}
-                  className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs"
-                >
-                  Clear
-                </button>
-              )}
+          {/* Status Message / Loading Progress */}
+          {(isExtracting || isImporting) && statusMessage && (
+            <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl flex items-center gap-3 text-xs text-blue-800 animate-pulse">
+              <Loader2 className="w-4 h-4 animate-spin text-blue-600 shrink-0" />
+              <span className="font-medium">{statusMessage}</span>
             </div>
-          </div>
+          )}
 
-          {/* Helper instructions */}
-          <div className="p-3 bg-blue-50/70 rounded-xl border border-blue-100 text-[11px] text-slate-600 leading-relaxed">
-            {details.help}
-          </div>
-
-          {/* Quick 1-Click Test Samples */}
-          {details.samples && details.samples.length > 0 && (
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <p className="text-[11px] font-bold text-slate-700 mb-1.5 flex items-center gap-1">
-                <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-                Quick Test Samples (Click to Test Instantly):
-              </p>
-              <div className="flex flex-wrap gap-1.5">
-                {details.samples.map((s, idx) => (
+          {/* Error Message */}
+          {error && (
+            <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2.5 text-xs text-red-700 animate-shake">
+              <AlertCircle className="w-4 h-4 shrink-0 text-red-500 mt-0.5" />
+              <div className="flex-1">
+                <p className="font-semibold">{error}</p>
+                {onSelectDevice && (
                   <button
-                    key={idx}
                     type="button"
-                    onClick={() => setUrlInput(s.url)}
-                    className="px-2.5 py-1 rounded-lg bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-400 text-[11px] font-medium text-slate-700 hover:text-blue-600 transition-colors cursor-pointer shadow-2xs inline-flex items-center gap-1"
+                    onClick={() => {
+                      handleClose();
+                      onSelectDevice();
+                    }}
+                    className="mt-2 text-[11px] font-bold text-red-800 underline hover:no-underline cursor-pointer flex items-center gap-1"
                   >
-                    <span>{s.name}</span>
-                    <ArrowRight className="w-2.5 h-2.5 text-slate-400" />
+                    <Folder className="w-3.5 h-3.5" />
+                    <span>Upload from Device / Phone Instead</span>
                   </button>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* EXTRACTED IMAGES SELECTION GRID */}
+          {extractedImages.length > 0 && (
+            <div className="space-y-3 pt-2 border-t border-slate-100 animate-fade-in">
+              {/* Grid Header & Controls */}
+              <div className="flex flex-wrap items-center justify-between gap-2 bg-slate-50 p-3 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-2">
+                  <span className="p-1 rounded-md bg-blue-100 text-blue-700">
+                    <ImageIcon className="w-4 h-4" />
+                  </span>
+                  <div>
+                    <span className="text-xs font-extrabold text-slate-800 block leading-tight">
+                      Found {extractedImages.length} Image{extractedImages.length > 1 ? 's' : ''} on page
+                    </span>
+                    {pageTitle && (
+                      <span className="text-[11px] text-slate-500 block truncate max-w-xs sm:max-w-md">
+                        {pageTitle}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {extractedImages.length > 1 && (
+                  <div className="flex items-center gap-2 text-xs">
+                    <button
+                      type="button"
+                      onClick={() => selectAll(true)}
+                      className="px-2.5 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 font-bold cursor-pointer transition-colors shadow-2xs"
+                    >
+                      Select All
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => selectAll(false)}
+                      className="px-2.5 py-1 bg-white hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 font-bold cursor-pointer transition-colors shadow-2xs"
+                    >
+                      Deselect All
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Grid Gallery */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-h-[320px] overflow-y-auto p-1">
+                {extractedImages.map((img, idx) => (
+                  <div
+                    key={idx}
+                    onClick={() => toggleSelectImage(idx)}
+                    className={`relative rounded-xl border-2 overflow-hidden cursor-pointer group transition-all bg-slate-50 flex flex-col ${
+                      img.selected
+                        ? 'border-blue-600 ring-2 ring-blue-100 shadow-md bg-blue-50/20'
+                        : 'border-slate-200 hover:border-slate-300 opacity-75 hover:opacity-100'
+                    }`}
+                  >
+                    {/* Checkbox badge */}
+                    <div className="absolute top-2 left-2 z-10">
+                      <div
+                        className={`w-5 h-5 rounded-md flex items-center justify-center shadow-xs transition-colors ${
+                          img.selected ? 'bg-blue-600 text-white' : 'bg-white/90 border border-slate-300 text-transparent'
+                        }`}
+                      >
+                        <Check className="w-3.5 h-3.5 stroke-[3]" />
+                      </div>
+                    </div>
+
+                    {/* Thumbnail Image */}
+                    <div className="aspect-square w-full relative bg-slate-100 overflow-hidden flex items-center justify-center">
+                      <img
+                        src={`/api/proxy-image?url=${encodeURIComponent(img.url)}`}
+                        alt={img.alt || `Found image ${idx + 1}`}
+                        loading="lazy"
+                        onError={(e) => {
+                          // Try direct if proxy fails
+                          (e.target as HTMLImageElement).src = img.url;
+                        }}
+                        className="w-full h-full object-contain p-1 group-hover:scale-105 transition-transform"
+                      />
+                    </div>
+
+                    {/* Filename caption */}
+                    <div className="p-1.5 bg-white border-t border-slate-100 text-[10px] text-slate-600 truncate font-mono">
+                      {img.name}
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Status Message */}
-          {isLoading && (
-            <div className="p-3 rounded-xl bg-blue-50 border border-blue-200 text-blue-800 text-xs flex items-center gap-2 animate-pulse">
-              <div className="w-3.5 h-3.5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin" />
-              <span>{statusMessage || 'Loading image...'}</span>
-            </div>
-          )}
-
-          {/* Error Banner with 1-Click Device Switch Shortcut */}
-          {error && (
-            <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-800 text-xs flex flex-col gap-2.5">
-              <div className="flex items-start gap-2">
-                <AlertCircle className="w-4 h-4 shrink-0 text-red-500 mt-0.5" />
-                <p className="leading-relaxed">{error}</p>
+          {/* Sample quick test links (if user has not searched yet) */}
+          {extractedImages.length === 0 && (
+            <div className="space-y-2 pt-2 border-t border-slate-100">
+              <span className="text-[11px] font-bold text-slate-400 uppercase tracking-wider block">
+                Quick Test Links (Click to try):
+              </span>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {details.samples.map((s, i) => (
+                  <button
+                    key={i}
+                    type="button"
+                    onClick={() => {
+                      setUrlInput(s.url);
+                      setError(null);
+                    }}
+                    className="p-2.5 rounded-xl border border-slate-200 bg-slate-50 hover:bg-blue-50/70 hover:border-blue-300 text-left transition-all group cursor-pointer"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-xs font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
+                        {s.name}
+                      </span>
+                      <ArrowRight className="w-3.5 h-3.5 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-0.5 transition-all" />
+                    </div>
+                    <span className="text-[10px] text-slate-400 block truncate font-mono mt-0.5">
+                      {s.url}
+                    </span>
+                  </button>
+                ))}
               </div>
-              {onSelectDevice && (
-                <button
-                  type="button"
-                  onClick={() => {
-                    onClose();
-                    onSelectDevice();
-                  }}
-                  className="self-start px-3 py-1.5 rounded-lg bg-red-100 hover:bg-red-200 text-red-900 font-bold text-xs inline-flex items-center gap-1.5 cursor-pointer transition-colors shadow-2xs"
-                >
-                  <Folder className="w-3.5 h-3.5 text-red-700" />
-                  <span>Choose from Device / Phone Instead</span>
-                </button>
-              )}
             </div>
           )}
         </div>
 
-        {/* Footer (Always Visible at bottom) */}
-        <div className="p-3.5 border-t border-slate-200 bg-slate-50/90 flex items-center justify-between shrink-0">
-          <button
-            type="button"
-            onClick={onClose}
-            className="px-3.5 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold cursor-pointer text-xs transition-colors"
-          >
-            Cancel
-          </button>
+        {/* Modal Footer */}
+        <div className="px-5 py-4 bg-slate-50 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3 shrink-0">
+          <div className="text-xs text-slate-500 flex items-center gap-1.5">
+            <Globe className="w-4 h-4 text-slate-400" />
+            <span>High-speed proxy with zero server storage</span>
+          </div>
 
-          <button
-            type="button"
-            onClick={handleImport}
-            disabled={isLoading || !urlInput.trim()}
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold cursor-pointer shadow-md shadow-blue-600/20 disabled:opacity-50 transition-all active:scale-95 text-xs sm:text-sm"
-          >
-            {isLoading ? (
-              <>
-                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>Importing...</span>
-              </>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleClose}
+              className="px-4 py-2 text-xs sm:text-sm font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-200/60 rounded-xl transition-colors cursor-pointer"
+            >
+              Cancel
+            </button>
+
+            {extractedImages.length > 0 ? (
+              <button
+                type="button"
+                onClick={handleImportSelected}
+                disabled={selectedCount === 0 || isImporting}
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:pointer-events-none text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-blue-500/20 cursor-pointer flex items-center gap-2"
+              >
+                {isImporting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Importing ({selectedCount})...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4" />
+                    <span>Import &amp; Convert Selected ({selectedCount})</span>
+                  </>
+                )}
+              </button>
             ) : (
-              <>
-                <Download className="w-3.5 h-3.5" />
-                <span>Import &amp; Convert</span>
-              </>
+              <button
+                type="button"
+                onClick={handleFetchImages}
+                disabled={!urlInput.trim() || isExtracting}
+                className="px-5 py-2 bg-blue-600 hover:bg-blue-700 active:scale-95 disabled:opacity-50 disabled:pointer-events-none text-white font-bold text-xs sm:text-sm rounded-xl transition-all shadow-md shadow-blue-500/20 cursor-pointer flex items-center gap-1.5"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span>Fetch Images</span>
+              </button>
             )}
-          </button>
+          </div>
         </div>
       </div>
     </div>
