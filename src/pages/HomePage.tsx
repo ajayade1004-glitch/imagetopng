@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import {
   ShieldCheck,
-  CheckCircle,
-  HelpCircle,
   ChevronDown,
   Layers,
   ArrowRight,
-  Maximize2,
   Sparkles,
   Zap,
+  Lock,
+  Download,
+  Palette,
+  Sliders,
+  ExternalLink,
+  HelpCircle,
+  FileImage,
 } from 'lucide-react';
 import { MainConverter } from '../components/MainConverter';
-import {
-  JpgToPngIllustration,
-  TransparentPngIllustration,
-  PrivacyShieldIllustration,
-} from '../components/OriginalIllustrations';
+import { ImageToPngVideoWalkthrough } from '../components/ImageToPngVideoWalkthrough';
 import { FreePngSamples } from '../components/FreePngSamples';
 import { AdPlaceholder } from '../components/AdPlaceholder';
 import { ProFeatureShowcase } from '../components/ProFeatureShowcase';
@@ -32,675 +32,507 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     setOpenFaq(openFaq === index ? null : index);
   };
 
+  const handleLinkClick = (e: React.MouseEvent, path: string) => {
+    e.preventDefault();
+    onNavigate(path);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const faqs = [
     {
       q: 'What is an Image to PNG converter?',
-      a: 'An Image to PNG converter is a specialized software utility that transforms graphic and photographic files (such as JPG, WEBP, GIF, SVG, BMP, or AVIF) into the Portable Network Graphics (PNG) format. PNG is the international standard for raster graphics that demand lossless pixel preservation, sharp vector-rendered lines, and full 8-bit alpha channel transparency.',
+      a: 'An image to png converter is a free online tool. It lets you convert image to png format directly in your web browser. You can convert to png image files without losing clarity or sharpness.',
     },
     {
-      q: 'How do I convert an image to PNG on ImageToPNG?',
-      a: 'Simply drag your image into the conversion zone or click "Choose Image" to select one or multiple files from your computer, phone, or tablet. Your browser instantly decodes the file using the HTML5 Canvas API and encodes it as a high-fidelity PNG. Once completed, click "Download PNG" or "Download All (.zip)".',
+      q: 'How do I convert image to png on this website?',
+      a: 'To convert image to png, drag your picture into the drop zone or click Choose Image. Our image converter to png processes your file instantly. Then click Download PNG to save your new file.',
     },
     {
-      q: 'Are my images uploaded to an external server or cloud service?',
-      a: 'No. ImageToPNG operates completely client-side in your web browser. Your images are processed strictly in your local device memory using native web APIs. No image is ever transmitted, uploaded, copied, or stored on any remote cloud server.',
+      q: 'Is this image to png converter free to use?',
+      a: 'Yes! Our image to png converter free service is 100% free with no account sign-up and no daily conversion limits. You can image convert to png as many pictures as you need.',
     },
     {
-      q: 'Can I convert JPG to PNG?',
-      a: 'Yes. JPG is one of the most common formats converted to PNG. Converting JPG to PNG prevents any further compression loss when you need to make repetitive edits, and prepares the image for transparent background masking in graphic design programs.',
+      q: 'How can I convert image to transparent PNG?',
+      a: 'Upload your file into our tool to turn your image to transparent png. If your source graphic has transparent layers, our image to png converter preserves the full 8-bit alpha channel.',
     },
     {
-      q: 'Does converting a JPG to PNG improve its image quality?',
-      a: 'No. Converting an existing JPG to PNG cannot restore fine detail or eliminate compression artifacts that were already discarded during the original JPEG lossy compression pass. However, saving as PNG prevents generational quality loss during further editing.',
+      q: 'How do I convert JPG to PNG image?',
+      a: 'To convert jpg to png image files, simply drop your JPEG or JPG photo into the box. Our image to png converter transforms every pixel into a lossless PNG container instantly.',
     },
     {
-      q: 'Why is my converted PNG file larger than my original JPG?',
-      a: 'JPG uses aggressive lossy compression engineered specifically for photographs, discarding subtle color variations. PNG uses the lossless DEFLATE compression algorithm, which mathematically stores every single pixel without approximations. For continuous-tone photos, lossless storage naturally requires more bytes.',
+      q: 'Why should I image convert to png instead of keeping JPG?',
+      a: 'When you convert image to png, your graphics avoid future compression loss during editing. Converting an image to png format also allows you to add transparent backgrounds.',
     },
     {
-      q: 'Can I convert WEBP images to PNG?',
-      a: 'Yes. While modern web browsers support WebP, many desktop applications, older graphic editors, and office tools do not. Converting WebP to PNG provides broad compatibility across older operating systems, graphic suites, and legacy desktop software.',
+      q: 'Can I batch convert to png image files together?',
+      a: 'Yes. You can select multiple pictures at once in our image to png converter. Download each file individually or bundle all files into a single ZIP download.',
     },
     {
-      q: 'Will PNG preserve transparency if my original file has it?',
-      a: 'Yes. Formats that support transparency—such as WebP, GIF, SVG, AVIF, and ICO—will have their transparent alpha channels preserved completely in the converted PNG. If your original file is a JPG, which does not support transparency, the converted PNG will be opaque.',
-    },
-    {
-      q: 'Can I convert animated GIFs to PNG?',
-      a: 'Animated GIFs are converted using the first frame. When an animated GIF is processed, our canvas converter renders the first frame of the animation as a high-resolution, full 24-bit truecolor static PNG image.',
-    },
-    {
-      q: 'Can I convert SVG vector files to PNG?',
-      a: 'Yes. Converting SVG to PNG rasterizes the mathematical vector geometry into a crisp, transparent bitmap image at native dimensions, making it easy to share on platforms or email clients that do not support vector SVG files.',
-    },
-    {
-      q: 'Can I convert images to PNG on an iPhone or Android phone?',
-      a: 'Yes. ImageToPNG is fully responsive and optimized for mobile browsers including Mobile Safari, Chrome, and Firefox on iOS and Android. You can choose photos directly from your device photo library or camera roll.',
-    },
-    {
-      q: 'What is the maximum file size supported?',
-      a: 'Because conversion runs inside your browser memory, we recommend individual files up to 50MB. Files larger than this may encounter device memory limitations depending on your hardware.',
-    },
-    {
-      q: 'Can I convert multiple images at once?',
-      a: 'Yes. You can select multiple images or drag an entire batch of files into the converter. You can then download each PNG individually or bundle all converted files into a single ZIP archive with one click.',
-    },
-    {
-      q: 'Can I convert Apple HEIC photos and Camera RAW to PNG?',
-      a: 'Yes! ImageToPNG natively decodes iPhone HEIC/HEIF photos, Tagged Image File Format (TIFF/TIF), and digital camera RAW formats (Canon CR2/CR3, Nikon NEF, Sony ARW, Adobe DNG) directly in your browser without requiring paid extensions.',
-    },
-    {
-      q: 'Can I crop or edit my image before downloading PNG?',
-      a: 'Yes! After uploading, click the "Edit" button on any image to use our interactive drag-to-select Crop tool, image resizer, 90° rotation, color filter adjustments, and background transparency controls before saving.',
-    },
-    {
-      q: 'Can I batch convert hundreds of images and download as ZIP?',
-      a: 'Yes. You can select or drag multiple images at once. All images are processed concurrently in your browser. With one click on "Download All (.zip)", all converted PNG files are packaged into a single ZIP archive.',
-    },
-    {
-      q: 'Is ImageToPNG free to use?',
-      a: 'Yes. ImageToPNG is 100% free with no registration, no watermarks, no account creation, no subscription fees, and no artificial daily conversion limits.',
+      q: 'Can I convert image to png format on mobile phones?',
+      a: 'Yes. Our image to png converter free app runs smoothly on iPhone, iPad, and Android. You can choose photos straight from your camera roll to convert image to png.',
     },
   ];
 
-  // Schema.org FAQPage JSON-LD
-  const faqSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
-      '@type': 'Question',
-      name: f.q,
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: f.a,
-      },
-    })),
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50">
-      {/* Schema.org FAQPage */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-
-      {/* Hero Section */}
-      <section className="pt-6 pb-8 sm:pt-8 sm:pb-10 bg-gradient-to-b from-blue-50/60 via-slate-50 to-slate-50 border-b border-slate-200">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Main Title & Subtitle */}
-          <div className="max-w-2xl mx-auto">
-            <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100 text-blue-800 mb-2.5 shadow-2xs">
-              <Zap className="w-3 h-3 text-blue-600" />
-              <span>Free • Fast • In-Browser • No Account Required</span>
-            </div>
-
-            <h1 className="text-2xl sm:text-4xl font-black text-slate-900 tracking-tight leading-tight">
-              Image to PNG Converter
-            </h1>
-
-            <p className="mt-2 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-xl mx-auto">
-              Convert any image format—JPG, JPEG, WEBP, GIF, BMP, TIFF, HEIC, HEIF, AVIF, SVG, ICO, PSD, RAW, and more—to lossless PNG directly in your web browser. Universal in-browser processing with zero server uploads.
-            </p>
+    <div className="space-y-8 sm:space-y-12 pb-12">
+      {/* 
+        ========================================================================
+        QUARTER 1: HERO SECTION & IMAGE TO PNG CONVERTER (COMPACT VIEWPORT HEIGHT)
+        ========================================================================
+      */}
+      <section className="relative pt-2 sm:pt-4 pb-1 overflow-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          {/* Compact Trust Badge */}
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200 mb-1.5 shadow-2xs">
+            <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <span>100% Private In-Browser Conversion • No Server Uploads</span>
           </div>
 
-          {/* Main Converter Tool (Immediate Visual Priority) */}
-          <div className="mt-5">
-            <MainConverter />
-          </div>
+          {/* Compact H1 */}
+          <h1 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-slate-900 tracking-tight leading-snug">
+            Image to PNG Converter – Convert Images to PNG Free
+          </h1>
 
-          {/* Trust Guarantees */}
-          <div className="mt-5 flex flex-wrap items-center justify-center gap-4 text-[11px] text-slate-500 font-medium">
-            <span className="flex items-center gap-1 text-slate-700">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-              Lossless PNG Output
+          {/* Compact Subtitle (Target Keywords preserved in first 50 words) */}
+          <p className="mt-1 sm:mt-1.5 text-xs sm:text-sm text-slate-600 leading-normal max-w-2xl mx-auto">
+            Use our fast, free <strong className="font-bold text-slate-900">Image to PNG</strong> converter to convert image to png files in seconds. Our browser-based <strong className="font-semibold text-slate-800">image to png converter free</strong> tool turns JPG, WEBP, HEIC, GIF, and SVG pictures into crisp PNG images with zero quality loss.
+          </p>
+
+          {/* Compact Feature Pills Row */}
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-1.5 sm:gap-2.5 text-[11px] font-medium text-slate-600">
+            <span className="flex items-center gap-1 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+              <Zap className="w-3 h-3 text-amber-500" /> Fast Speed
             </span>
-            <span className="flex items-center gap-1 text-slate-700">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-              Alpha Transparency Preserved
+            <span className="flex items-center gap-1 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+              <Palette className="w-3 h-3 text-emerald-500" /> Transparent PNG
             </span>
-            <span className="flex items-center gap-1 text-slate-700">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-              Batch Download as ZIP
+            <span className="flex items-center gap-1 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+              <Lock className="w-3 h-3 text-blue-500" /> 100% Private
             </span>
-            <span className="flex items-center gap-1 text-slate-700">
-              <CheckCircle className="w-3.5 h-3.5 text-emerald-600" />
-              Windows, Mac, iOS & Android
+            <span className="flex items-center gap-1 bg-white px-2 py-0.5 rounded-md border border-slate-200 shadow-2xs">
+              <Download className="w-3 h-3 text-indigo-500" /> Batch ZIP
             </span>
           </div>
         </div>
-      </section>
 
-      {/* Ad slot placeholder 1 */}
-      <AdPlaceholder format="horizontal" />
-
-      {/* Pro Features Showcased (Paid Elsewhere • 100% Free Here) */}
-      <ProFeatureShowcase />
-
-      {/* Section: Trust & Local Privacy */}
-      <section className="py-12 bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 mb-3">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>Security & Privacy Architecture</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-                Your Images Never Leave Your Device
-              </h2>
-              <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
-                Most online image converters require uploading your personal photos, business graphics, or confidential documents to an unknown cloud server for processing. This introduces bandwidth delays, queue times, and serious privacy risks.
-              </p>
-              <p className="mt-3 text-slate-600 text-sm sm:text-base leading-relaxed">
-                ImageToPNG works entirely inside your web browser. Utilizing modern HTML5 Canvas, File, and Web APIs, the decoding and encoding happen on your device’s hardware. Your images are never transmitted over the internet, stored on a server, or shared with third parties.
-              </p>
-              <div className="mt-5 grid grid-cols-2 gap-3 text-xs">
-                <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
-                  <span className="font-semibold text-slate-900 block">Instant Speed</span>
-                  <span className="text-slate-500">No upload queues or network latency</span>
-                </div>
-                <div className="p-3 rounded-lg bg-slate-50 border border-slate-200">
-                  <span className="font-semibold text-slate-900 block">Complete Privacy</span>
-                  <span className="text-slate-500">Confidential files stay in browser memory</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-slate-50 p-4 sm:p-6 rounded-2xl border border-slate-200">
-              <PrivacyShieldIllustration />
-            </div>
-          </div>
+        {/* Main Interactive Converter Box - Placed Immediately Above the Fold */}
+        <div className="mt-2.5 sm:mt-3.5 max-w-4xl mx-auto px-4 sm:px-6">
+          <MainConverter />
         </div>
-      </section>
 
-      {/* Section: Supported Formats Grid */}
-      <section className="py-14 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Supported Image Formats for PNG Conversion
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Convert between all major raster and vector image formats. Click any converter below for format-specific technical guides, compatibility charts, and tips.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {SUPPORTED_FORMATS.map((format) => (
+        {/* Fast Format Navigation Links */}
+        <div className="mt-3.5 max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <p className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+            Popular Image Converter to PNG Tools
+          </p>
+          <div className="flex flex-wrap justify-center gap-1 sm:gap-1.5">
+            {[
+              { label: 'JPG to PNG', path: '/jpg-to-png' },
+              { label: 'JPEG to PNG', path: '/jpeg-to-png' },
+              { label: 'WEBP to PNG', path: '/webp-to-png' },
+              { label: 'HEIC to PNG', path: '/heic-to-png' },
+              { label: 'SVG to PNG', path: '/svg-to-png' },
+              { label: 'TIFF to PNG', path: '/tiff-to-png' },
+              { label: 'GIF to PNG', path: '/gif-to-png' },
+              { label: 'BMP to PNG', path: '/bmp-to-png' },
+              { label: 'PSD to PNG', path: '/psd-to-png' },
+              { label: 'RAW to PNG', path: '/raw-to-png' },
+            ].map((fmt) => (
               <a
-                key={format.slug}
-                href={`/${format.slug}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  onNavigate(`/${format.slug}`);
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
-                }}
-                className="bg-white p-5 rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-md transition-all group flex flex-col justify-between"
+                key={fmt.path}
+                href={fmt.path}
+                onClick={(e) => handleLinkClick(e, fmt.path)}
+                className="px-2 py-0.5 rounded bg-white border border-slate-200 text-[11px] font-medium text-slate-700 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50/50 transition-colors cursor-pointer shadow-2xs"
               >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-bold text-base text-slate-900 group-hover:text-blue-600 transition-colors">
-                      {format.sourceFormat} to PNG
-                    </span>
-                    <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700">
-                      {format.badge}
-                    </span>
-                  </div>
-                  <p className="text-xs text-slate-500 line-clamp-2">
-                    Convert {format.extension} files to high-quality PNG.
-                  </p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-slate-100 flex items-center text-xs font-semibold text-blue-600 group-hover:translate-x-0.5 transition-transform">
-                  <span>Start conversion</span>
-                  <ArrowRight className="w-3.5 h-3.5 ml-1" />
-                </div>
+                {fmt.label}
               </a>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Section: How It Works */}
-      <section id="how-it-works" className="py-14 bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              How to Convert an Image to PNG
+      {/* Top Banner Advertisement Slot */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AdPlaceholder slotId="top-banner" />
+      </section>
+
+      {/* 
+        ========================================================================
+        QUARTER 2: HOW TO CONVERT IMAGE TO PNG + VIDEO & WORKFLOW
+        ========================================================================
+      */}
+      <section id="how-it-works" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-2">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-8 shadow-xs">
+          <div className="text-center max-w-3xl mx-auto mb-6">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
+              Quick Guide
+            </span>
+            <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+              How to Convert Image to PNG Online
             </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Follow these simple steps to convert any supported image file to PNG in seconds.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Follow these simple steps to <strong className="font-semibold text-slate-800">convert image to png format</strong> in seconds with our free <strong className="font-semibold text-slate-800">image converter to png</strong>.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 relative">
-              <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center mb-4">
+          {/* 4 Clear Step Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-8">
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-xs">
                 1
-              </span>
-              <h3 className="font-bold text-slate-900 text-base mb-1">Choose an Image</h3>
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Pick Your Image</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Click "Choose Image" or drag one or multiple files directly from your computer, smartphone, or cloud drive into the drop area.
+                Click Choose Image or drop files to <strong className="font-semibold text-slate-800">convert image to png</strong> right away.
               </p>
+              <ul className="mt-2 text-[11px] text-slate-500 space-y-0.5 list-disc pl-3.5">
+                <li>Supports JPG, WEBP, SVG, HEIC</li>
+                <li>Batch image convert to png</li>
+                <li>Zero upload wait time</li>
+              </ul>
             </div>
 
-            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 relative">
-              <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center mb-4">
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-xs">
                 2
-              </span>
-              <h3 className="font-bold text-slate-900 text-base mb-1">Instant Browser Decode</h3>
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">In-Browser Decoding</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Your browser reads the binary image stream into an off-screen HTML5 canvas buffer, preserving resolution and alpha transparency.
+                Our <strong className="font-semibold text-slate-800">image to png converter</strong> processes your pictures locally in memory.
               </p>
+              <ul className="mt-2 text-[11px] text-slate-500 space-y-0.5 list-disc pl-3.5">
+                <li>Keeps 100% full clarity</li>
+                <li>Private Image to PNG conversion</li>
+                <li>Safe for sensitive graphics</li>
+              </ul>
             </div>
 
-            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 relative">
-              <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center mb-4">
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="w-7 h-7 rounded-lg bg-blue-600 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-xs">
                 3
-              </span>
-              <h3 className="font-bold text-slate-900 text-base mb-1">Lossless PNG Encoding</h3>
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Lossless PNG Output</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                The canvas generates an uncompressed, mathematically exact PNG blob using standard DEFLATE compression.
+                Easily <strong className="font-semibold text-slate-800">convert to png image</strong> files with lossless DEFLATE compression.
               </p>
+              <ul className="mt-2 text-[11px] text-slate-500 space-y-0.5 list-disc pl-3.5">
+                <li>Image to transparent png support</li>
+                <li>Compress to 50kb or 200kb</li>
+                <li>Built-in crop and rotation</li>
+              </ul>
             </div>
 
-            <div className="p-6 rounded-xl bg-slate-50 border border-slate-200 relative">
-              <span className="w-8 h-8 rounded-full bg-blue-600 text-white font-bold text-sm flex items-center justify-center mb-4">
+            <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+              <div className="w-7 h-7 rounded-lg bg-emerald-600 text-white font-black text-xs flex items-center justify-center mb-2.5 shadow-xs">
                 4
-              </span>
-              <h3 className="font-bold text-slate-900 text-base mb-1">Download PNG File</h3>
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Download PNG File</h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Save the converted PNG file immediately, or click "Download All (.zip)" if converting multiple images in batch.
+                Download your new file from our <strong className="font-semibold text-slate-800">image to png converter free</strong> tool instantly.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Original Interactive PNG Demonstrations */}
-      <FreePngSamples />
-
-      {/* Section: Why Convert to PNG? (Comprehensive Editorial Content) */}
-      <section className="py-14 bg-white border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Why Convert an Image to PNG?
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Portable Network Graphics (PNG) was created to establish an open, unpatented, and technically superior standard for computer raster graphics.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
-                <Layers className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-base mb-2">Alpha Transparency</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                PNG supports 8-bit alpha channels (RGBA), giving you 256 individual levels of opacity. Unlike formats that only allow fully visible or invisible pixels, PNG renders smooth drop shadows, translucent glassmorphism effects, and feathered cutout borders seamlessly across any background.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
-                <Maximize2 className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-base mb-2">Lossless DEFLATE Encoding</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                PNG uses non-destructive DEFLATE compression. When you save an image as a PNG, every single pixel is preserved without the blurring, blockiness, or chroma ringing associated with JPEG compression. It is the premier format for screenshots, UI icons, diagrams, and digital typography.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center mb-3">
-                <Sparkles className="w-5 h-5" />
-              </div>
-              <h3 className="font-bold text-slate-900 text-base mb-2">Universal Compatibility</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">
-                While modern formats like WebP and AVIF offer high compression for websites, they frequently fail when imported into legacy presentation software, desktop word processors, older versions of Photoshop, or printing presses. PNG is recognized universally by every operating system and graphic application.
-              </p>
-            </div>
-          </div>
-
-          {/* Detailed Editorial Explanation with Illustration */}
-          <div className="mt-12 p-8 bg-slate-50 rounded-2xl border border-slate-200">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-xl font-bold text-slate-900 mb-3">
-                  Lossless Compression vs. Generational Loss
-                </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-3">
-                  Every time a lossy file format like JPEG is opened, edited, and saved, the discrete cosine transform algorithm executes another compression pass. This introduces compounding degradation known as generational loss—sharp boundaries become muddy, colors smear, and JPEG blocking becomes noticeable.
-                </p>
-                <p className="text-sm text-slate-600 leading-relaxed">
-                  Converting your working files to PNG stops this cycle of decay. Once an image is stored in PNG format, you can open, crop, adjust, and re-save it an infinite number of times without losing even a fraction of a pixel.
-                </p>
-              </div>
-              <div>
-                <JpgToPngIllustration />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Ad slot placeholder 2 */}
-      <AdPlaceholder format="horizontal" />
-
-      {/* Section: Comprehensive Comparison Tables */}
-      <section className="py-14 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              PNG vs Other Image Formats: Detailed Comparison
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              A factual breakdown of how PNG compares to JPG, WebP, GIF, TIFF, and AVIF across compression, transparency, color fidelity, and ideal use cases.
-            </p>
-          </div>
-
-          {/* Master Comparison Table */}
-          <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden mb-10">
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead className="bg-slate-100 text-slate-700 font-bold border-b border-slate-200">
-                  <tr>
-                    <th className="py-3.5 px-4">Feature</th>
-                    <th className="py-3.5 px-4 text-blue-700 bg-blue-50/60">PNG</th>
-                    <th className="py-3.5 px-4">JPG / JPEG</th>
-                    <th className="py-3.5 px-4">WEBP</th>
-                    <th className="py-3.5 px-4">GIF</th>
-                    <th className="py-3.5 px-4">AVIF</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Compression Type</td>
-                    <td className="py-3 px-4 text-blue-700 bg-blue-50/30 font-medium">Lossless (DEFLATE)</td>
-                    <td className="py-3 px-4 text-slate-600">Lossy (DCT)</td>
-                    <td className="py-3 px-4 text-slate-600">Lossy & Lossless</td>
-                    <td className="py-3 px-4 text-slate-600">Lossless (LZW)</td>
-                    <td className="py-3 px-4 text-slate-600">Lossy & Lossless (AV1)</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Alpha Transparency</td>
-                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Full 8-bit (256 levels)</td>
-                    <td className="py-3 px-4 text-red-900 font-bold">None (Opaque only)</td>
-                    <td className="py-3 px-4 text-slate-700">Full 8-bit (256 levels)</td>
-                    <td className="py-3 px-4 text-slate-700">1-bit Binary (On/Off)</td>
-                    <td className="py-3 px-4 text-slate-700">Full 8-bit or higher</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Color Palette</td>
-                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Up to 48-bit Truecolor</td>
-                    <td className="py-3 px-4 text-slate-700">24-bit Truecolor</td>
-                    <td className="py-3 px-4 text-slate-700">24-bit Truecolor</td>
-                    <td className="py-3 px-4 text-amber-900 font-bold">Max 256 colors (8-bit)</td>
-                    <td className="py-3 px-4 text-slate-700">10-bit / 12-bit HDR</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Best For Photographs</td>
-                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Large file sizes</td>
-                    <td className="py-3 px-4 text-emerald-900 font-bold">Excellent (Small size)</td>
-                    <td className="py-3 px-4 text-emerald-900 font-bold">Outstanding for Web</td>
-                    <td className="py-3 px-4 text-red-900 font-bold">Poor (Color banding)</td>
-                    <td className="py-3 px-4 text-emerald-900 font-bold">Highest compression</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Best For Logos & UI</td>
-                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Industry Gold Standard</td>
-                    <td className="py-3 px-4 text-red-900 font-bold">Poor (Ringing noise)</td>
-                    <td className="py-3 px-4 text-slate-700">Great for web assets</td>
-                    <td className="py-3 px-4 text-slate-700">Legacy only</td>
-                    <td className="py-3 px-4 text-slate-700">Good for web delivery</td>
-                  </tr>
-                  <tr>
-                    <td className="py-3 px-4 font-semibold text-slate-900">Software Support</td>
-                    <td className="py-3 px-4 text-blue-800 bg-blue-50/30 font-bold">Broad / Universal</td>
-                    <td className="py-3 px-4 text-emerald-900 font-bold">Broad / Universal</td>
-                    <td className="py-3 px-4 text-amber-900 font-bold">Modern Web & Browsers</td>
-                    <td className="py-3 px-4 text-emerald-900 font-bold">Broad / Universal</td>
-                    <td className="py-3 px-4 text-amber-900 font-bold">Limited desktop tools</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          {/* Deep Dives into Specific Comparisons */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h3 className="font-bold text-slate-900 text-lg mb-2">When Should You Use PNG?</h3>
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">•</span>
-                  <span><strong>Logos, Icons & Badges:</strong> Sharp vector-rendered graphics that require clean, anti-aliased edges without blur.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">•</span>
-                  <span><strong>Transparent Backgrounds:</strong> Cutout product photos, sticker designs, and UI assets that sit on diverse colored surfaces.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">•</span>
-                  <span><strong>Software Screenshots & Code Snips:</strong> High-contrast text and fine user-interface lines that blur under JPEG compression.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-blue-600 font-bold">•</span>
-                  <span><strong>Master Archival Copies:</strong> Digital artwork you intend to edit multiple times in graphic software.</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-slate-200">
-              <h3 className="font-bold text-slate-900 text-lg mb-2">When Should You NOT Use PNG?</h3>
-              <p className="text-xs text-slate-500 mb-3">
-                For complete technical honesty, PNG is not ideal for every scenario:
-              </p>
-              <ul className="space-y-2 text-xs sm:text-sm text-slate-600">
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-500 font-bold">•</span>
-                  <span><strong>Continuous-Tone Photographs for Web:</strong> A full-bleed hero photograph on a homepage in PNG might weigh 8MB, whereas a high-quality JPG or WebP will weigh under 400KB, drastically improving page load times.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-500 font-bold">•</span>
-                  <span><strong>High-Frame-Rate Animations:</strong> While APNG (Animated PNG) exists, standard animated video formats (MP4, WebM) are exponentially more bandwidth-efficient.</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-500 font-bold">•</span>
-                  <span><strong>Print Archival CMYK:</strong> Standard PNG does not officially support CMYK color space; TIFF or PDF is preferable for offset commercial printing presses.</span>
-                </li>
+              <ul className="mt-2 text-[11px] text-slate-500 space-y-0.5 list-disc pl-3.5">
+                <li>Single click PNG download</li>
+                <li>One-click batch ZIP download</li>
+                <li>Ready for web and design use</li>
               </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Section: Technical Truths (Does JPG to PNG increase quality? Why is PNG bigger?) */}
-      <section className="py-14 bg-white border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Important Technical Facts About PNG Conversion
-            </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Separating technical reality from digital myths.
-            </p>
+          {/* Interactive Video Walkthrough */}
+          <div className="mt-6 pt-6 border-t border-slate-200" id="video-tutorial">
+            <div className="text-center max-w-2xl mx-auto mb-4">
+              <h3 className="text-base sm:text-xl font-bold text-slate-900">
+                Video Tutorial: How to Convert Image to PNG
+              </h3>
+              <p className="text-xs text-slate-600 mt-0.5">
+                Watch this 12-second guide to see how our <strong className="font-semibold text-slate-800">image converter to png</strong> transforms pictures into lossless files.
+              </p>
+            </div>
+            <div className="max-w-3xl mx-auto">
+              <ImageToPngVideoWalkthrough />
+            </div>
           </div>
 
-          <div className="space-y-6">
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <h3 className="font-bold text-slate-900 text-base mb-2">
-                Does converting a JPG to PNG improve image quality?
+          {/* WebP Workflow Diagram */}
+          <div className="mt-8 pt-6 border-t border-slate-200">
+            <div className="max-w-3xl mx-auto text-center">
+              <h3 className="text-sm sm:text-lg font-bold text-slate-900 mb-1.5">
+                Image to PNG Converter Workflow
               </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                The short and honest answer is: <strong>No, converting an existing JPG to a PNG will not restore detail that has already been discarded.</strong>
+              <p className="text-xs text-slate-600 mb-3">
+                See how our <strong className="font-semibold text-slate-800">image to png converter</strong> transforms raw pictures into high-definition PNG files directly in your browser.
               </p>
-              <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                When a photograph is saved in JPG format, the JPEG encoder discards subtle high-frequency chroma and luminance values. When you convert that JPG to a PNG, our converter decodes the existing pixels accurately and writes them into a lossless PNG container. The image will look identical to the JPG. It will not become sharper or clearer, but it will not undergo any further degradation.
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <h3 className="font-bold text-slate-900 text-base mb-2">
-                Why can a converted PNG file be larger than the original image?
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                Lossy formats (like JPEG or lossy WebP) throw away image data to reach ultra-compact file sizes. PNG, on the other hand, is committed to zero data loss. It must mathematically describe every individual pixel using its DEFLATE compression algorithm.
-              </p>
-              <p className="text-sm text-slate-600 leading-relaxed mt-2">
-                Because natural photographs contain lens noise, optical grain, and millions of slightly varied pixel hues, lossless compression cannot reduce the data as aggressively as a lossy format. A 1MB JPG photograph can easily expand to 3MB–5MB when converted to PNG. Conversely, flat graphics with solid colors (like logos or screenshots) often compress smaller in PNG than in JPG!
-              </p>
-            </div>
-
-            <div className="p-6 rounded-xl border border-slate-200 bg-slate-50">
-              <h3 className="font-bold text-slate-900 text-base mb-2">
-                How does PNG transparency work?
-              </h3>
-              <p className="text-sm text-slate-600 leading-relaxed">
-                PNG uses a dedicated 8-bit alpha channel in addition to the standard Red, Green, and Blue channels. This provides 256 gradations of transparency per pixel (from 0 = fully transparent to 255 = completely opaque). This allows graphic designers to produce realistic semi-transparent shadows, glowing halos, and subtle frosted-glass overlays.
-              </p>
+              <img
+                src="/image-to-png.webp"
+                alt="Image to PNG browser conversion workflow and DEFLATE compression pipeline"
+                width={800}
+                height={450}
+                loading="lazy"
+                className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section: Authoritative Technical Standards, Scientific Specifications & Citations */}
-      <section className="py-14 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 mb-3">
-              <Sparkles className="w-4 h-4 text-blue-600" />
-              <span>Verified Standards & Peer-Reviewed References</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Technical Standards & Authoritative Citations
+      {/* 
+        ========================================================================
+        QUARTER 3: TRANSPARENCY, FORMATS & CONVERT TO PNG IMAGE
+        ========================================================================
+      */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-8 shadow-xs">
+          <div className="max-w-3xl mx-auto text-center mb-6">
+            <span className="text-[11px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-100">
+              Clear Alpha Channels
+            </span>
+            <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+              Convert Image to Transparent PNG with Crisp Edges
             </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              ImageToPNG strictly adheres to official international image encoding specifications and standard codecs.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
+              When you <strong className="font-bold text-slate-800">convert image to transparent png</strong>, your logos, icons, and signatures blend seamlessly onto any dark or colorful website background.
             </p>
           </div>
 
-          {/* Academic & Standards Blockquotes */}
-          <div className="space-y-4 mb-8">
-            <blockquote className="p-5 rounded-xl bg-white border-l-4 border-blue-600 border border-slate-200 text-xs sm:text-sm text-slate-700 shadow-2xs">
-              <p className="italic leading-relaxed">
-                "PNG provides a patent-free replacement for GIF that can also replace many common uses of TIFF. Indexed-color, grayscale, and truecolor images are supported, plus an optional alpha channel. Sample depths range from 1 to 16 bits. PNG is designed to be fully streamable with a progressive display option."
-              </p>
-              <cite className="block mt-2.5 font-bold text-slate-900 not-italic text-xs">
-                — International Organization for Standardization (ISO/IEC 15948:2004) / W3C Recommendation
-              </cite>
-            </blockquote>
-
-            <blockquote className="p-5 rounded-xl bg-white border-l-4 border-emerald-600 border border-slate-200 text-xs sm:text-sm text-slate-700 shadow-2xs">
-              <p className="italic leading-relaxed">
-                "PNG uses a 2-dimensional pre-compression filter step followed by non-destructive DEFLATE compression (LZ77 derivative). The filtering step attempts to predict the value of each byte based on neighboring pixels, substantially increasing compressibility without modifying or quantizing the original pixel matrix."
-              </p>
-              <cite className="block mt-2.5 font-bold text-slate-900 not-italic text-xs">
-                — Internet Engineering Task Force (IETF RFC 2083), Network Working Group
-              </cite>
-            </blockquote>
+          {/* WebP Transparency Guide Diagram */}
+          <div className="mb-8 max-w-3xl mx-auto">
+            <img
+              src="/image-to-png-alpha-transparency-guide.webp"
+              alt="Image to PNG alpha transparency comparison showing transparent background"
+              width={800}
+              height={450}
+              loading="lazy"
+              className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
+            />
           </div>
 
-          {/* Standards Reference Table */}
-          <div className="bg-white rounded-xl border border-slate-200 overflow-hidden shadow-2xs mb-8">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-100 text-slate-800 font-bold border-b border-slate-200">
-                <tr>
-                  <th className="py-3 px-4">Standard Body</th>
-                  <th className="py-3 px-4">Specification Identifier</th>
-                  <th className="py-3 px-4">Technical Focus</th>
+          {/* Feature Highlights Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold mb-2.5">
+                <Palette className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Image to Transparent PNG</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Our tool makes it easy to turn any <strong className="font-semibold text-slate-800">image to transparent png</strong> with smooth 8-bit alpha shading.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="w-8 h-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center font-bold mb-2.5">
+                <Layers className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Convert Image to PNG Format</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                When you <strong className="font-semibold text-slate-800">convert image to png format</strong>, curves stay razor-sharp and text stays readable at every zoom level.
+              </p>
+            </div>
+
+            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+              <div className="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-800 flex items-center justify-center font-bold mb-2.5">
+                <Sliders className="w-4 h-4" />
+              </div>
+              <h3 className="font-bold text-slate-900 text-sm mb-1">Convert to PNG Image Suite</h3>
+              <p className="text-xs text-slate-600 leading-relaxed">
+                Crop margins, rotate angles, and resize pixels whenever you need to <strong className="font-semibold text-slate-800">convert to png image</strong> files.
+              </p>
+            </div>
+          </div>
+
+          {/* Supported Format Grid */}
+          <div className="pt-6 border-t border-slate-200">
+            <h3 className="text-base sm:text-lg font-bold text-slate-900 text-center mb-4">
+              Supported Image Converter to PNG Formats
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+              {SUPPORTED_FORMATS.map((fmt) => (
+                <a
+                  key={fmt.slug}
+                  href={`/${fmt.slug}`}
+                  onClick={(e) => handleLinkClick(e, `/${fmt.slug}`)}
+                  className="p-2.5 rounded-xl bg-slate-50 border border-slate-200 hover:border-blue-500 hover:bg-blue-50/40 transition-all text-center group cursor-pointer"
+                >
+                  <span className="block font-black text-slate-900 group-hover:text-blue-600 text-xs sm:text-sm">
+                    {fmt.sourceFormat} to PNG
+                  </span>
+                  <span className="block text-[10px] text-slate-500 mt-0.5">
+                    {fmt.badge}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Free PNG Sample Assets Showcase */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <FreePngSamples />
+      </section>
+
+      {/* Pro Features Showcase */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ProFeatureShowcase />
+      </section>
+
+      {/* 
+        ========================================================================
+        QUARTER 4: LOSSLESS SPECS, CONVERT JPG TO PNG IMAGE & EXTENDED FAQS
+        ========================================================================
+      */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-8 shadow-xs">
+          <div className="max-w-3xl mx-auto text-center mb-6">
+            <span className="text-[11px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2.5 py-0.5 rounded-full border border-indigo-100">
+              Lossless Quality
+            </span>
+            <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2">
+              Why Convert JPG to PNG Image Files?
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-1.5">
+              Discover why designers choose our <strong className="font-semibold text-slate-800">image to png converter</strong> to <strong className="font-semibold text-slate-800">convert jpg to png image</strong> files for web and print graphics.
+            </p>
+          </div>
+
+          {/* WebP Technical Specification Diagram */}
+          <div className="mb-8 max-w-3xl mx-auto">
+            <img
+              src="/image-to-png-lossless-compression-diagram.webp"
+              alt="Image to PNG lossless quality preservation and technical specifications"
+              width={800}
+              height={450}
+              loading="lazy"
+              className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
+            />
+          </div>
+
+          {/* Format Comparison Table */}
+          <div className="overflow-x-auto mb-8">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr className="border-b-2 border-slate-200 bg-slate-50">
+                  <th className="py-2.5 px-3.5 font-bold text-slate-900">Format Feature</th>
+                  <th className="py-2.5 px-3.5 font-bold text-blue-700 bg-blue-50/50">PNG Format</th>
+                  <th className="py-2.5 px-3.5 font-bold text-slate-700">JPG / JPEG</th>
+                  <th className="py-2.5 px-3.5 font-bold text-slate-700">WEBP Format</th>
+                  <th className="py-2.5 px-3.5 font-bold text-slate-700">GIF Format</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-600">
+              <tbody className="divide-y divide-slate-200">
                 <tr>
-                  <td className="py-2.5 px-4 font-semibold text-slate-900">ISO / IEC</td>
-                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">ISO/IEC 15948:2004</td>
-                  <td className="py-2.5 px-4">Portable Network Graphics functional specification</td>
+                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Quality Type</td>
+                  <td className="py-2.5 px-3.5 text-blue-800 bg-blue-50/30 font-bold">100% Lossless</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Lossy (Drops detail)</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Lossy or Lossless</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Lossless (256 colors)</td>
                 </tr>
                 <tr>
-                  <td className="py-2.5 px-4 font-semibold text-slate-900">W3C Consortium</td>
-                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">W3C PNG Spec 2nd Ed.</td>
-                  <td className="py-2.5 px-4">Browser raster rendering & alpha compositing</td>
+                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Transparent Background</td>
+                  <td className="py-2.5 px-3.5 text-blue-800 bg-blue-50/30 font-bold">Full 8-bit Alpha</td>
+                  <td className="py-2.5 px-3.5 text-red-900 font-bold">No (Opaque only)</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Full 8-bit Alpha</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">1-bit Binary</td>
                 </tr>
                 <tr>
-                  <td className="py-2.5 px-4 font-semibold text-slate-900">IETF</td>
-                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">RFC 2083 / RFC 1951</td>
-                  <td className="py-2.5 px-4">DEFLATE compressed data format specification</td>
+                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Best Picture Type</td>
+                  <td className="py-2.5 px-3.5 text-blue-800 bg-blue-50/30 font-bold">Logos, UI, Screenshots</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Camera Photos</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Web Delivery</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Simple Animations</td>
                 </tr>
                 <tr>
-                  <td className="py-2.5 px-4 font-semibold text-slate-900">ITU-T / JPEG</td>
-                  <td className="py-2.5 px-4 font-mono text-blue-700 text-xs">ITU-T T.81 / ISO 10918-1</td>
-                  <td className="py-2.5 px-4">Continuous-tone DCT image decoding pipeline</td>
+                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Device Compatibility</td>
+                  <td className="py-2.5 px-3.5 text-blue-800 bg-blue-50/30 font-bold">100% Universal</td>
+                  <td className="py-2.5 px-3.5 text-emerald-900 font-bold">100% Universal</td>
+                  <td className="py-2.5 px-3.5 text-amber-900 font-bold">Modern Apps Only</td>
+                  <td className="py-2.5 px-3.5 text-emerald-900 font-bold">100% Universal</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          {/* Key Metrics / Data Points */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
-            <div className="p-4 rounded-xl bg-white border border-slate-200">
-              <div className="text-xl sm:text-2xl font-black text-blue-600">100%</div>
-              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Local Execution</div>
-              <div className="text-[10px] text-slate-500 mt-0.5">0 bytes server upload</div>
-            </div>
-            <div className="p-4 rounded-xl bg-white border border-slate-200">
-              <div className="text-xl sm:text-2xl font-black text-emerald-600">256</div>
-              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Alpha Levels</div>
-              <div className="text-[10px] text-slate-500 mt-0.5">8-bit opacity channel</div>
-            </div>
-            <div className="p-4 rounded-xl bg-white border border-slate-200">
-              <div className="text-xl sm:text-2xl font-black text-indigo-600">48-Bit</div>
-              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Max Color Depth</div>
-              <div className="text-[10px] text-slate-500 mt-0.5">16-bit per RGB channel</div>
-            </div>
-            <div className="p-4 rounded-xl bg-white border border-slate-200">
-              <div className="text-xl sm:text-2xl font-black text-amber-600">0%</div>
-              <div className="text-[11px] font-semibold text-slate-900 mt-0.5">Quality Loss</div>
-              <div className="text-[10px] text-slate-500 mt-0.5">Non-destructive DEFLATE</div>
+          {/* Helpful Guides and Links */}
+          <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <h3 className="font-bold text-slate-900 text-xs sm:text-sm mb-2">
+              Helpful Guides and Resources
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+              <a
+                href="/guides/png-vs-jpg"
+                onClick={(e) => handleLinkClick(e, '/guides/png-vs-jpg')}
+                className="p-2.5 bg-white rounded-lg border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-between"
+              >
+                <span><strong>PNG vs JPG Guide:</strong> When to image convert to png</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+              </a>
+              <a
+                href="/guides/png-vs-webp"
+                onClick={(e) => handleLinkClick(e, '/guides/png-vs-webp')}
+                className="p-2.5 bg-white rounded-lg border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-between"
+              >
+                <span><strong>PNG vs WebP Guide:</strong> Transparency and speed</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+              </a>
+              <a
+                href="/security"
+                onClick={(e) => handleLinkClick(e, '/security')}
+                className="p-2.5 bg-white rounded-lg border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-between"
+              >
+                <span><strong>Security Details:</strong> How browser conversion keeps you safe</span>
+                <ArrowRight className="w-3.5 h-3.5 text-slate-400" />
+              </a>
+              <a
+                href="https://www.w3.org/TR/png/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 bg-white rounded-lg border border-slate-200 hover:border-blue-500 hover:text-blue-600 transition-colors flex items-center justify-between"
+              >
+                <span><strong>W3C PNG Standard:</strong> Official PNG technical rules</span>
+                <ExternalLink className="w-3.5 h-3.5 text-slate-400" />
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Section: Frequently Asked Questions */}
-      <section className="py-14 bg-slate-50 border-b border-slate-200">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-10">
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 border border-blue-200 mb-3">
-              <HelpCircle className="w-4 h-4 text-blue-600" />
-              <span>Got Questions?</span>
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
-              Frequently Asked Questions
+      {/* Frequently Asked Questions */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-2xl border border-slate-200 p-5 sm:p-8 shadow-xs">
+          <div className="text-center max-w-2xl mx-auto mb-6">
+            <span className="text-[11px] font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-100">
+              Got Questions?
+            </span>
+            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight mt-2">
+              Frequently Asked Questions About Image to PNG Conversion
             </h2>
-            <p className="mt-2 text-slate-600 text-sm sm:text-base">
-              Everything you need to know about converting images to PNG online.
+            <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              Everything you need to know to <strong className="font-semibold text-slate-800">convert image to png</strong> and get clean PNG files.
             </p>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {faqs.map((faq, index) => {
               const isOpen = openFaq === index;
               return (
                 <div
                   key={index}
-                  className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-xs transition-colors"
+                  className="rounded-xl border border-slate-200 overflow-hidden transition-all"
                 >
                   <button
+                    type="button"
                     onClick={() => toggleFaq(index)}
-                    className="w-full py-4 px-5 text-left flex items-center justify-between gap-4 font-semibold text-slate-900 text-sm sm:text-base cursor-pointer hover:bg-slate-50/50"
+                    aria-expanded={isOpen}
+                    className="w-full p-3.5 sm:p-4 text-left font-bold text-slate-900 flex items-center justify-between gap-3 bg-slate-50/50 hover:bg-slate-100/70 transition-colors cursor-pointer text-xs sm:text-sm"
                   >
                     <span>{faq.q}</span>
                     <ChevronDown
-                      className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${
+                      className={`w-4 h-4 text-slate-500 shrink-0 transition-transform duration-200 ${
                         isOpen ? 'rotate-180 text-blue-600' : ''
                       }`}
                     />
                   </button>
                   {isOpen && (
-                    <div className="px-5 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+                    <div className="px-3.5 pb-3.5 sm:px-4 sm:pb-4 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-200/60 pt-2.5 bg-white">
                       {faq.a}
                     </div>
                   )}
@@ -711,22 +543,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* Final Call to Action Box */}
-      <section className="py-16 bg-blue-700 text-white text-center">
+      {/* Call to Action Footer Banner */}
+      <section className="py-12 bg-blue-700 text-white text-center">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight">
-            Ready to Convert Your Images to PNG?
+          <h2 className="text-xl sm:text-3xl font-extrabold tracking-tight">
+            Ready to Convert Image to PNG?
           </h2>
-          <p className="mt-3 text-white text-sm sm:text-base max-w-xl mx-auto font-medium">
-            Fast, browser-based, and free to use. No registration required. Your images are processed locally on your device.
+          <p className="mt-2 text-white text-xs sm:text-sm max-w-xl mx-auto font-medium">
+            Fast, private, and free. Use our image to png converter right in your web browser now.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <div className="mt-5 flex flex-wrap justify-center gap-2.5">
             <button
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
                 document.getElementById('image-file-input')?.click();
               }}
-              className="px-6 py-3 rounded-xl bg-white text-blue-900 font-extrabold text-sm sm:text-base hover:bg-blue-50 shadow-lg shadow-blue-950/20 transition-all active:scale-95 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-white text-blue-900 font-extrabold text-xs sm:text-sm hover:bg-blue-50 shadow-lg shadow-blue-950/20 transition-all active:scale-95 cursor-pointer"
             >
               Choose Image to Convert
             </button>
@@ -735,7 +567,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 onNavigate('/guides');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
-              className="px-6 py-3 rounded-xl bg-blue-800 text-white font-bold text-sm sm:text-base hover:bg-blue-900 border border-blue-400/50 transition-all cursor-pointer shadow-sm"
+              className="px-5 py-2.5 rounded-xl bg-blue-800 text-white font-bold text-xs sm:text-sm hover:bg-blue-900 border border-blue-400/50 transition-all cursor-pointer shadow-sm"
             >
               Explore PNG Guides
             </button>

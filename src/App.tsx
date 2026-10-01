@@ -51,14 +51,14 @@ export default function App() {
 
   // Update dynamic document title, description, and canonical link
   useEffect(() => {
-    let title = 'Image to PNG Converter – Convert Images to PNG Free';
+    let title = 'Image to PNG Converter – Convert Images to PNG Online Free';
     let description =
-      'Convert JPG, JPEG, WEBP, GIF, BMP and other supported image formats to PNG online for free. Fast, private browser-based image conversion with easy download.';
+      'Convert JPG, JPEG, WEBP, GIF, BMP, and all formats with our fast, free Image to PNG converter online. 100% private in-browser image to PNG conversion with transparent alpha support.';
 
-    if (currentPath === '/' || currentPath === '') {
-      title = 'Image to PNG Converter – Convert Images to PNG Free';
+    if (currentPath === '/' || currentPath === '' || currentPath === '/image-to-png') {
+      title = 'Image to PNG Converter – Convert Images to PNG Online Free';
       description =
-        'Convert JPG, JPEG, WEBP, GIF, BMP and other supported image formats to PNG online for free. Fast, private browser-based image conversion with easy download.';
+        'Convert JPG, JPEG, WEBP, GIF, BMP, and all formats with our fast, free Image to PNG converter online. 100% private in-browser image to PNG conversion with transparent alpha support.';
     } else if (currentPath === '/guides' || currentPath === '/blog') {
       title = 'Blog & Guides – ImageToPNG Knowledge Hub';
       description =
@@ -167,7 +167,7 @@ export default function App() {
   const renderCurrentPage = () => {
     const cleanPath = currentPath.replace(/\/$/, '') || '/';
 
-    if (cleanPath === '/') {
+    if (cleanPath === '/' || cleanPath === '/image-to-png') {
       return <HomePage onNavigate={handleNavigate} />;
     }
 
