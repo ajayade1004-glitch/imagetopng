@@ -104,6 +104,7 @@ export const ImageToPngVideoWalkthrough: React.FC = () => {
           className="sr-only"
           aria-label="Image to PNG Video Tutorial"
         >
+          <track kind="captions" src="/captions-en.vtt" label="English" srcLang="en" default />
           <source src="/image-to-png.webp" type="video/mp4" />
           <p>Your browser does not support HTML5 video. Use our interactive Image to PNG converter above.</p>
         </video>

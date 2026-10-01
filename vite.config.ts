@@ -25,6 +25,15 @@ export default defineConfig(() => {
             if (id.includes('node_modules/lucide-react')) {
               return 'vendor-icons';
             }
+            if (id.includes('node_modules/jszip')) {
+              return 'vendor-jszip';
+            }
+            if (id.includes('node_modules/heic2any')) {
+              return 'vendor-heic';
+            }
+            if (id.includes('node_modules/utif')) {
+              return 'vendor-utif';
+            }
           },
         },
       },

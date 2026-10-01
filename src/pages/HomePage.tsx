@@ -137,7 +137,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               <Zap className="w-3.5 h-3.5 text-amber-500" /> Fast Conversion (0s Upload Lag)
             </span>
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
-              <Palette className="w-3.5 h-3.5 text-emerald-500" /> 8-Bit Alpha (256 Opacity Levels)
+              <Palette className="w-3.5 h-3.5 text-emerald-600" /> 8-Bit Alpha (256 Opacity Levels)
             </span>
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
               <Lock className="w-3.5 h-3.5 text-blue-500" /> 100% Local Browser Memory
@@ -268,7 +268,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:border-emerald-300 transition-colors">
-              <div className="w-9 h-9 rounded-xl bg-emerald-600 text-white font-black text-sm flex items-center justify-center mb-3.5 shadow-xs">
+              <div className="w-9 h-9 rounded-xl bg-emerald-700 text-white font-black text-sm flex items-center justify-center mb-3.5 shadow-xs">
                 4
               </div>
               <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1.5">
@@ -300,7 +300,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Workflow Diagram in WebP Format with Alt Tag Keyword */}
+          {/* Workflow Diagram in Responsive WebP Format */}
           <div className="pt-8 border-t border-slate-200">
             <div className="max-w-3xl mx-auto text-center">
               <h3 className="text-base sm:text-xl font-bold text-slate-900 mb-2">
@@ -311,10 +311,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
               <img
                 src="/image-to-png.webp"
+                srcSet="/image-to-png-480.webp 480w, /image-to-png.webp 800w"
+                sizes="(max-width: 640px) 100vw, 800px"
                 alt="Image to PNG converter workflow showing browser decoding, alpha transparency extraction, and DEFLATE compression"
                 width={800}
                 height={450}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="rounded-2xl shadow-md border border-slate-200 w-full object-cover"
               />
             </div>
@@ -349,7 +353,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </div>
               <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
                 <div className="flex items-center gap-2 font-bold text-slate-900 text-sm mb-1">
-                  <Smartphone className="w-4 h-4 text-emerald-600" />
+                  <Smartphone className="w-4 h-4 text-emerald-700" />
                   Works Everywhere
                 </div>
                 <p className="text-xs text-slate-600">
@@ -371,7 +375,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Transparency Section (Strict Sequential H2 -> H3) */}
           <div>
             <div className="max-w-3xl mx-auto text-center mb-6">
-              <span className="text-xs font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
+              <span className="text-xs font-extrabold text-emerald-800 uppercase tracking-widest bg-emerald-100/80 px-3 py-1 rounded-full border border-emerald-300">
                 Clear Alpha Channels
               </span>
               <h2 className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2.5">
@@ -382,14 +386,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
             </div>
 
-            {/* Transparency Diagram in WebP Format */}
+            {/* Transparency Diagram in Responsive WebP Format */}
             <div className="mb-8 max-w-3xl mx-auto">
               <img
                 src="/image-to-png-alpha-transparency-guide.webp"
+                srcSet="/image-to-png-alpha-transparency-guide-480.webp 480w, /image-to-png-alpha-transparency-guide.webp 800w"
+                sizes="(max-width: 640px) 100vw, 800px"
                 alt="Image to PNG alpha transparency guide illustrating 8-bit alpha channel vs 1-bit GIF transparency"
                 width={800}
                 height={400}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="rounded-2xl shadow-md border border-slate-200 w-full object-cover"
               />
             </div>
@@ -397,7 +405,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1.5 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
                   Smooth Opacity Levels
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
@@ -407,7 +415,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1.5 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
                   Logo &amp; Brand Icons
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
@@ -417,7 +425,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
                 <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-1.5 flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
                   Color Palette Tool
                 </h3>
                 <p className="text-xs text-slate-600 leading-relaxed">
@@ -441,14 +449,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
             </div>
 
-            {/* Compression Diagram in WebP Format */}
+            {/* Compression Diagram in Responsive WebP Format */}
             <div className="mb-6 max-w-3xl mx-auto">
               <img
                 src="/image-to-png-lossless-compression-diagram.webp"
+                srcSet="/image-to-png-lossless-compression-diagram-480.webp 480w, /image-to-png-lossless-compression-diagram.webp 800w"
+                sizes="(max-width: 640px) 100vw, 800px"
                 alt="Image to PNG lossless DEFLATE compression diagram comparing 2-stage filtering with lossy discrete cosine transform"
                 width={800}
                 height={400}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="rounded-2xl shadow-md border border-slate-200 w-full object-cover"
               />
             </div>
@@ -526,7 +538,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Format Compatibility Table */}
+          {/* Format Compatibility Table with Enhanced WCAG AAA Contrast */}
           <div className="pt-8 border-t border-slate-200">
             <h2 className="text-lg sm:text-xl font-bold text-slate-900 mb-3 text-center">
               Image Format Conversion Table
@@ -551,42 +563,42 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     <td className="p-3.5 font-bold text-slate-900">JPG / JPEG</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (24-bit)</td>
                     <td className="p-3.5 text-slate-500">Solid Backdrop</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Graphic design, screenshots, and web publishing</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">WEBP</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-600 font-bold">Preserved Alpha</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 text-emerald-800 font-bold">Preserved Alpha</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Editing photos on older software and desktops</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">HEIC / HEIF</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (24-bit)</td>
                     <td className="p-3.5 text-slate-500">Solid Backdrop</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Opening iPhone photos easily on Windows and Android</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">SVG (Vector)</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-600 font-bold">Full Alpha</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 text-emerald-800 font-bold">Full Alpha</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Rasterizing vector logos for social media sites</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">GIF</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-600 font-bold">Smooth Alpha</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 text-emerald-800 font-bold">Smooth Alpha</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Upgrading 256-color art to millions of true colors</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">PSD / RAW</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-600 font-bold">Layered Alpha</td>
-                    <td className="p-3.5 font-semibold text-emerald-600">Lossless</td>
+                    <td className="p-3.5 text-emerald-800 font-bold">Layered Alpha</td>
+                    <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Exporting Photoshop drafts for quick client preview</td>
                   </tr>
                 </tbody>
