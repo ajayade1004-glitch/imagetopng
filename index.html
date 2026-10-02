@@ -10,12 +10,12 @@
     <meta name="date" content="2026-10-01" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="google-site-verification" content="Sr3vLNHkUJBYh7_X4hzwUxxV1ET92hL7sxRgtvNNVOA" />
-    <link rel="canonical" href="https://www.imagetopng.com/image-to-png" />
+    <link rel="canonical" href="https://www.imagetopng.com/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="ImageToPNG" />
-    <meta property="og:url" content="https://www.imagetopng.com/image-to-png" />
+    <meta property="og:url" content="https://www.imagetopng.com/" />
     <meta property="og:title" content="Image to PNG Converter – Convert Images to PNG Free" />
     <meta property="og:description" content="Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss." />
     <meta property="og:image" content="https://www.imagetopng.com/og-image.png" />
@@ -25,7 +25,7 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://www.imagetopng.com/image-to-png" />
+    <meta name="twitter:url" content="https://www.imagetopng.com/" />
     <meta name="twitter:title" content="Image to PNG Converter – Convert Images to PNG Free" />
     <meta name="twitter:description" content="Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss." />
     <meta name="twitter:image" content="https://www.imagetopng.com/og-image.png" />
@@ -39,31 +39,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- Google tag (gtag.js) - Lazy loaded to ensure 100/100 PageSpeed without forced reflows -->
+    <!-- Google tag (gtag.js) - Google Analytics 4 (Immediate async tracking) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TNTXK0GCC7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      (function() {
-        var loaded = false;
-        function initGtag() {
-          if (loaded) return;
-          loaded = true;
-          var script = document.createElement('script');
-          script.async = true;
-          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-TNTXK0GCC7';
-          document.head.appendChild(script);
-          gtag('js', new Date());
-          gtag('config', 'G-TNTXK0GCC7', { send_page_view: true });
-        }
-        if ('requestIdleCallback' in window) {
-          requestIdleCallback(function() { setTimeout(initGtag, 2000); }, { timeout: 4000 });
-        } else {
-          setTimeout(initGtag, 2500);
-        }
-        ['touchstart', 'scroll', 'mousemove', 'keydown', 'click'].forEach(function(e) {
-          window.addEventListener(e, initGtag, { once: true, passive: true });
-        });
-      })();
+      gtag('js', new Date());
+      gtag('config', 'G-TNTXK0GCC7', {
+        send_page_view: true
+      });
     </script>
 
     <!-- Comprehensive Schema.org JSON-LD (@graph entity architecture with Dates & Citations) -->
@@ -73,10 +57,10 @@
       "@graph": [
         {
           "@type": "WebApplication",
-          "@id": "https://www.imagetopng.com/image-to-png#webapp",
+          "@id": "https://www.imagetopng.com/#webapp",
           "name": "Image to PNG Converter",
-          "url": "https://www.imagetopng.com/image-to-png",
-          "mainEntityOfPage": "https://www.imagetopng.com/image-to-png",
+          "url": "https://www.imagetopng.com/",
+          "mainEntityOfPage": "https://www.imagetopng.com/",
           "applicationCategory": "MultimediaApplication",
           "operatingSystem": "All (Web Browser, Windows, macOS, Linux, iOS, Android)",
           "browserRequirements": "Requires HTML5 Canvas and ECMAScript 6+ support",
@@ -148,18 +132,18 @@
         },
         {
           "@type": "VideoObject",
-          "@id": "https://www.imagetopng.com/image-to-png#video",
+          "@id": "https://www.imagetopng.com/#video",
           "name": "How to Convert Image to PNG Online Video Tutorial",
           "description": "Learn how to convert any image into a high-quality, lossless PNG with transparent background in your browser.",
           "thumbnailUrl": "https://www.imagetopng.com/image-to-png.webp",
           "uploadDate": "2026-01-01T00:00:00Z",
           "duration": "PT0M12S",
           "contentUrl": "https://www.imagetopng.com/image-to-png.webp",
-          "embedUrl": "https://www.imagetopng.com/image-to-png#video-tutorial"
+          "embedUrl": "https://www.imagetopng.com/#video-tutorial"
         },
         {
           "@type": "HowTo",
-          "@id": "https://www.imagetopng.com/image-to-png#howto",
+          "@id": "https://www.imagetopng.com/#howto",
           "name": "How to Convert Image to PNG Online for Free",
           "description": "A simple 4-step guide to converting image files into PNG format using our client-side converter tool.",
           "datePublished": "2024-01-15T08:00:00+00:00",
@@ -193,7 +177,7 @@
         },
         {
           "@type": "FAQPage",
-          "@id": "https://www.imagetopng.com/image-to-png#faq",
+          "@id": "https://www.imagetopng.com/#faq",
           "mainEntity": [
             {
               "@type": "Question",
