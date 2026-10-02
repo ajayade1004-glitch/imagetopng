@@ -52,6 +52,8 @@ export const AddMoreDropdown: React.FC<AddMoreDropdownProps> = ({
         className="inline-flex items-center gap-1.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs sm:text-sm font-bold text-indigo-700 bg-indigo-50/95 hover:bg-indigo-100 border border-indigo-200 transition-all cursor-pointer shadow-2xs group active:scale-95"
         title="Add files from Device, Google Drive, Dropbox, OneDrive, or URL"
         aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label={buttonLabel}
       >
         <FilePlus className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-indigo-600 group-hover:scale-110 transition-transform" />
         <span>{buttonLabel}</span>

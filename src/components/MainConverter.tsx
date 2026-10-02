@@ -427,6 +427,7 @@ export const MainConverter: React.FC<MainConverterProps> = ({
         onChange={(e) => e.target.files && handleFilesSelected(e.target.files)}
         className="hidden"
         id="image-file-input"
+        aria-label="Upload image files to convert to PNG"
       />
 
       {/* Global Error Banner */}

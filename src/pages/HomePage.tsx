@@ -219,45 +219,45 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           <div className="mt-5 overflow-x-auto rounded-2xl border border-blue-200 bg-white">
             <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-blue-100/60 text-slate-800 font-bold border-b border-blue-200">
+              <thead className="bg-blue-100/60 text-slate-900 font-bold border-b border-blue-200">
                 <tr>
                   <th className="py-2.5 px-3.5">Feature &amp; Benchmark</th>
-                  <th className="py-2.5 px-3.5 text-blue-700 bg-blue-50/80">ImageToPNG (Our Tool)</th>
-                  <th className="py-2.5 px-3.5 text-slate-500">Other Online Converters</th>
+                  <th className="py-2.5 px-3.5 text-blue-800 bg-blue-50/80">ImageToPNG (Our Tool)</th>
+                  <th className="py-2.5 px-3.5 text-slate-700">Other Online Converters</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-slate-700">
+              <tbody className="divide-y divide-slate-100 text-slate-800">
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Server File Uploads</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30 flex items-center gap-1.5">
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" /> Zero Uploads (100% In-Browser)
                   </td>
-                  <td className="py-2.5 px-3.5 text-slate-500">Mandatory (Uploaded to cloud servers)</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Mandatory (Uploaded to cloud servers)</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Cost &amp; Daily Limits</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">100% Free &amp; Unlimited</td>
-                  <td className="py-2.5 px-3.5 text-slate-500">10–25 files/day or paid subscription</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">10–25 files/day or paid subscription</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Conversion Speed</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">Instant (Sub-second, local RAM)</td>
-                  <td className="py-2.5 px-3.5 text-slate-500">15s–60s queue and network latency</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">15s–60s queue and network latency</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Data Privacy Compliance</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">GDPR, HIPAA &amp; CCPA Compliant</td>
-                  <td className="py-2.5 px-3.5 text-slate-500">Subject to third-party server privacy policies</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Subject to third-party server privacy policies</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Alpha Transparency</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">True 8-Bit Alpha (256 opacity levels)</td>
-                  <td className="py-2.5 px-3.5 text-slate-500">Often flattens or quantizes transparent layers</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Often flattens or quantizes transparent layers</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Supported Formats</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">JPG, WEBP, HEIC, SVG, TIFF, GIF, PSD, RAW</td>
-                  <td className="py-2.5 px-3.5 text-slate-500">Limited formats on free tiers</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Limited formats on free tiers</td>
                 </tr>
               </tbody>
             </table>
@@ -812,7 +812,8 @@ async function convertImageToPng(imageFile) {
           <button
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="mt-5 px-8 py-3 rounded-2xl bg-white text-blue-600 font-extrabold text-xs sm:text-sm hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all cursor-pointer active:scale-95 inline-flex items-center gap-2"
+            aria-label="Start Free Image to PNG Conversion"
+            className="mt-5 px-8 py-3 rounded-2xl bg-white text-blue-700 font-black text-xs sm:text-sm hover:bg-blue-50 shadow-lg hover:shadow-xl transition-all cursor-pointer active:scale-95 inline-flex items-center gap-2"
           >
             <span>Start Free Image to PNG Conversion</span>
             <ArrowRight className="w-4 h-4" />
