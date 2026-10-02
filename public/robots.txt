@@ -1,12 +1,12 @@
 # ==============================================================================
 # Robots.txt for ImageToPNG (https://www.imagetopng.com)
-# Standard Web Crawlers & AI Discovery Engines
+# Dedicated Permissions for Global Web & Generative AI Search Crawlers
 # ==============================================================================
 
 User-agent: *
 Allow: /
 
-# Dedicated AI Search Engine Crawlers & Assistant Fetchers
+# OpenAI (ChatGPT, SearchGPT, ChatGPT-User)
 User-agent: GPTBot
 Allow: /
 
@@ -16,31 +16,55 @@ Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
+# Perplexity AI
 User-agent: PerplexityBot
 Allow: /
 
+# Anthropic (Claude 3.5, Claude Sonnet, Claude Opus)
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google (Gemini, Google AI Overviews, Search Grounding)
+User-agent: Googlebot
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
 
+User-agent: GoogleOther
+Allow: /
+
+# Microsoft (Copilot, Bing AI)
+User-agent: Bingbot
+Allow: /
+
+# Apple (Apple Intelligence, Siri Search)
+User-agent: Applebot
+Allow: /
+
 User-agent: Applebot-Extended
+Allow: /
+
+# Meta (Meta AI, Llama)
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# Common Crawl & Foundations
+User-agent: CCBot
+Allow: /
+
+User-agent: Cohere-ai
+Allow: /
+
+User-agent: Diffbot
 Allow: /
 
 User-agent: Bytespider
 Allow: /
 
-User-agent: CCBot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: Googlebot
-Allow: /
-
-# Core Sitemaps and AI Machine Documentation
+# Sitemaps & Machine LLMs Context
 Sitemap: https://www.imagetopng.com/sitemap.xml
-# LLMs Machine Context
-# https://www.imagetopng.com/llms.txt
+Sitemap: https://www.imagetopng.com/llms.txt

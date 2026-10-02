@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { SUPPORTED_FORMATS } from './src/data/formats';
+import { generateDynamicSitemapXml } from './src/utils/sitemapGenerator';
 
 async function startServer() {
   const app = express();
@@ -19,6 +20,32 @@ async function startServer() {
     }
     next();
   });
+
+  // 301 Redirects for alternate sitemap URLs
+  app.get(['/sitemap', '/sitemap_index.xml', '/sitemap-index.xml'], (_req, res) => {
+    res.redirect(301, '/sitemap.xml');
+  });
+
+  // Dynamic XML Sitemap Generator (Served with application/xml header and freshness caching)
+  app.get('/sitemap.xml', (req, res) => {
+    try {
+      const baseUrl = process.env.CANONICAL_URL || 'https://www.imagetopng.com';
+      const sitemapXml = generateDynamicSitemapXml(baseUrl);
+      res.setHeader('Content-Type', 'application/xml; charset=utf-8');
+      res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400');
+      res.setHeader('X-Robots-Tag', 'noindex, follow');
+      res.status(200).send(sitemapXml);
+    } catch (err: any) {
+      console.error('Error generating dynamic sitemap:', err);
+      // Fallback to static file if error occurs
+      res.sendFile(path.resolve(import.meta.dirname, 'public', 'sitemap.xml'));
+    }
+  });
+
+  // Serve static assets from public/ (robots.txt, llms.txt, llms-full.txt, icons)
+  app.use(express.static(path.resolve(import.meta.dirname, 'public'), {
+    maxAge: '1h',
+  }));
 
   // Fast helper: Extract image URLs from HTML
   function extractImagesFromHtml(html: string, baseUrl: string): Array<{ url: string; alt?: string }> {
