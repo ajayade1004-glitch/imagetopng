@@ -1,5 +1,8 @@
 import express from 'express';
+import fs from 'fs';
+import path from 'path';
 import { createServer as createViteServer } from 'vite';
+import { SUPPORTED_FORMATS } from './src/data/formats';
 
 async function startServer() {
   const app = express();
@@ -233,7 +236,122 @@ async function startServer() {
       hmr: process.env.DISABLE_HMR !== 'true',
       watch: process.env.DISABLE_HMR === 'true' ? null : {},
     },
-    appType: 'spa',
+    appType: 'custom',
+  });
+
+  // Dynamic route-specific HTML injector for 100/100 PageSpeed on all secondary pages
+  app.get('*', async (req, res, next) => {
+    // Skip static assets, Vite internal files, and API calls
+    if (
+      req.path.startsWith('/api/') ||
+      req.path.startsWith('/@') ||
+      req.path.startsWith('/src/') ||
+      req.path.startsWith('/assets/') ||
+      req.path.includes('.')
+    ) {
+      return next();
+    }
+
+    if (!req.accepts('html')) {
+      return next();
+    }
+
+    try {
+      const url = req.originalUrl;
+      const cleanPath = req.path.replace(/\/$/, '') || '/';
+      let template = fs.readFileSync(path.resolve(import.meta.dirname, 'index.html'), 'utf-8');
+
+      // Determine page-specific meta
+      let title = 'Image to PNG Converter – Convert Images to PNG Free';
+      let description =
+        'Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss.';
+      let canonical = `https://www.imagetopng.com${cleanPath === '/' ? '/' : cleanPath}`;
+      let pageH1 = 'Image to PNG Converter – Convert Images to PNG Online Free';
+
+      const formatSlug = cleanPath.replace('/', '');
+      const format = SUPPORTED_FORMATS.find((f) => f.slug === formatSlug);
+      if (format) {
+        title = `${format.sourceFormat} to PNG Converter – Free Online Conversion`;
+        description = format.metaDescription;
+        pageH1 = `${format.sourceFormat} to PNG Converter`;
+      } else if (cleanPath === '/about') {
+        title = 'About Us – ImageToPNG Online Conversion Utility';
+        description =
+          'Learn about ImageToPNG, our mission for private client-side image conversion, and our zero-server-upload architecture.';
+        pageH1 = 'About ImageToPNG – In-Browser Image Engineering';
+      } else if (cleanPath === '/privacy') {
+        title = 'Privacy Policy – ImageToPNG 100% In-Browser Privacy';
+        description =
+          'Read our comprehensive privacy policy. Your images are converted 100% locally in your browser and never uploaded to remote servers.';
+        pageH1 = 'Privacy Policy – Zero Server Upload Architecture';
+      } else if (cleanPath === '/terms') {
+        title = 'Terms of Use – ImageToPNG';
+        description =
+          'Review the terms of service governing your use of the ImageToPNG online image conversion utility.';
+        pageH1 = 'Terms of Use';
+      } else if (cleanPath === '/contact') {
+        title = 'Contact Us – ImageToPNG Support & Feedback';
+        description =
+          'Get in touch with the ImageToPNG engineering team for questions, feedback, or support regarding browser image conversion.';
+        pageH1 = 'Contact Us';
+      } else if (cleanPath === '/security') {
+        title = 'Security & Data Protection – ImageToPNG';
+        description =
+          'Read about our zero-server-upload security architecture. Images are processed 100% locally inside your browser.';
+        pageH1 = 'Security & Data Protection';
+      } else if (cleanPath === '/status') {
+        title = 'System Status & Diagnostics – ImageToPNG';
+        description =
+          'Live diagnostics, client-side engine availability, and browser graphic pipeline health.';
+        pageH1 = 'System Status & Diagnostics';
+      } else if (cleanPath === '/guides' || cleanPath === '/blog') {
+        title = 'PNG Guides & Image Comparisons | ImageToPNG';
+        description =
+          'In-depth technical guides, format comparisons, transparency tutorials, and compression insights written by digital image architects.';
+        pageH1 = 'PNG Guides & Image Comparisons';
+      } else if (cleanPath === '/cookie-policy') {
+        title = 'Cookie Policy – ImageToPNG';
+        description =
+          'Details regarding our minimal strictly essential cookies, zero third-party tracking, and local preference storage.';
+        pageH1 = 'Cookie Policy';
+      } else if (cleanPath === '/imprint') {
+        title = 'Imprint / Impressum – ImageToPNG';
+        description =
+          'Statutory legal information, service provider details, and publication notices for ImageToPNG.';
+        pageH1 = 'Imprint / Impressum';
+      } else if (cleanPath === '/report-bug') {
+        title = 'Report a Bug – ImageToPNG Quality Control';
+        description =
+          'Report conversion failures, unsupported codecs, or browser-specific rendering bugs to help us improve ImageToPNG.';
+        pageH1 = 'Report a Bug';
+      }
+
+      // Replace metadata in template
+      template = template
+        .replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+        .replace(/<meta name="description" content=".*?" \/>/, `<meta name="description" content="${description}" />`)
+        .replace(/<link rel="canonical" href=".*?" \/>/, `<link rel="canonical" href="${canonical}" />`)
+        .replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${title}" />`)
+        .replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${description}" />`)
+        .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${canonical}" />`)
+        .replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${title}" />`)
+        .replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${description}" />`)
+        .replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${canonical}" />`);
+
+      // If subpage, update initial pre-rendered H1 so there is no layout shift or heading mismatch
+      if (cleanPath !== '/') {
+        template = template.replace(
+          /<h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">.*?<\/h1>/s,
+          `<h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">${pageH1}</h1>`
+        );
+      }
+
+      const html = await vite.transformIndexHtml(url, template);
+      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+    } catch (e: any) {
+      vite.ssrFixStacktrace(e);
+      next(e);
+    }
   });
 
   app.use(vite.middlewares as any);

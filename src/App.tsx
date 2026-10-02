@@ -3,34 +3,26 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { CookieBanner } from './components/CookieBanner';
 import { HomePage } from './pages/HomePage';
+import { FormatPage } from './pages/FormatPage';
+import { GuidesHubPage } from './pages/GuidesHubPage';
+import { GuideDetailPage } from './pages/GuideDetailPage';
+import { AboutPage } from './pages/AboutPage';
+import { ContactPage } from './pages/ContactPage';
+import { ReportBugPage } from './pages/ReportBugPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsPage } from './pages/TermsPage';
+import { CookiePolicyPage } from './pages/CookiePolicyPage';
+import { SecurityPage } from './pages/SecurityPage';
+import { StatusPage } from './pages/StatusPage';
+import { ImprintPage } from './pages/ImprintPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 import { SUPPORTED_FORMATS } from './data/formats';
 import { GUIDES_DATA } from './data/guides';
-
-// Code-split secondary routes to keep initial bundle size tiny (< 45KB) for 100/100 PageSpeed scores
-const FormatPage = lazy(() => import('./pages/FormatPage').then((m) => ({ default: m.FormatPage })));
-const GuidesHubPage = lazy(() => import('./pages/GuidesHubPage').then((m) => ({ default: m.GuidesHubPage })));
-const GuideDetailPage = lazy(() => import('./pages/GuideDetailPage').then((m) => ({ default: m.GuideDetailPage })));
-const AboutPage = lazy(() => import('./pages/AboutPage').then((m) => ({ default: m.AboutPage })));
-const ContactPage = lazy(() => import('./pages/ContactPage').then((m) => ({ default: m.ContactPage })));
-const ReportBugPage = lazy(() => import('./pages/ReportBugPage').then((m) => ({ default: m.ReportBugPage })));
-const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then((m) => ({ default: m.PrivacyPolicyPage })));
-const TermsPage = lazy(() => import('./pages/TermsPage').then((m) => ({ default: m.TermsPage })));
-const CookiePolicyPage = lazy(() => import('./pages/CookiePolicyPage').then((m) => ({ default: m.CookiePolicyPage })));
-const SecurityPage = lazy(() => import('./pages/SecurityPage').then((m) => ({ default: m.SecurityPage })));
-const StatusPage = lazy(() => import('./pages/StatusPage').then((m) => ({ default: m.StatusPage })));
-const ImprintPage = lazy(() => import('./pages/ImprintPage').then((m) => ({ default: m.ImprintPage })));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage })));
-
-const PageLoadingFallback = () => (
-  <div className="min-h-[60vh] flex items-center justify-center p-8">
-    <div className="w-8 h-8 rounded-full border-2 border-blue-600 border-t-transparent animate-spin" />
-  </div>
-);
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState<string>(() => {
@@ -172,117 +164,61 @@ export default function App() {
     }
 
     if (cleanPath === '/guides' || cleanPath === '/blog') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <GuidesHubPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <GuidesHubPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath.startsWith('/guides/') || cleanPath.startsWith('/blog/')) {
       const guideSlug = cleanPath.replace('/guides/', '').replace('/blog/', '');
       const guide = GUIDES_DATA.find((g) => g.slug === guideSlug);
       if (guide) {
-        return (
-          <Suspense fallback={<PageLoadingFallback />}>
-            <GuideDetailPage guide={guide} onNavigate={handleNavigate} />
-          </Suspense>
-        );
+        return <GuideDetailPage guide={guide} onNavigate={handleNavigate} />;
       }
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <NotFoundPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <NotFoundPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/about') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <AboutPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <AboutPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/security') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <SecurityPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <SecurityPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/status') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <StatusPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <StatusPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/imprint') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <ImprintPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <ImprintPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/contact') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <ContactPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <ContactPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/report-bug') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <ReportBugPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <ReportBugPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/privacy') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <PrivacyPolicyPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <PrivacyPolicyPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/terms') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <TermsPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <TermsPage onNavigate={handleNavigate} />;
     }
 
     if (cleanPath === '/cookie-policy') {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <CookiePolicyPage onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <CookiePolicyPage onNavigate={handleNavigate} />;
     }
 
     const formatSlug = cleanPath.replace('/', '');
     const format = SUPPORTED_FORMATS.find((f) => f.slug === formatSlug);
     if (format) {
-      return (
-        <Suspense fallback={<PageLoadingFallback />}>
-          <FormatPage format={format} onNavigate={handleNavigate} />
-        </Suspense>
-      );
+      return <FormatPage format={format} onNavigate={handleNavigate} />;
     }
 
-    return (
-      <Suspense fallback={<PageLoadingFallback />}>
-        <NotFoundPage onNavigate={handleNavigate} />
-      </Suspense>
-    );
+    return <NotFoundPage onNavigate={handleNavigate} />;
   };
 
   return (
