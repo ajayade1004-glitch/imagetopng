@@ -21,8 +21,10 @@ import {
 import { FormatData } from '../types';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { MainConverter } from '../components/MainConverter';
-import { ImageToPngVideoWalkthrough } from '../components/ImageToPngVideoWalkthrough';
 import { SUPPORTED_FORMATS } from '../data/formats';
+
+// Lazy-load below-the-fold video walkthrough for 100/100 PageSpeed scores
+const ImageToPngVideoWalkthrough = React.lazy(() => import('../components/ImageToPngVideoWalkthrough').then((m) => ({ default: m.ImageToPngVideoWalkthrough })));
 
 interface FormatPageProps {
   format: FormatData;
@@ -124,8 +126,8 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
             <span className="font-mono text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200">
               {format.magicBytes}
             </span>
-            <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
-              <ShieldCheck className="w-3 h-3 text-emerald-600" />
+            <span className="text-[11px] font-bold text-emerald-900 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
+              <ShieldCheck className="w-3 h-3 text-emerald-700" />
               100% In-Browser Private
             </span>
           </div>
@@ -227,7 +229,9 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
               </p>
             </div>
             <div className="max-w-3xl mx-auto">
-              <ImageToPngVideoWalkthrough />
+              <React.Suspense fallback={<div className="h-64 rounded-2xl bg-slate-100 animate-pulse border border-slate-200" />}>
+                <ImageToPngVideoWalkthrough />
+              </React.Suspense>
             </div>
           </div>
 
@@ -242,10 +246,14 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
               </p>
               <img
                 src="/image-to-png.webp"
+                srcSet="/image-to-png-480.webp 480w, /image-to-png.webp 800w"
+                sizes="(max-width: 640px) 100vw, 800px"
                 alt={`${format.sourceFormat} to PNG – Image to PNG converter workflow and technical pipeline`}
                 width={800}
                 height={450}
                 loading="lazy"
+                decoding="async"
+                fetchPriority="low"
                 className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
               />
             </div>
@@ -285,10 +293,14 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
           <div className="my-6">
             <img
               src="/image-to-png-alpha-transparency-guide.webp"
+              srcSet="/image-to-png-alpha-transparency-guide-480.webp 480w, /image-to-png-alpha-transparency-guide.webp 800w"
+              sizes="(max-width: 640px) 100vw, 800px"
               alt={`${format.sourceFormat} to PNG alpha transparency guide showing transparent background`}
               width={800}
               height={450}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
               className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
             />
           </div>
@@ -316,7 +328,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
                     <th className="py-2.5 px-3.5">Metric</th>
                     <th className="py-2.5 px-3.5">{format.sourceFormat} Source</th>
                     <th className="py-2.5 px-3.5 text-blue-700 bg-blue-50/50">PNG Output</th>
-                    <th className="py-2.5 px-3.5 text-emerald-700">Advantage</th>
+                    <th className="py-2.5 px-3.5 text-emerald-900 font-bold">Advantage</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -325,7 +337,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
                       <td className="py-2.5 px-3.5 font-semibold text-slate-900">{b.metric}</td>
                       <td className="py-2.5 px-3.5 text-slate-600">{b.sourceValue}</td>
                       <td className="py-2.5 px-3.5 text-blue-700 bg-blue-50/20 font-medium">{b.pngValue}</td>
-                      <td className="py-2.5 px-3.5 text-emerald-700 font-semibold">{b.advantage}</td>
+                      <td className="py-2.5 px-3.5 text-emerald-900 font-bold">{b.advantage}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -367,10 +379,14 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
           <div className="mb-6">
             <img
               src="/image-to-png-lossless-compression-diagram.webp"
+              srcSet="/image-to-png-lossless-compression-diagram-480.webp 480w, /image-to-png-lossless-compression-diagram.webp 800w"
+              sizes="(max-width: 640px) 100vw, 800px"
               alt={`${format.sourceFormat} to PNG lossless DEFLATE compression specification`}
               width={800}
               height={450}
               loading="lazy"
+              decoding="async"
+              fetchPriority="low"
               className="rounded-xl shadow-md border border-slate-200 w-full object-cover"
             />
           </div>

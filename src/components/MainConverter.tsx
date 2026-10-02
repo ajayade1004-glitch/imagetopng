@@ -31,16 +31,20 @@ import {
   downloadAllAsZip,
   MAX_SAFE_FILE_SIZE,
 } from '../utils/converter';
-import { ImageEditorModal, EditorTabType } from './ImageEditorModal';
-import { CompressModal } from './CompressModal';
+import type { EditorTabType } from './ImageEditorModal';
 import { compressPng } from '../utils/compressor';
-import { WatermarkModal } from './WatermarkModal';
-import { ColorPaletteModal } from './ColorPaletteModal';
-import { ExifPrivacyModal } from './ExifPrivacyModal';
-import { BatchRenameModal } from './BatchRenameModal';
 import { SocialShareBar } from './SocialShareBar';
 import { AddMoreDropdown } from './AddMoreDropdown';
-import { CloudImportModal, ImportSourceType } from './CloudImportModal';
+import type { ImportSourceType } from './CloudImportModal';
+
+// Code-split heavy interactive modals so initial page bundle stays < 45KB for 100/100 PageSpeed
+const ImageEditorModal = React.lazy(() => import('./ImageEditorModal').then((m) => ({ default: m.ImageEditorModal })));
+const CompressModal = React.lazy(() => import('./CompressModal').then((m) => ({ default: m.CompressModal })));
+const WatermarkModal = React.lazy(() => import('./WatermarkModal').then((m) => ({ default: m.WatermarkModal })));
+const ColorPaletteModal = React.lazy(() => import('./ColorPaletteModal').then((m) => ({ default: m.ColorPaletteModal })));
+const ExifPrivacyModal = React.lazy(() => import('./ExifPrivacyModal').then((m) => ({ default: m.ExifPrivacyModal })));
+const BatchRenameModal = React.lazy(() => import('./BatchRenameModal').then((m) => ({ default: m.BatchRenameModal })));
+const CloudImportModal = React.lazy(() => import('./CloudImportModal').then((m) => ({ default: m.CloudImportModal })));
 
 interface MainConverterProps {
   targetFormat?: string;
@@ -742,65 +746,80 @@ export const MainConverter: React.FC<MainConverterProps> = ({
         </div>
       )}
 
-      {/* Comprehensive All-in-One Image Editor Modal with Background Remover */}
-      {editingFile && (
-        <ImageEditorModal
-          file={editingFile}
-          isOpen={!!editingFile}
-          initialTab={editorInitialTab}
-          onClose={() => setEditingFile(null)}
-          onSave={handleSaveEditedImage}
-        />
-      )}
+      {/* Lazy Loaded Interactive Utility Modals */}
+      <React.Suspense fallback={null}>
+        {/* Comprehensive All-in-One Image Editor Modal with Background Remover */}
+        {editingFile && (
+          <ImageEditorModal
+            file={editingFile}
+            isOpen={!!editingFile}
+            initialTab={editorInitialTab}
+            onClose={() => setEditingFile(null)}
+            onSave={handleSaveEditedImage}
+          />
+        )}
 
-      {/* Image Size Reducer (Compress) Modal */}
-      {compressingFile && (
-        <CompressModal
-          file={compressingFile}
-          isOpen={!!compressingFile}
-          onClose={() => setCompressingFile(null)}
-          onApply={handleApplyCompressedImage}
-        />
-      )}
+        {/* Image Size Reducer (Compress) Modal */}
+        {compressingFile && (
+          <CompressModal
+            file={compressingFile}
+            isOpen={!!compressingFile}
+            onClose={() => setCompressingFile(null)}
+            onApply={handleApplyCompressedImage}
+          />
+        )}
 
-      {/* Watermark & Copyright Studio Modal */}
-      {watermarkingFile && (
-        <WatermarkModal
-          file={watermarkingFile}
-          isOpen={!!watermarkingFile}
-          onClose={() => setWatermarkingFile(null)}
-          onApply={handleApplyCompressedImage}
-        />
-      )}
+        {/* Watermark & Copyright Studio Modal */}
+        {watermarkingFile && (
+          <WatermarkModal
+            file={watermarkingFile}
+            isOpen={!!watermarkingFile}
+            onClose={() => setWatermarkingFile(null)}
+            onApply={handleApplyCompressedImage}
+          />
+        )}
 
-      {/* Color Palette & HEX Extractor Modal */}
-      {paletteFile && (
-        <ColorPaletteModal
-          file={paletteFile}
-          isOpen={!!paletteFile}
-          onClose={() => setPaletteFile(null)}
-        />
-      )}
+        {/* Color Palette & HEX Extractor Modal */}
+        {paletteFile && (
+          <ColorPaletteModal
+            file={paletteFile}
+            isOpen={!!paletteFile}
+            onClose={() => setPaletteFile(null)}
+          />
+        )}
 
-      {/* EXIF & GPS Privacy Scrubber Modal */}
-      {exifFile && (
-        <ExifPrivacyModal
-          file={exifFile}
-          isOpen={!!exifFile}
-          onClose={() => setExifFile(null)}
-          onStripMetadata={handleStripMetadata}
-        />
-      )}
+        {/* EXIF & GPS Privacy Scrubber Modal */}
+        {exifFile && (
+          <ExifPrivacyModal
+            file={exifFile}
+            isOpen={!!exifFile}
+            onClose={() => setExifFile(null)}
+            onStripMetadata={handleStripMetadata}
+          />
+        )}
 
-      {/* Batch Rename Formatter Modal */}
-      {isBatchRenameOpen && (
-        <BatchRenameModal
-          files={files}
-          isOpen={isBatchRenameOpen}
-          onClose={() => setIsBatchRenameOpen(false)}
-          onApply={handleApplyBatchRename}
-        />
-      )}
+        {/* Batch Rename Formatter Modal */}
+        {isBatchRenameOpen && (
+          <BatchRenameModal
+            files={files}
+            isOpen={isBatchRenameOpen}
+            onClose={() => setIsBatchRenameOpen(false)}
+            onApply={handleApplyBatchRename}
+          />
+        )}
+
+        {/* Cloud & URL Import Modal (Zero Login Required) */}
+        {cloudImportSource && (
+          <CloudImportModal
+            source={cloudImportSource}
+            isOpen={!!cloudImportSource}
+            onClose={() => setCloudImportSource(null)}
+            onImportFile={handleCloudFileImported}
+            onImportFiles={handleFilesSelected}
+            onSelectDevice={() => fileInputRef.current?.click()}
+          />
+        )}
+      </React.Suspense>
 
       {/* Fullscreen Preview Modal */}
       {previewFile && previewFile.pngUrl && (
@@ -870,17 +889,7 @@ export const MainConverter: React.FC<MainConverterProps> = ({
         </div>
       )}
 
-      {/* Cloud & URL Import Modal (Zero Login Required) */}
-      {cloudImportSource && (
-        <CloudImportModal
-          source={cloudImportSource}
-          isOpen={!!cloudImportSource}
-          onClose={() => setCloudImportSource(null)}
-          onImportFile={handleCloudFileImported}
-          onImportFiles={handleFilesSelected}
-          onSelectDevice={() => fileInputRef.current?.click()}
-        />
-      )}
+      {/* Cloud & URL Import Modal is now inside Suspense above */}
     </div>
   );
 };

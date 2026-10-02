@@ -32,11 +32,13 @@ import {
   Bookmark,
 } from 'lucide-react';
 import { MainConverter } from '../components/MainConverter';
-import { ImageToPngVideoWalkthrough } from '../components/ImageToPngVideoWalkthrough';
-import { FreePngSamples } from '../components/FreePngSamples';
 import { AdPlaceholder } from '../components/AdPlaceholder';
-import { ProFeatureShowcase } from '../components/ProFeatureShowcase';
 import { SUPPORTED_FORMATS } from '../data/formats';
+
+// Code-split below-the-fold components to keep initial bundle microscopic for 100/100 PageSpeed
+const ImageToPngVideoWalkthrough = React.lazy(() => import('../components/ImageToPngVideoWalkthrough').then((m) => ({ default: m.ImageToPngVideoWalkthrough })));
+const FreePngSamples = React.lazy(() => import('../components/FreePngSamples').then((m) => ({ default: m.FreePngSamples })));
+const ProFeatureShowcase = React.lazy(() => import('../components/ProFeatureShowcase').then((m) => ({ default: m.ProFeatureShowcase })));
 
 interface HomePageProps {
   onNavigate: (path: string) => void;
@@ -296,7 +298,9 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
               </p>
             </div>
             <div className="max-w-3xl mx-auto">
-              <ImageToPngVideoWalkthrough />
+              <React.Suspense fallback={<div className="h-64 rounded-2xl bg-slate-100 animate-pulse border border-slate-200" />}>
+                <ImageToPngVideoWalkthrough />
+              </React.Suspense>
             </div>
           </div>
 
@@ -620,12 +624,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       */}
       {/* Free PNG Sample Assets Gallery */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <FreePngSamples />
+        <React.Suspense fallback={<div className="h-48 rounded-3xl bg-slate-100 animate-pulse border border-slate-200" />}>
+          <FreePngSamples />
+        </React.Suspense>
       </section>
 
       {/* Pro Features & Quality Control Showcase */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <ProFeatureShowcase />
+        <React.Suspense fallback={<div className="h-48 rounded-3xl bg-slate-100 animate-pulse border border-slate-200" />}>
+          <ProFeatureShowcase />
+        </React.Suspense>
       </section>
 
       {/* Technical FAQ Section (Accordion) */}
