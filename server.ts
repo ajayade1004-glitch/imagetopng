@@ -338,11 +338,27 @@ async function startServer() {
         .replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${description}" />`)
         .replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${canonical}" />`);
 
-      // If subpage, update initial pre-rendered H1 so there is no layout shift or heading mismatch
+      // If subpage, update initial pre-rendered <main> so there is no layout shift or ghost Homepage sections
       if (cleanPath !== '/') {
+        const subpageMainHtml = `<main style="max-width: 1024px; margin: 0 auto; padding: 24px 16px;">
+        <article>
+          <header style="text-align: center; margin-bottom: 24px;">
+            <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase;">
+              ImageToPNG • 100% In-Browser Private
+            </p>
+            <h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">
+              ${pageH1}
+            </h1>
+            <p style="font-size: 15px; color: #475569; max-width: 720px; margin: 12px auto 0; line-height: 1.6;">
+              ${description}
+            </p>
+          </header>
+        </article>
+      </main>`;
+
         template = template.replace(
-          /<h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">.*?<\/h1>/s,
-          `<h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">${pageH1}</h1>`
+          /<main style="max-width: 1024px; margin: 0 auto; padding: 24px 16px;">.*?<\/main>/s,
+          subpageMainHtml
         );
       }
 
