@@ -57,6 +57,10 @@ export interface FormatData {
   troubleshooting: { issue: string; solution: string }[];
   faq: { question: string; answer: string }[];
   relatedFormats: string[];
+  deepTechnicalOverview?: string;
+  longTailKeywords?: string[];
+  osGuides?: { os: string; title: string; steps: string[] }[];
+  softwareWorkflows?: { software: string; title: string; description: string }[];
 }
 
 export interface GuideArticle {
