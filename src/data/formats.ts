@@ -84,7 +84,16 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Why do app stores require PNG instead of JPG for icons?', answer: 'App stores require PNG because icons contain high-contrast edges and typography that blur noticeably under JPEG lossy compression. PNG preserves pixel-sharp icons and transparent rounded corners.' },
       { question: 'Can I make a JPG transparent by converting to PNG?', answer: 'Converting JPG to PNG produces a lossless file ready for transparency editing. Because original JPGs have opaque backgrounds, converting them to PNG preserves 100% of pixel detail so you can isolate subjects or cut out backgrounds in any design software without compression artifacts.' }
     ],
-    relatedFormats: ['jpeg-to-png', 'webp-to-png', 'avif-to-png', 'png-vs-jpg']
+    relatedFormats: ['jpeg-to-png', 'webp-to-png', 'avif-to-png', 'png-vs-jpg'],
+    longTailKeywords: [
+      'jpg to png',
+      'jpg image converter',
+      'convert image to png format',
+      'convert image to png',
+      'make image png',
+      'turn image to png',
+      'how to convert image to png'
+    ]
   },
   {
     slug: 'jpeg-to-png',
@@ -217,7 +226,14 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Can I batch convert 50+ WebP images at once?', answer: 'Yes! You can drag and drop dozens of WebP files into the queue. They convert instantaneously in your browser and can be downloaded together in a ZIP file.' },
       { question: 'Does converting WebP to PNG cost money or require sign-up?', answer: 'No. ImageToPNG is completely free with no signup, no subscriptions, and no limits on the number of conversions.' }
     ],
-    relatedFormats: ['jpg-to-png', 'gif-to-png', 'svg-to-png']
+    relatedFormats: ['jpg-to-png', 'gif-to-png', 'svg-to-png'],
+    longTailKeywords: [
+      'webp to png',
+      'webp image to png',
+      'convert webp to png',
+      'convert image to png',
+      'webp to transparent png'
+    ]
   },
   {
     slug: 'gif-to-png',
@@ -281,7 +297,13 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'How do I convert GIF to PNG on Mac or Windows?', answer: 'Simply open ImageToPNG in any browser (Chrome, Edge, Safari, Firefox), drag your GIF file into the window, and download the converted PNG instantly.' },
       { question: 'Is converting GIF to PNG free?', answer: 'Yes, 100% free with unlimited conversions, zero account creation, and zero server uploads.' }
     ],
-    relatedFormats: ['webp-to-png', 'bmp-to-png', 'svg-to-png']
+    relatedFormats: ['webp-to-png', 'bmp-to-png', 'svg-to-png'],
+    longTailKeywords: [
+      'gif to png',
+      'gif image to png',
+      'gif to png image sequence',
+      'convert gif to png'
+    ]
   },
   {
     slug: 'bmp-to-png',
@@ -532,7 +554,14 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Does converting ICO to PNG preserve transparency?', answer: 'Yes! Both 1-bit binary transparency and 8-bit alpha channels embedded in ICO files are preserved accurately.' },
       { question: 'Can I open the converted PNG in Figma and Canva?', answer: 'Yes! While design tools like Figma, Canva, and Sketch often reject .ico files, PNG files drag and drop seamlessly onto your canvas.' }
     ],
-    relatedFormats: ['svg-to-png', 'png-vs-webp', 'gif-to-png']
+    relatedFormats: ['svg-to-png', 'png-vs-webp', 'gif-to-png'],
+    longTailKeywords: [
+      'png to ico',
+      'convert png to ico',
+      'ico to png',
+      'favicon to png',
+      'extract favicon'
+    ]
   },
   {
     slug: 'tiff-to-png',
@@ -847,7 +876,18 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Will converting PNG to JPG reduce file size?', answer: 'Yes! Photographic PNG images are typically 60% to 80% smaller when converted to JPG, making them much faster to share and upload.' },
       { question: 'What happens to transparent backgrounds when converting PNG to JPG?', answer: 'Since JPG files cannot store transparency, all transparent pixels are automatically converted to solid white.' },
       { question: 'Are my PNG files uploaded to external servers?', answer: 'No. The conversion runs 100% locally in your device browser RAM with zero file uploads for complete data privacy.' },
-      { question: 'What is the file size limit for PNG to JPG conversion?', answer: 'You can convert images up to 100MB per file depending on your device browser memory, with no server-side queue limits.' }
+      { question: 'What is the file size limit for PNG to JPG conversion?', answer: 'You can convert images up to 100MB per file depending on your device browser memory, with no server-side queue limits.' },
+      { question: 'How to convert PNG image into JPG without losing clarity?', answer: 'Our dedicated image converter png to jpg tool uses high-precision 32-bit canvas decoding and 92% JPEG quantization to preserve edge sharpness while slashing file sizes by up to 80%.' },
+      { question: 'How do I convert a batch of PNG photos to JPG?', answer: 'Simply drag and drop multiple PNG files into the converter. All files process in parallel in your browser memory and can be downloaded individually or as a single ZIP archive.' }
+    ],
+    longTailKeywords: [
+      'png image to jpg',
+      'image converter png to jpg',
+      'how to convert png image into jpg',
+      'how to change png image to jpg',
+      'convert png image to jpeg',
+      'convert png image to jpg online',
+      'change image from png to jpg'
     ],
     relatedFormats: ['jpg-to-png', 'jpeg-to-png', 'webp-to-png']
   }

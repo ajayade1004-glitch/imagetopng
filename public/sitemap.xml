@@ -233,7 +233,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides</loc>
-    <lastmod>2026-09-30</lastmod>
+    <lastmod>2026-10-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -345,6 +345,28 @@
       <image:loc>https://www.imagetopng.com/image-to-png-lossless-compression-diagram.webp</image:loc>
       <image:title>Comprehensive Image Format Guide: PNG, JPG, WebP, GIF, SVG &amp; AVIF</image:title>
       <image:caption>An all-in-one reference manual explaining the strengths, weaknesses, compression types, and optimal use cases for every major image format on the web.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imagetopng.com/guides/how-to-convert-png-image-into-jpg</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.imagetopng.com/image-to-png-lossless-compression-diagram.webp</image:loc>
+      <image:title>How to Convert PNG Image into JPG: The Complete Compression, Quality &amp; Transparency Guide</image:title>
+      <image:caption>A complete technical guide on converting PNG graphics into compact JPG photos using an in-browser image converter png to jpg tool without uploading files to remote servers.</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://www.imagetopng.com/guides/transparent-png-maker-guide</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.imagetopng.com/image-to-png-lossless-compression-diagram.webp</image:loc>
+      <image:title>Transparent Image Maker: How to Create and Preserve Transparent PNG Backgrounds</image:title>
+      <image:caption>Everything you need to know about transparent images, 8-bit alpha channels, 1-bit binary transparency, and saving transparent PNGs for web design and digital art.</image:caption>
     </image:image>
   </url>
   <url>

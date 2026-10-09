@@ -110,6 +110,34 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       q: 'Why should I convert SVG vector files to PNG raster files?',
       a: 'SVG is great for vectors, but many social media sites and email apps do not support SVG. When you **convert image to png format** from SVG, you turn vector curves into high-resolution PNG pictures. These PNG files display perfectly on all social apps, websites, and phones.',
     },
+    {
+      q: 'How to convert PNG image into JPG online without losing clarity?',
+      a: 'To **convert PNG image into JPG**, use our dedicated **image converter png to jpg** or choose JPG output in our converter. Our in-browser engine decodes the PNG bitmap in local RAM and applies high-efficiency discrete cosine transform compression with an adjustable quality slider (0.1 to 1.0). This reduces photographic file sizes by 60% to 80% while preserving crisp color reproduction for web publishing, Shopify stores, and email newsletters.',
+    },
+    {
+      q: 'How to make a transparent PNG image or preserve transparent backgrounds?',
+      a: 'When using ImageToPNG as your **transparent image maker** or **transparent png maker**, source files that already contain transparency (such as WebP, SVG, GIF, or ICO) have their alpha channels preserved with all 256 levels of smooth anti-aliased edge opacity. For opaque images like JPG or BMP, our converter generates a lossless master PNG, making it easy to isolate subjects or cut out backgrounds in any photo editing software without generational compression loss.',
+    },
+    {
+      q: 'How to resize a PNG image and adjust pixel dimensions (image size converter)?',
+      a: 'You can easily adjust image dimensions using our built-in **image size converter** and **image dimension converter** tools. Simply click "Edit" on any uploaded image to adjust pixel width and height, lock aspect ratios, crop framing, or scale resolutions for social media headers, profile avatars, and print dimensions with zero quality degradation.',
+    },
+    {
+      q: 'Can I invert image colors or convert photos to black and white?',
+      a: 'Yes! Open our image editor modal to access high-speed canvas filters: use the **image color inverter** to **invert image** colors for dark-mode assets, or select the **black and white image converter** filter to transform full-color photographs into high-contrast monochrome or grayscale PNG graphics in one click.',
+    },
+    {
+      q: 'How to convert PNG to ICO for website favicons and Windows shortcuts?',
+      a: 'To convert icon assets, our dedicated **png to ico** and ICO to PNG converters extract multi-resolution icon frames or convert PNG graphics into Windows `.ico` and website `favicon.ico` formats with clean alpha transparency intact.',
+    },
+    {
+      q: 'Can I add text to a PNG image or apply custom watermarks before downloading?',
+      a: 'Yes! Click "Edit" on any converted image to open our canvas editor and use the Watermark / Text tool to **add text to png image** files. You can customize font family, text size, color, opacity, and positioning to protect your artwork or brand logos before exporting.',
+    },
+    {
+      q: 'How to convert image to PNG on iPhone, iPad, or Mac?',
+      a: 'On iPhone, iPad, or Mac, open Safari, tap Choose Image, and pick any photo from your Photos Library, Files app, or local folder. The browser converts your photo to PNG locally in memory—no app store downloads or subscriptions required. Tap Download to save the PNG back to your Camera Roll or Downloads folder.',
+    },
   ];
 
   return (
@@ -763,6 +791,340 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <React.Suspense fallback={<div className="h-48 rounded-3xl bg-slate-100 animate-pulse border border-slate-200" />}>
           <ProFeatureShowcase />
         </React.Suspense>
+      </section>
+
+      {/* 
+        ========================================================================
+        HIGH-VOLUME IMAGE CONVERTER TOOLS & POPULAR SEARCH WORKFLOWS
+        ========================================================================
+      */}
+      <section aria-labelledby="high-volume-title" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white rounded-3xl border border-slate-200 p-6 sm:p-10 shadow-xs">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <span className="text-xs font-bold text-blue-600 uppercase tracking-widest bg-blue-50 px-3 py-1 rounded-full border border-blue-100">
+              Popular Tools &amp; Format Workflows
+            </span>
+            <h2 id="high-volume-title" className="text-xl sm:text-3xl font-extrabold text-slate-900 tracking-tight mt-2.5">
+              High-Demand Image Converter Solutions
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-600 mt-2">
+              Discover why millions of digital creators and developers rely on our free in-browser <strong className="font-semibold text-slate-800">image converter</strong> to transform photo formats with lossless quality, zero server latency, and full transparency.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {/* Card 1: WebP to PNG */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800">
+                    165,000 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    Lossless Alpha
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  WebP to PNG Converter
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Need to open modern Google WebP graphics in legacy photo software or desktop editors? Our in-browser <strong className="font-semibold text-slate-800">webp to png</strong> tool converts lossy or lossless WebP files into pristine 32-bit RGBA PNGs while preserving transparent layers.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <a
+                  href="/webp-to-png"
+                  onClick={(e) => handleLinkClick(e, '/webp-to-png')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>Launch WebP to PNG Tool</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2: PNG Image to JPG */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800">
+                    60,500 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    80% Compression
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  PNG Image to JPG Converter
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Compress oversized PNG screenshots and artwork for web speed. Our specialized <strong className="font-semibold text-slate-800">image converter png to jpg</strong> turns bulky PNG graphics into lightweight, web-optimized JPEG files with adjustable compression quality.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <a
+                  href="/png-to-jpg"
+                  onClick={(e) => handleLinkClick(e, '/png-to-jpg')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>Convert PNG Image to JPG</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 3: JPG to PNG & JPG Image Converter */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800">
+                    49,500 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                    Lossless Master
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  JPG to PNG &amp; JPG Converter
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Transform compressed camera photos into lossless raster graphics. As a dedicated <strong className="font-semibold text-slate-800">jpg image converter</strong>, our tool extracts uncompressed pixel grids to halt generational compression decay before digital editing.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <a
+                  href="/jpg-to-png"
+                  onClick={(e) => handleLinkClick(e, '/jpg-to-png')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>Convert JPG to PNG</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 4: PNG to ICO Favicon Generator */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-800">
+                    18,100 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-slate-700 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
+                    Multi-Res Favicon
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  PNG to ICO &amp; Icon Extractor
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Create desktop application icons and website favicons with ease. Our <strong className="font-semibold text-slate-800">png to ico</strong> and icon conversion tools unpack Windows ICO frames and generate clean, transparent icon graphics ready for modern UI toolkits.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <a
+                  href="/ico-to-png"
+                  onClick={(e) => handleLinkClick(e, '/ico-to-png')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>ICO Icon Conversion</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Card 5: Image Compressor & Optimizer */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-emerald-100 text-emerald-800">
+                    74,000 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">
+                    Local RAM
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  Image Compressor &amp; File Reducer
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Shrink image footprints without cloud queues. Our client-side <strong className="font-semibold text-slate-800">image compressor</strong> and optimizer applies adaptive DEFLATE filtering and quantization locally in browser memory to reduce file payloads up to 80%.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <button
+                  type="button"
+                  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700 cursor-pointer"
+                >
+                  <span>Compress Images in Browser</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            </div>
+
+            {/* Card 6: GIF to PNG Converter */}
+            <div className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 hover:bg-blue-50/20 transition-all flex flex-col justify-between">
+              <div>
+                <div className="flex items-center justify-between mb-2.5">
+                  <span className="text-xs font-bold px-2.5 py-0.5 rounded-md bg-purple-100 text-purple-800">
+                    8,100 Searches / mo
+                  </span>
+                  <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                    24-Bit Truecolor
+                  </span>
+                </div>
+                <h3 className="font-bold text-slate-900 text-base mb-1.5">
+                  GIF to PNG Image Converter
+                </h3>
+                <p className="text-xs text-slate-600 leading-relaxed">
+                  Upgrade 256-color dithered animations into truecolor static artwork. Our in-browser <strong className="font-semibold text-slate-800">gif to png</strong> converter preserves 1-bit transparency while expanding color palettes into 16.7 million rich 24-bit true colors.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-200/60">
+                <a
+                  href="/gif-to-png"
+                  onClick={(e) => handleLinkClick(e, '/gif-to-png')}
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 hover:text-blue-700"
+                >
+                  <span>Launch GIF to PNG Tool</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 
+        ========================================================================
+        HIGH-CPC GRAPHIC TRANSFORMATIONS: TRANSPARENCY, INVERSION & RESIZING
+        ========================================================================
+      */}
+      <section aria-labelledby="high-cpc-title" className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-gradient-to-br from-slate-900 via-slate-950 to-blue-950 text-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-800">
+          <div className="text-center max-w-3xl mx-auto mb-8">
+            <span className="text-xs font-bold text-blue-300 uppercase tracking-widest bg-blue-500/20 px-3 py-1 rounded-full border border-blue-400/30">
+              High-Precision Graphic Suite
+            </span>
+            <h2 id="high-cpc-title" className="text-xl sm:text-3xl font-extrabold text-white tracking-tight mt-2.5">
+              Advanced Image Transformations &amp; Editing Suite
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-300 mt-2">
+              From transparent PNG preservation to instant color inversion, explore specialized graphic tools built directly into our client-side engine with zero account barriers.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {/* Feature 1: Transparent Image Maker */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center mb-3 border border-blue-400/20">
+                  <Palette className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  Transparent Image Maker &amp; Transparent PNG
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Exporting graphics for Canva, Figma, or dark-mode web headers? As a dedicated <strong className="text-white font-medium">transparent image maker</strong>, our tool preserves 8-bit alpha transparency with all 256 gradations of smooth anti-aliased edge blending.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-blue-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> Native Alpha &amp; Cutout Preservation
+              </div>
+            </div>
+
+            {/* Feature 2: Invert Image & Color Inverter */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center mb-3 border border-purple-400/20">
+                  <Sliders className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  Image Color Inverter (Invert Image)
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Need to invert icons for dark themes or inspect negative film negatives? Use our built-in <strong className="text-white font-medium">image color inverter</strong> to <strong className="text-white font-medium">invert image</strong> pixel values across red, green, and blue channels in milliseconds.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-purple-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> Dark-Mode Inversion &amp; Masking
+              </div>
+            </div>
+
+            {/* Feature 3: Black and White Image Converter */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-slate-500/20 text-slate-300 flex items-center justify-center mb-3 border border-slate-400/20">
+                  <FileImage className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  Black and White Image Converter
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Transform full-color photographs into striking monochromatic graphics. Our <strong className="text-white font-medium">black and white image converter</strong> and grayscale filter recalculates pixel luminance into clean, timeless black-and-white PNG images.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-slate-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> High-Contrast Monochrome Output
+              </div>
+            </div>
+
+            {/* Feature 4: Image Size Converter & Dimension Resizer */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center mb-3 border border-amber-400/20">
+                  <Maximize2 className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  Image Size Converter &amp; Pixel Resizer
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Adjust image dimensions without installing desktop software. Our <strong className="text-white font-medium">image size converter</strong> and <strong className="text-white font-medium">image dimension converter</strong> enables exact pixel resizing, aspect ratio locks, and resolution scaling.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-amber-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> Aspect Ratio Resizer &amp; Pixel Scaler
+              </div>
+            </div>
+
+            {/* Feature 5: High Definition Image Converter */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3 border border-emerald-400/20">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  High Definition Image Converter (HD PNG)
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Preserve 100% of optical clarity for high-resolution displays. Operating as a <strong className="text-white font-medium">high definition image converter</strong>, ImageToPNG retains raw camera sensor detail, ultra-high DPI coordinates, and uncompressed colors.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-emerald-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> Lossless HD Pixel Preservation
+              </div>
+            </div>
+
+            {/* Feature 6: Add Text to PNG Image & Watermark */}
+            <div className="p-5 rounded-2xl border border-slate-800 bg-slate-900/60 hover:border-blue-500/60 transition-all flex flex-col justify-between">
+              <div>
+                <div className="w-9 h-9 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center mb-3 border border-rose-400/20">
+                  <FileText className="w-4 h-4" />
+                </div>
+                <h3 className="font-bold text-white text-base mb-1.5">
+                  Add Text to PNG Image &amp; Watermarks
+                </h3>
+                <p className="text-xs text-slate-300 leading-relaxed">
+                  Protect intellectual property and annotate graphics before exporting. Click Edit on any image to <strong className="text-white font-medium">add text to png image</strong> files, customize typography, scale watermark opacity, and position copyright stamps.
+                </p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-slate-800 text-[11px] text-rose-300 font-semibold flex items-center gap-1">
+                <Check className="w-3.5 h-3.5 text-emerald-400" /> In-Browser Watermark &amp; Typography
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Technical FAQ Section (Accordion) */}

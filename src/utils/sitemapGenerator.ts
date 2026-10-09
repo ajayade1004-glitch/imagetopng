@@ -91,21 +91,22 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     });
   }
 
-  // 3. Technical Knowledge Base & Educational Guides Hub (Updated: September 30, 2026)
+  // 3. Technical Knowledge Base & Educational Guides Hub (Updated: October 9, 2026)
   entries.push({
     loc: `${normalizedBase}/guides`,
-    lastmod: '2026-09-30',
+    lastmod: '2026-10-09',
     changefreq: 'weekly',
     priority: '0.8',
   });
 
-  // 4. Individual In-Depth Guides Articles (Updated: September 30, 2026)
+  // 4. Individual In-Depth Guides Articles (Updated with New High-CPC Guides)
   for (const guide of GUIDES_DATA) {
+    const isNew = ['how-to-convert-png-image-into-jpg', 'transparent-png-maker-guide'].includes(guide.slug);
     entries.push({
       loc: `${normalizedBase}/guides/${guide.slug}`,
-      lastmod: '2026-09-30',
+      lastmod: isNew ? '2026-10-09' : '2026-09-30',
       changefreq: 'monthly',
-      priority: '0.75',
+      priority: isNew ? '0.85' : '0.75',
       images: [
         {
           loc: `${normalizedBase}/image-to-png-lossless-compression-diagram.webp`,
