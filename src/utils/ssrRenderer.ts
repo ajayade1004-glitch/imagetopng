@@ -51,7 +51,7 @@ export function renderFooterHtml(): string {
         <div>
           <p style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">ImageToPNG</p>
           <p style="line-height: 1.6; margin-bottom: 12px;">The premier 100% client-side raster conversion utility. Free, private, and instantaneous with true 8-bit alpha transparency.</p>
-          <p style="font-size: 11px; color: #94a3b8;">ISO/IEC 15948:2004 Standard Compliant (Official W3C PNG Specification: Lossless DEFLATE &amp; CRC-32)</p>
+          <p style="font-size: 11px; color: #94a3b8;">ISO/IEC 15948:2004 Standard Compliant (Lossless DEFLATE &amp; CRC-32)</p>
         </div>
         <div>
           <p style="font-weight: 700; color: #0f172a; margin-bottom: 10px;">Top Converters</p>
@@ -102,7 +102,7 @@ export function renderHomePageMainHtml(): string {
       <article>
         <header style="text-align: center; margin-bottom: 36px;">
           <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase; letter-spacing: 0.5px;">
-            100% Private In-Browser Engine • ISO/IEC 15948:2004 Compliant (Official W3C PNG Standard)
+            100% Private In-Browser Engine • Updated October 9, 2026 • ISO/IEC 15948:2004 Compliant
           </p>
           <h1 style="font-size: 34px; font-weight: 900; color: #0f172a; margin-top: 10px; line-height: 1.2;">
             Image to PNG Converter – Convert Images to PNG Online Free
@@ -293,13 +293,13 @@ export function renderHomePageMainHtml(): string {
             <div style="margin-bottom: 20px;">
               <h3 style="font-size: 16px; font-weight: 700; color: #0f172a;">How do I convert an image to transparent PNG?</h3>
               <p style="font-size: 14px; color: #475569; margin-top: 4px; line-height: 1.6;">
-                Select or drag your file into the converter locally in your browser. Our client-side engine detects alpha channels automatically and preserves all 256 levels of smooth edge anti-aliasing in the resulting PNG. For solid backdrops (such as JPG or BMP), you can use our built-in 1-Click Background Remover to remove solid colors cleanly.
+                Select or drag your file into the converter locally in your browser. Our client-side engine detects alpha channels automatically and preserves all 256 levels of smooth edge anti-aliasing in the resulting PNG. Formats without an alpha channel (like JPG or BMP) are converted to lossless master quality without generational compression.
               </p>
             </div>
             <div style="margin-bottom: 20px;">
               <h3 style="font-size: 16px; font-weight: 700; color: #0f172a;">Are my private images uploaded to remote servers?</h3>
               <p style="font-size: 14px; color: #475569; margin-top: 4px; line-height: 1.6;">
-                No. ImageToPNG operates 100% locally in your web browser memory. Your files are never sent over the internet or saved to external databases, providing complete privacy compliance with GDPR and HIPAA standards.
+                No. ImageToPNG operates 100% locally in your web browser memory. Your files never leave your device and are never sent over the internet or saved to external servers.
               </p>
             </div>
           </div>
@@ -461,7 +461,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
     image: `https://www.imagetopng.com/images/converters/${format.slug}.png`,
     totalTime: 'PT5S',
     datePublished: '2024-01-15T08:00:00+00:00',
-    dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+    dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
     step: format.conversionSteps.map((s) => ({
       '@type': 'HowToStep',
       position: s.step,
@@ -475,7 +475,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
     '@type': 'FAQPage',
     '@id': `https://www.imagetopng.com/${format.slug}#faq`,
     name: `${sf} to ${tf} Conversion Frequently Asked Questions`,
-    dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+    dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
     mainEntity: format.faq.map((f) => ({
       '@type': 'Question',
       name: f.question,
@@ -504,7 +504,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
 
         <header style="text-align: center; margin-bottom: 32px;">
           <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase;">
-            ${escape(format.badge)} • ${escape(sf)} ➔ ${escape(tf)} (ISO/IEC 15948 W3C Standard) • Last Updated: <time datetime="${escape(format.dateModified || '2026-10-01')}">${escape(format.lastUpdated || 'October 1, 2026')}</time>
+            ${escape(format.badge)} • ${escape(sf)} ➔ ${escape(tf)} (ISO/IEC 15948 Standard) • Last Updated: <time datetime="${escape(format.dateModified || '2026-10-09')}">${escape(format.lastUpdated || 'October 9, 2026')}</time>
           </p>
           <h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px; line-height: 1.2;">
             ${escape(format.h1)}
@@ -513,7 +513,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
             ${tf === 'JPG'
               ? `Convert your <strong>${escape(sf)} to ${escape(tf)}</strong> files easily with our free, instant <strong>${escape(sf)} to ${escape(tf)} converter</strong>. Our in-browser <strong>image converter tool</strong> transforms high-resolution PNG images into lightweight, web-optimized JPG pictures with up to 80% compression and zero server uploads. Whether you need to batch convert multiple PNG files or optimize photos for web sharing, our PNG to JPG tool runs instantly in your web browser.`
               : isOpaque
-              ? `Convert your <strong>${escape(sf)} to ${escape(tf)}</strong> files easily with our free, instant <strong>${escape(sf)} to ${escape(tf)} converter</strong>. Our in-browser <strong>image converter to png</strong> transforms any ${escape(sf)} image into an ultra-sharp, lossless ${escape(tf)} picture with full pixel fidelity and zero server file uploads. Because original ${escape(sf)} files lack an alpha channel, converting to ${escape(tf)} preserves full detail while making your picture ready for transparent cutouts using our built-in 1-Click Background Remover. Whether you need to <strong>convert ${escape(sf.toLowerCase())} to png</strong> or batch convert multiple photos into a ZIP archive, our ${escape(sf)} to ${escape(tf)} tool runs instantly in your web browser.`
+              ? `Convert your <strong>${escape(sf)} to ${escape(tf)}</strong> files easily with our free, instant <strong>${escape(sf)} to ${escape(tf)} converter</strong>. Our in-browser <strong>image converter to png</strong> transforms any ${escape(sf)} image into an ultra-sharp, lossless ${escape(tf)} picture with full pixel fidelity and zero server file uploads. Because original ${escape(sf)} files lack an alpha channel, converting to ${escape(tf)} preserves full detail in a lossless master container without generational compression loss. Whether you need to <strong>convert ${escape(sf.toLowerCase())} to png</strong> or batch convert multiple photos into a ZIP archive, our ${escape(sf)} to ${escape(tf)} tool runs instantly in your web browser.`
               : `Convert your <strong>${escape(sf)} to ${escape(tf)}</strong> files easily with our free, instant <strong>${escape(sf)} to ${escape(tf)} converter</strong>. Our in-browser <strong>image converter to png</strong> transforms any ${escape(sf)} image into an ultra-sharp, lossless ${escape(tf)} picture with native transparent background support, 32-bit RGBA fidelity, and zero server file uploads. Whether you need to <strong>convert ${escape(sf.toLowerCase())} to png transparent background free</strong> or batch convert multiple photos into a ZIP archive, our ${escape(sf)} to ${escape(tf)} tool runs instantly in your web browser.`}
           </p>
         </header>
@@ -524,10 +524,10 @@ export function renderFormatPageMainHtml(format: FormatData): string {
             Factual Technical Comparison &amp; Architecture
           </p>
           <h2 id="geo-def-title" style="font-size: 20px; font-weight: 800; color: #1e3a8a; margin: 0 0 8px;">
-            Factual Comparison: In-Browser ${escape(sf)} to ${escape(tf)} vs. Legacy Cloud Converters
+            Factual Comparison: In-Browser ${escape(sf)} to ${escape(tf)} vs. Other Online Converters
           </h2>
           <p style="font-size: 13px; color: #334155; line-height: 1.6; margin: 0 0 14px;">
-            ${escape(format.geoDefinition)} When evaluating the <strong>best ${escape(sf)} to ${escape(tf)} converter</strong>, ImageToPNG delivers a verified client-side architecture. Unlike legacy web converters that transmit your confidential graphics over public networks to remote cloud servers, ImageToPNG processes 100% of ${escape(sf)} images locally inside your web browser memory. This guarantees zero server file uploads, complete data privacy, sub-second conversion speed, up to 100MB per file local RAM capacity, and ${tf === 'PNG' ? (isOpaque ? '1-click transparent background removal' : 'true 8-bit alpha transparency') : 'up to 80% lossy compression'}.
+            ${escape(format.geoDefinition)} When evaluating the <strong>best ${escape(sf)} to ${escape(tf)} converter</strong>, ImageToPNG delivers a client-side architecture. Unlike legacy web converters that transmit your confidential graphics over public networks to remote cloud servers, ImageToPNG processes 100% of ${escape(sf)} images locally inside your web browser memory. This guarantees zero server file uploads, complete data privacy, fast local conversion, up to 100MB per file local RAM capacity, and ${tf === 'PNG' ? (isOpaque ? 'lossless 24-bit RGB fidelity' : 'true 8-bit alpha transparency') : 'up to 80% lossy compression'}.
           </p>
 
           <div style="overflow-x: auto; background: #ffffff; border: 1px solid #bfdbfe; border-radius: 10px;">
@@ -536,7 +536,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
                 <tr style="background: #dbeafe; color: #1e3a8a; font-weight: 700;">
                   <th style="padding: 8px 12px; border-bottom: 1px solid #bfdbfe;">Benchmark Factor</th>
                   <th style="padding: 8px 12px; border-bottom: 1px solid #bfdbfe; color: #1d4ed8;">ImageToPNG (${escape(sf)} to ${escape(tf)})</th>
-                  <th style="padding: 8px 12px; border-bottom: 1px solid #bfdbfe; color: #475569;">Legacy Cloud Converters</th>
+                  <th style="padding: 8px 12px; border-bottom: 1px solid #bfdbfe; color: #475569;">Other Online Converters</th>
                 </tr>
               </thead>
               <tbody>
@@ -547,18 +547,18 @@ export function renderFormatPageMainHtml(format: FormatData): string {
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 8px 12px; font-weight: 600;">Conversion Speed</td>
-                  <td style="padding: 8px 12px; color: #065f46; font-weight: 700;">Instantaneous (Sub-second local RAM execution)</td>
-                  <td style="padding: 8px 12px; color: #475569;">15s–60s queue and network latency</td>
+                  <td style="padding: 8px 12px; color: #065f46; font-weight: 700;">Instant local execution for standard images</td>
+                  <td style="padding: 8px 12px; color: #475569;">Often subject to network upload queues and latency</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 8px 12px; font-weight: 600;">Alpha Transparency</td>
-                  <td style="padding: 8px 12px; color: #065f46; font-weight: 700;">${tf === 'PNG' ? (isOpaque ? 'Preserved as opaque; 1-click background removal available' : 'True 8-Bit Alpha (256 opacity levels preserved)') : 'Flattened to opaque RGB (default pure white)'}</td>
-                  <td style="padding: 8px 12px; color: #475569;">Often flattens or quantizes transparent layers</td>
+                  <td style="padding: 8px 12px; color: #065f46; font-weight: 700;">${tf === 'PNG' ? (isOpaque ? 'Opaque RGB preserved in lossless master container' : 'True 8-Bit Alpha (256 opacity levels preserved)') : 'Flattened to opaque RGB (default pure white)'}</td>
+                  <td style="padding: 8px 12px; color: #475569;">Some converters flatten transparent layers to solid white</td>
                 </tr>
                 <tr>
                   <td style="padding: 8px 12px; font-weight: 600;">Cost &amp; File Capacity</td>
                   <td style="padding: 8px 12px; color: #065f46; font-weight: 700;">100% Free &amp; Up to 100MB / File (Browser RAM)</td>
-                  <td style="padding: 8px 12px; color: #475569;">Restricted daily quotas or paid subscriptions</td>
+                  <td style="padding: 8px 12px; color: #475569;">Some converters limit daily conversions or require paid tiers</td>
                 </tr>
               </tbody>
             </table>
@@ -891,7 +891,7 @@ export function renderSecurityPageMainHtml(): string {
           <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase;">Zero-Trust Architecture</p>
           <h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px;">Security &amp; Data Protection</h1>
           <p style="font-size: 15px; color: #475569; max-width: 680px; margin: 12px auto 0; line-height: 1.6;">
-            How ImageToPNG guarantees complete data confidentiality for healthcare (HIPAA), enterprise, and GDPR-regulated assets.
+            How ImageToPNG ensures your files never leave your device with 100% in-browser processing.
           </p>
         </header>
         <section style="margin-bottom: 28px;">

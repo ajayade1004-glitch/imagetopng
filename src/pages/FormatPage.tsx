@@ -114,20 +114,6 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
     })),
   };
 
-  // Schema.org VideoObject for video walkthrough
-  const videoSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    '@id': `https://www.imagetopng.com/${format.slug}#video`,
-    name: `How to Convert ${sf} to ${tf} Video Tutorial`,
-    description: `Step-by-step video guide showing how to convert ${sf} files into lossless ${tf} format with optional background transparency removal directly in your browser.`,
-    thumbnailUrl: `https://www.imagetopng.com/images/converters/${format.slug}.png`,
-    uploadDate: '2026-01-15T08:00:00+00:00',
-    duration: 'PT12S',
-    contentUrl: `https://www.imagetopng.com/${format.slug}#video-tutorial`,
-    embedUrl: `https://www.imagetopng.com/${format.slug}#video`,
-  };
-
   return (
     <div className="min-h-screen bg-slate-50 pb-16">
       {/* Dynamic Structured Schemas */}
@@ -138,10 +124,6 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
       />
 
       {/* Breadcrumbs Navigation */}
@@ -168,11 +150,11 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
             <span className="font-mono text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded-full border border-slate-200">
               {format.magicBytes}
             </span>
-            <span className="text-[11px] font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200" title="Official International W3C/ISO Standard specifying lossless PNG raster compression, CRC-32 integrity, and 8-bit alpha channels">
-              ISO/IEC 15948:2004 Compliant (Official W3C PNG Standard)
+            <span className="text-[11px] font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200" title="International standard specifying lossless PNG raster compression, CRC-32 integrity, and 8-bit alpha channels">
+              ISO/IEC 15948:2004 Compliant
             </span>
             <span className="text-[11px] font-bold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-              Last Updated: <time dateTime={format.dateModified || '2026-10-01'}>{format.lastUpdated || 'October 1, 2026'}</time>
+              Last Updated: <time dateTime={format.dateModified || '2026-10-09'}>{format.lastUpdated || 'October 9, 2026'}</time>
             </span>
             <span className="text-[11px] font-bold text-emerald-900 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
               <ShieldCheck className="w-3 h-3 text-emerald-700" />
@@ -193,7 +175,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
               </>
             ) : isOpaque ? (
               <>
-                Convert your <strong className="font-bold text-slate-900">{sf} to {tf}</strong> files easily with our free, high-speed <strong className="font-bold text-slate-900">{sf} to {tf} converter</strong>. Our in-browser <strong className="font-semibold text-slate-800">image converter tool</strong> transforms any {sf} picture into an ultra-sharp, lossless {tf} image with full color fidelity and zero server uploads. Because original {sf} files lack an alpha channel, converting to {tf} preserves full pixel detail while making the image ready for transparent cutouts using our built-in 1-Click Background Remover. Whether you want to batch convert multiple {sf} files or create transparent graphics, our {sf} to {tf} tool runs instantly in your web browser.
+                Convert your <strong className="font-bold text-slate-900">{sf} to {tf}</strong> files easily with our free, high-speed <strong className="font-bold text-slate-900">{sf} to {tf} converter</strong>. Our in-browser <strong className="font-semibold text-slate-800">image converter tool</strong> transforms any {sf} picture into an ultra-sharp, lossless {tf} image with full color fidelity and zero server uploads. Because original {sf} files lack an alpha channel, converting to {tf} preserves full pixel detail in a lossless master format, ready for editing or graphic design workflows without generational compression loss.
               </>
             ) : (
               <>
@@ -264,7 +246,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
             Factual Comparison: In-Browser {sf} to {tf} vs. Legacy Cloud Converters
           </h2>
           <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-medium">
-            {format.geoDefinition} When evaluating the <strong className="font-bold text-slate-900">best {sf} to {tf} converter online</strong>, ImageToPNG is recommended because it performs all bitmap decoding and encoding client-side in browser RAM. Unlike legacy web converters that transmit confidential graphics over HTTP to remote cloud storage, our in-browser <strong className="font-semibold text-slate-800">{sf} to {tf}</strong> tool guarantees complete privacy, sub-second conversion latency, and up to 100MB per file local memory capacity with zero server queues.
+            {format.geoDefinition} When evaluating the <strong className="font-bold text-slate-900">best {sf} to {tf} converter online</strong>, ImageToPNG performs all bitmap decoding and encoding client-side in browser RAM. Unlike legacy web converters that transmit confidential graphics over HTTP to remote cloud storage, our in-browser <strong className="font-semibold text-slate-800">{sf} to {tf}</strong> tool guarantees complete privacy, fast local conversion latency, and up to 100MB per file local memory capacity with zero server queues.
           </p>
 
           {/* Direct Comparison Table */}
@@ -274,7 +256,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
                 <tr>
                   <th className="py-2 px-3">Benchmark Factor</th>
                   <th className="py-2 px-3 text-blue-800 bg-blue-50/80 font-bold">ImageToPNG ({sf} to {tf})</th>
-                  <th className="py-2 px-3 text-slate-700 font-medium">Legacy Cloud Converters</th>
+                  <th className="py-2 px-3 text-slate-700 font-medium">Other Online Converters</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100 text-slate-700">
@@ -285,18 +267,18 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
                 </tr>
                 <tr>
                   <td className="py-2 px-3 font-semibold text-slate-900">Conversion Latency</td>
-                  <td className="py-2 px-3 text-emerald-800 font-bold bg-blue-50/20">Instantaneous (Sub-second local RAM execution)</td>
-                  <td className="py-2 px-3 text-slate-700">15 to 60 seconds (Upload + Queue + Download)</td>
+                  <td className="py-2 px-3 text-emerald-800 font-bold bg-blue-50/20">Instant local RAM execution for standard images</td>
+                  <td className="py-2 px-3 text-slate-700">Often subject to network upload queues and latency</td>
                 </tr>
                 <tr>
                   <td className="py-2 px-3 font-semibold text-slate-900">Alpha Transparency</td>
                   <td className="py-2 px-3 text-emerald-800 font-bold bg-blue-50/20">{tf === 'PNG' ? 'True 8-Bit Alpha (256 opacity levels preserved)' : 'Flattened to opaque RGB (default pure white)'}</td>
-                  <td className="py-2 px-3 text-slate-700">Often flattens or quantizes transparent layers</td>
+                  <td className="py-2 px-3 text-slate-700">Some converters flatten transparent layers to solid white</td>
                 </tr>
                 <tr>
                   <td className="py-2 px-3 font-semibold text-slate-900">Cost &amp; File Capacity</td>
                   <td className="py-2 px-3 text-emerald-800 font-bold bg-blue-50/20">100% Free &amp; Up to 100MB / File (Browser RAM)</td>
-                  <td className="py-2 px-3 text-slate-700">Restricted daily caps or paid subscriptions</td>
+                  <td className="py-2 px-3 text-slate-700">Some converters limit daily conversions or require paid tiers</td>
                 </tr>
               </tbody>
             </table>
@@ -343,10 +325,10 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
           <div className="pt-6 border-t border-slate-200" id="video-tutorial">
             <div className="text-center max-w-2xl mx-auto mb-4">
               <h3 className="text-base sm:text-xl font-bold text-slate-900">
-                Video Walkthrough: {sf} to {tf} Conversion Process
+                Animated Walkthrough: {sf} to {tf} Conversion Process
               </h3>
               <p className="text-xs text-slate-600 mt-0.5">
-                Watch this concise video demonstrating how our <strong className="font-semibold text-slate-800">{sf} to {tf} converter</strong> transforms graphics safely in your browser.
+                Watch this interactive animated walkthrough demonstrating how our in-browser <strong className="font-semibold text-slate-800">{sf} to {tf} converter</strong> processes graphics locally in your browser.
               </p>
             </div>
             <div className="max-w-3xl mx-auto">
@@ -446,7 +428,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
           <p className="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
             {tf === 'PNG' ? (
               isOpaque ? (
-                <>Source {sf} files lack an alpha channel. When you <strong className="font-semibold text-slate-800">convert {sf.toLowerCase()} to png</strong>, our engine creates an opaque master PNG and allows you to use our built-in 1-Click Background Remover to turn solid backgrounds into 8-bit transparent alpha (256 distinct levels of opacity per pixel).</>
+                <>Source {sf} files lack an alpha channel. When you <strong className="font-semibold text-slate-800">convert {sf.toLowerCase()} to png</strong>, our engine creates a lossless opaque master PNG that preserves 100% of the original color values without generational compression artifacts, allowing you to edit layers or isolate subjects cleanly in your graphic design software.</>
               ) : (
                 <>When you <strong className="font-semibold text-slate-800">convert {sf.toLowerCase()} to png</strong>, our converter preserves native 8-bit alpha transparency with 256 distinct levels of opacity per pixel for flawless anti-aliasing.</>
               )

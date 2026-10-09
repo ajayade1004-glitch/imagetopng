@@ -428,7 +428,7 @@ async function startServer() {
               description: format.metaDescription,
               image: imageUrl,
               datePublished: '2024-01-15T08:00:00+00:00',
-              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
               inLanguage: 'en-US',
               offers: {
                 '@type': 'Offer',
@@ -465,7 +465,7 @@ async function startServer() {
               image: imageUrl,
               totalTime: 'PT5S',
               datePublished: '2024-01-15T08:00:00+00:00',
-              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
               step: format.conversionSteps.map((step) => ({
                 '@type': 'HowToStep',
                 position: step.step,
@@ -477,7 +477,7 @@ async function startServer() {
               '@type': 'FAQPage',
               '@id': `${canonical}#faq`,
               name: `${sf} to ${tf} Conversion FAQ`,
-              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
               mainEntity: format.faq.map((f) => ({
                 '@type': 'Question',
                 name: f.question,

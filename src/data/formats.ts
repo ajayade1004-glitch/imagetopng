@@ -72,7 +72,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
     ],
     troubleshooting: [
       { issue: 'Why did the converted PNG become larger than the original JPG?', solution: 'This is mathematically normal. JPG discards subtle color variations to compress photos. PNG preserves every pixel without loss, which naturally requires more storage for photographic imagery.' },
-      { issue: 'Why is the background still white after converting to PNG?', solution: 'Source JPG files do not possess an alpha channel. The conversion preserves the white pixels as opaque. To make it transparent, you can use our built-in 1-Click Background Remover or erase the background in any photo editor and save it without compression loss.' },
+      { issue: 'Why is the background still white after converting to PNG?', solution: 'Source JPG files do not possess an alpha channel. The conversion preserves the white pixels as opaque. To make it transparent, open the lossless PNG in your preferred image editor to remove the background without generational compression loss.' },
       { issue: 'Does converting JPG to PNG make blurry photos sharp?', solution: 'No. Conversion cannot recreate optical detail lost when the photo was taken or when it was saved as a compressed JPEG. It will preserve the exact current clarity without further decay.' }
     ],
     faq: [
@@ -82,7 +82,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Can I convert multiple JPG files to PNG at once?', answer: 'Yes. You can select multiple files or drag a batch of JPGs into the converter and download them individually or as a single ZIP archive with one click.' },
       { question: 'Can I copy the converted PNG directly to my clipboard?', answer: 'Yes! ImageToPNG features a one-click "Copy Image" button that writes the PNG blob directly to your system clipboard so you can paste into Figma, Slack, Word, or Photoshop without saving to disk.' },
       { question: 'Why do app stores require PNG instead of JPG for icons?', answer: 'App stores require PNG because icons contain high-contrast edges and typography that blur noticeably under JPEG lossy compression. PNG preserves pixel-sharp icons and transparent rounded corners.' },
-      { question: 'Can I make a JPG transparent by converting to PNG?', answer: 'Converting JPG to PNG produces a lossless file ready for transparency. Because original JPGs have opaque backgrounds, once converted to PNG you can easily erase the background using our built-in 1-Click Background Remover or photo editor without generational compression artifacts.' }
+      { question: 'Can I make a JPG transparent by converting to PNG?', answer: 'Converting JPG to PNG produces a lossless file ready for transparency editing. Because original JPGs have opaque backgrounds, converting them to PNG preserves 100% of pixel detail so you can isolate subjects or cut out backgrounds in any design software without compression artifacts.' }
     ],
     relatedFormats: ['jpeg-to-png', 'webp-to-png', 'avif-to-png', 'png-vs-jpg']
   },
@@ -290,16 +290,16 @@ export const SUPPORTED_FORMATS: FormatData[] = [
     extension: '.bmp',
     mimeTypes: ['image/bmp', 'image/x-ms-bmp'],
     magicBytes: '42 4D (BM)',
-    badge: 'Up to 90% Smaller',
+    badge: 'Lossless Compression',
     title: 'BMP to PNG Converter – Compress Huge Bitmaps to PNG',
     metaTitle: 'BMP to PNG Converter – Free Online Bitmap Compression',
     metaDescription: 'Convert uncompressed BMP bitmaps to compact, lossless PNG files online for free. Drastically reduce file size without losing a single pixel of quality.',
     h1: 'BMP to PNG Converter',
-    intro: 'Convert heavy, uncompressed Windows Bitmap (.bmp) files into lightweight, lossless PNG graphics. Slash file sizes by 60% to 90% while keeping every single pixel mathematically identical.',
+    intro: 'Convert uncompressed Windows Bitmap (.bmp) files into lightweight, lossless PNG graphics. Compresses redundant raster data while keeping every single pixel mathematically identical.',
     geoDefinition: 'A BMP to PNG converter takes uncompressed DIB (Device-Independent Bitmap) pixel grids and compresses them via zlib/DEFLATE using 2D adaptive filtering into PNG datastreams with zero loss of spatial or chromatic resolution.',
     whatIsFormat: 'BMP (Bitmap Image File) is an uncompressed raster graphics format developed by Microsoft for Windows. Because standard BMP files store raw pixel data without compression, they occupy gigantic amounts of storage space and take considerable time to transfer over networks.',
     whyConvert: [
-      'Drastically reduce file storage requirements by up to 90% without any quality compromise.',
+      'Significantly reduce file storage requirements through lossless compression without quality compromise.',
       'Make images web-ready, email-friendly, and easy to share.',
       'Ensure modern mobile and cross-platform compatibility.'
     ],
@@ -313,9 +313,9 @@ export const SUPPORTED_FORMATS: FormatData[] = [
     ],
     transparencySupport: 'While rare 32-bit BMPs include an alpha channel, most BMPs are 24-bit RGB. The converted PNG accurately preserves whatever opacity values are present.',
     qualityNotes: 'Because both BMP and PNG are lossless formats, the visual quality of the output PNG is 100% identical to the source BMP.',
-    fileSizeNotes: 'A 20MB raw BMP often compresses down to 2MB–4MB in PNG format thanks to PNG’s 2D predictive filters and DEFLATE compression.',
+    fileSizeNotes: 'Uncompressed BMP files compress significantly in PNG format thanks to PNG’s 2D predictive filters and DEFLATE compression, with savings depending on image complexity.',
     benchmarks: [
-      { metric: 'File Size (2000x2000px)', sourceValue: '12.0 MB (Uncompressed)', pngValue: '1.2 MB (Compressed)', advantage: '90% Storage Savings' },
+      { metric: 'File Size (2000x2000px)', sourceValue: '12.0 MB (Uncompressed)', pngValue: '1.2 MB – 4.0 MB (Compressed)', advantage: 'Significant Storage Savings' },
       { metric: 'Pixel Degradation', sourceValue: '0%', pngValue: '0%', advantage: '100% Exact Match' }
     ],
     developerSnippets: [
@@ -338,7 +338,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { issue: 'Why did my 30MB BMP become a 3MB PNG?', solution: 'This is the expected result! BMP stores uncompressed raw pixel grids, whereas PNG applies lossless compression algorithms without throwing away any image details.' }
     ],
     faq: [
-      { question: 'Is any image detail lost when converting BMP to PNG?', answer: 'None whatsoever. Both formats represent raster graphics losslessly. PNG simply stores the exact same pixel values with intelligent DEFLATE compression, slashing file size by up to 90%.' },
+      { question: 'Is any image detail lost when converting BMP to PNG?', answer: 'None whatsoever. Both formats represent raster graphics losslessly. PNG simply stores the exact same pixel values with intelligent DEFLATE compression, significantly reducing file size.' },
       { question: 'Why are BMP files so much larger than PNG files?', answer: 'BMP files store raw uncompressed pixel data byte by byte. PNG uses adaptive predictive filters and Huffman coding to compress image data without discarding any color fidelity.' },
       { question: 'Can I convert 24-bit and 32-bit BMP files?', answer: 'Yes. Our converter supports 1-bit, 4-bit, 8-bit, 16-bit, 24-bit, and 32-bit BMP files and outputs standard 24-bit or 32-bit RGBA PNG files.' },
       { question: 'How do I convert BMP to PNG on Windows 11 / 10?', answer: 'Open ImageToPNG in your browser, drag your .bmp files into the box, and click Download PNG. It takes less than a second per image.' },
@@ -854,7 +854,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
 ];
 
 SUPPORTED_FORMATS.forEach((fmt) => {
-  fmt.lastUpdated = fmt.lastUpdated || 'October 1, 2026';
-  fmt.dateModified = fmt.dateModified || '2026-10-01';
+  fmt.lastUpdated = fmt.lastUpdated || 'October 9, 2026';
+  fmt.dateModified = fmt.dateModified || '2026-10-09';
   fmt.previewImage = fmt.previewImage || `/images/converters/${fmt.slug}.webp`;
 });

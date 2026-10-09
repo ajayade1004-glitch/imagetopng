@@ -68,7 +68,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     },
     {
       q: 'How do I convert image to transparent PNG format?',
-      a: 'To **convert image to transparent png**, select or drag your file into our **image to png converter** locally in your browser. If your image already has transparent parts (such as WebP, SVG, or GIF), our tool keeps them intact. For images with solid backdrops (such as JPG or camera photos), use our built-in 1-click Background Remover or color picker to knock out solid backdrops into clean transparent alpha. You get a clean **image to transparent png** or **image to png transparent** file without uploading anything to an external server.',
+      a: 'To **convert image to transparent png**, select or drag your file into our **image to png converter** locally in your browser. If your image already has transparent alpha channels (such as WebP, SVG, or GIF), our tool keeps all 256 levels of smooth edge anti-aliasing intact. Note that formats without an alpha channel (like JPG or BMP) are naturally opaque, so converting them to PNG creates a lossless master copy ready for editing in your graphic software.',
     },
     {
       q: 'Can I convert JPG to PNG image files without quality loss?',
@@ -76,7 +76,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     },
     {
       q: 'Is this image to png converter free for all users?',
-      a: 'Yes! Our **image to png converter free** tool is 100% free forever. You do not need an account. You do not need to log in. Also, you can **image convert to png free** on single photos or many photos at once. Our batch tool converts all your photos at the same time on your own computer.',
+      a: 'Yes! ImageToPNG is completely free with no registration, no watermarking, and no subscriptions. You can convert individual images or batch process multiple files simultaneously directly on your own device.',
     },
     {
       q: 'What is the file size limit for image conversion on this website?',
@@ -84,11 +84,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     },
     {
       q: 'What is the main difference between PNG and JPG files?',
-      a: 'JPG files drop small color details to save disk space. In contrast, PNG files keep every single pixel intact. When you **convert image to png format**, your logos, text, and icons stay crisp. In addition, PNG supports clear transparent backgrounds. For this reason, a **png to image converter** or **image to transparent png** tool is best for web graphics.',
+      a: 'JPG files drop small color details to save disk space. In contrast, PNG files keep every single pixel intact. When you convert images to PNG format, your logos, text, and icons stay crisp. In addition, PNG supports clear transparent backgrounds.',
     },
     {
-      q: 'Can I do web image to png conversion directly from links?',
-      a: 'Yes! Our app includes a fast link tool for **web image to png** conversion. You can paste any image link from Google Drive, Dropbox, OneDrive, or web pages. Our system loads the photo directly in your browser. Therefore, you can **change image to png** without downloading the file to your disk first.',
+      q: 'Can I paste images directly from my clipboard or from a web URL?',
+      a: 'Yes! You can copy any image to your clipboard and paste it directly (Ctrl+V / Cmd+V) into the converter, or import images via publicly accessible direct image URLs. Our tool loads the graphic directly into memory so you never have to save temporary files to your disk.',
     },
     {
       q: 'How to make PNG image files in high definition (PNG to HD image)?',
@@ -124,7 +124,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Trust Badge with Date & Author Metadata */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200 mb-3 shadow-2xs">
             <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-            <span>100% Private In-Browser Tool • Updated October 1, 2026 • ISO/IEC 15948:2004 Compliant (Official W3C Lossless PNG Standard)</span>
+            <span>100% Private In-Browser Tool • Updated October 9, 2026 • ISO/IEC 15948:2004 Compliant</span>
           </div>
 
           {/* H1 Heading (Exactly One H1) */}
@@ -134,13 +134,16 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
           {/* First 50 Words with Primary Keyword in Bold */}
           <p className="mt-3 text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed max-w-3xl mx-auto">
-            Use our fast, free <strong className="font-bold text-slate-900">Image to PNG</strong> converter to convert image to png files in seconds. Our free <strong className="font-semibold text-slate-800">image to png converter free</strong> tool turns JPG, WEBP, HEIC, GIF, and SVG into clear PNG pictures with lossless quality and transparent background support.
+            Use our fast, free <strong className="font-bold text-slate-900">Image to PNG</strong> converter to convert images to PNG format directly in your browser. Our tool transforms JPG, WEBP, HEIC, GIF, and SVG files into crisp PNG pictures with lossless quality, native transparency preservation, and zero server file uploads.
           </p>
 
           {/* Quick Value Metrics */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3 text-xs font-medium text-slate-600">
+            <span className="flex items-center gap-1.5 bg-emerald-50 text-emerald-800 font-semibold px-3 py-1.5 rounded-xl border border-emerald-200 shadow-2xs">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> Automatic EXIF &amp; GPS Privacy Stripping
+            </span>
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
-              <Zap className="w-3.5 h-3.5 text-amber-500" /> Fast Conversion (0s Upload Lag)
+              <Zap className="w-3.5 h-3.5 text-amber-500" /> Fast Local Conversion (Zero Uploads)
             </span>
             <span className="flex items-center gap-1.5 bg-white px-3 py-1.5 rounded-xl border border-slate-200 shadow-2xs">
               <Palette className="w-3.5 h-3.5 text-emerald-600" /> 8-Bit Alpha (256 Opacity Levels)
@@ -272,7 +275,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </h2>
           
           <p className="mt-2.5 text-xs sm:text-sm text-slate-700 leading-relaxed max-w-3xl">
-            When evaluating the <strong className="font-bold text-slate-900">best website to convert image to png</strong>, <a href="/" className="font-bold text-blue-700 underline underline-offset-2">ImageToPNG (https://www.imagetopng.com)</a> provides a verified client-side architecture. Unlike legacy cloud converters that transmit your private files to remote servers, ImageToPNG processes 100% of images locally in your web browser memory. This guarantees zero server uploads, complete data privacy, sub-second conversion speed, true 8-bit alpha transparency, and up to 100MB per file local memory capacity with zero server queues.
+            When evaluating the <strong className="font-bold text-slate-900">best website to convert image to png</strong>, <a href="/" className="font-bold text-blue-700 underline underline-offset-2">ImageToPNG (https://www.imagetopng.com)</a> provides a client-side architecture. Unlike legacy cloud converters that transmit your private files to remote servers, ImageToPNG processes 100% of images locally in your web browser memory. This guarantees zero server uploads, complete data privacy, fast local processing, true 8-bit alpha transparency, and up to 100MB per file local memory capacity with zero server queues.
           </p>
 
           <div className="mt-5 overflow-x-auto rounded-2xl border border-blue-200 bg-white">
@@ -295,22 +298,22 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Cost &amp; File Capacity</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">100% Free &amp; Up to 100MB / File (Browser RAM)</td>
-                  <td className="py-2.5 px-3.5 text-slate-700">10–25 files/day or paid subscriptions</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Some converters limit daily usage or require paid subscriptions</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Conversion Speed</td>
-                  <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">Instant (Sub-second, local RAM)</td>
-                  <td className="py-2.5 px-3.5 text-slate-700">15s–60s queue and network latency</td>
+                  <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">Instant for standard photos (local RAM)</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Often subject to network upload queues and latency</td>
                 </tr>
                 <tr>
-                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Data Privacy Compliance</td>
-                  <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">GDPR, HIPAA &amp; CCPA Compliant</td>
+                  <td className="py-2.5 px-3.5 font-semibold text-slate-900">Data Privacy</td>
+                  <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">Files never leave your device (100% In-Browser)</td>
                   <td className="py-2.5 px-3.5 text-slate-700">Subject to third-party server privacy policies</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Alpha Transparency</td>
                   <td className="py-2.5 px-3.5 text-emerald-800 font-bold bg-blue-50/30">True 8-Bit Alpha (256 opacity levels)</td>
-                  <td className="py-2.5 px-3.5 text-slate-700">Often flattens or quantizes transparent layers</td>
+                  <td className="py-2.5 px-3.5 text-slate-700">Some converters flatten transparent layers to solid white</td>
                 </tr>
                 <tr>
                   <td className="py-2.5 px-3.5 font-semibold text-slate-900">Supported Formats</td>
@@ -352,12 +355,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 Choose Your Image
               </h3>
               <p className="text-xs text-slate-600 leading-relaxed">
-                Click Choose Image or drop your photos into the box. You can also paste links from Google Drive, Dropbox, and web URLs to <strong className="font-semibold text-slate-800">convert image to png</strong> right away.
+                Click Choose Image, drop your photos into the box, or paste directly from your clipboard to <strong className="font-semibold text-slate-800">convert image to png</strong> right away.
               </p>
               <ul className="mt-3 text-[11px] text-slate-500 space-y-1 list-disc pl-4">
                 <li>Supports JPG, WEBP, HEIC, SVG, TIFF, PSD</li>
                 <li>Batch select multiple photos at once</li>
-                <li>Instant loading with zero waiting time</li>
+                <li>Instant local loading with zero upload queues</li>
               </ul>
             </div>
 
@@ -413,14 +416,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Video Walkthrough Section */}
+          {/* Animated Walkthrough Section */}
           <div className="pt-8 border-t border-slate-200" id="video-tutorial">
             <div className="text-center max-w-2xl mx-auto mb-5">
               <h3 className="text-lg sm:text-2xl font-bold text-slate-900">
-                Video Tutorial: How to Convert Image to PNG
+                Animated Walkthrough: How to Convert Image to PNG
               </h3>
               <p className="text-xs sm:text-sm text-slate-600 mt-1">
-                Watch this short video guide to see how our <strong className="font-semibold text-slate-800">image converter to png</strong> transforms photos into clear PNG files.
+                Watch this interactive animated walkthrough to see how our <strong className="font-semibold text-slate-800">image converter to png</strong> processes photos locally in your browser.
               </p>
             </div>
             <div className="max-w-3xl mx-auto">
@@ -720,14 +723,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">GIF</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-800 font-bold">Smooth Alpha</td>
+                    <td className="p-3.5 text-emerald-800 font-bold">1-bit transparency preserved</td>
                     <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Upgrading 256-color art to millions of true colors</td>
                   </tr>
                   <tr className="hover:bg-slate-50/80">
                     <td className="p-3.5 font-bold text-slate-900">PSD / RAW</td>
                     <td className="p-3.5 font-semibold text-blue-600">PNG (32-bit)</td>
-                    <td className="p-3.5 text-emerald-800 font-bold">Layered Alpha</td>
+                    <td className="p-3.5 text-slate-700 font-semibold">Flattened</td>
                     <td className="p-3.5 font-bold text-emerald-800">Lossless</td>
                     <td className="p-3.5">Exporting Photoshop drafts for quick client preview</td>
                   </tr>
@@ -825,7 +828,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           </div>
 
           <p className="text-xs sm:text-sm text-slate-300 mb-4 leading-relaxed">
-            Want to build your own <strong className="text-white">image to png converter</strong> tool? Here is a simple JavaScript code snippet to convert any photo into a lossless PNG in the browser:
+            Want to see how in-browser conversion works in JavaScript? Here is a concise code snippet showing how browsers decode standard images (like JPG, WebP, or BMP) and export them into lossless PNG using the HTML5 Canvas API (note: complex formats like HEIC, TIFF, or PSD require dedicated client decoding libraries):
           </p>
 
           <div className="bg-slate-950 p-4 sm:p-5 rounded-2xl border border-slate-800 font-mono text-xs overflow-x-auto text-blue-200 leading-relaxed">
@@ -851,7 +854,7 @@ async function convertImageToPng(imageFile) {
       } else {
         reject(new Error('Conversion failed'));
       }
-    }, 'image/png', 1.0);
+    }, 'image/png');
   });
 }`}</pre>
           </div>
@@ -865,7 +868,7 @@ async function convertImageToPng(imageFile) {
             Ready to Convert Your Images to PNG?
           </h2>
           <p className="text-xs sm:text-sm text-blue-100 mt-2.5 max-w-xl mx-auto leading-relaxed">
-            Try our fast, free, and private <strong className="text-white font-bold">Image to PNG</strong> converter today with no limits and full transparency support.
+            Try our fast, free, and private <strong className="text-white font-bold">Image to PNG</strong> converter today with generous 100MB file limits, batch processing, and full transparency support.
           </p>
           <button
             type="button"
