@@ -66,13 +66,13 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { title: 'E-Commerce Product Photography', description: 'Convert product photos to PNG for background knockout pipelines on Amazon, Shopify, and eBay.' }
     ],
     conversionSteps: [
-      { step: 1, title: 'Upload or Paste Your JPG', description: 'Click "Choose Image", drag and drop your file, or press Ctrl+V to paste a screenshot directly from your clipboard.' },
+      { step: 1, title: 'Select or Paste Your JPG', description: 'Click "Choose Image", drag and drop your file, or press Ctrl+V to paste a screenshot directly from your clipboard.' },
       { step: 2, title: 'In-Browser Offscreen Rendering', description: 'Your browser decodes the JPEG bitstream into an uncompressed canvas surface at native resolution.' },
       { step: 3, title: 'Instant Lossless PNG Download', description: 'Click Download PNG, copy directly to your clipboard, or bundle multiple files into a single ZIP archive.' }
     ],
     troubleshooting: [
       { issue: 'Why did the converted PNG become larger than the original JPG?', solution: 'This is mathematically normal. JPG discards subtle color variations to compress photos. PNG preserves every pixel without loss, which naturally requires more storage for photographic imagery.' },
-      { issue: 'Why is the background still white after converting to PNG?', solution: 'Source JPG files do not possess an alpha channel. The conversion preserves the white pixels as opaque. To make it transparent, you can now erase the background in any photo editor and save it without compression loss.' },
+      { issue: 'Why is the background still white after converting to PNG?', solution: 'Source JPG files do not possess an alpha channel. The conversion preserves the white pixels as opaque. To make it transparent, you can use our built-in 1-Click Background Remover or erase the background in any photo editor and save it without compression loss.' },
       { issue: 'Does converting JPG to PNG make blurry photos sharp?', solution: 'No. Conversion cannot recreate optical detail lost when the photo was taken or when it was saved as a compressed JPEG. It will preserve the exact current clarity without further decay.' }
     ],
     faq: [
@@ -82,7 +82,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Can I convert multiple JPG files to PNG at once?', answer: 'Yes. You can select multiple files or drag a batch of JPGs into the converter and download them individually or as a single ZIP archive with one click.' },
       { question: 'Can I copy the converted PNG directly to my clipboard?', answer: 'Yes! ImageToPNG features a one-click "Copy Image" button that writes the PNG blob directly to your system clipboard so you can paste into Figma, Slack, Word, or Photoshop without saving to disk.' },
       { question: 'Why do app stores require PNG instead of JPG for icons?', answer: 'App stores require PNG because icons contain high-contrast edges and typography that blur noticeably under JPEG lossy compression. PNG preserves pixel-sharp icons and transparent rounded corners.' },
-      { question: 'Can I make a JPG transparent by converting to PNG?', answer: 'Converting JPG to PNG produces a lossless file ready for transparency. Because original JPGs have opaque backgrounds, once converted to PNG you can easily erase the background in any photo editor or use our built-in editor without generational compression artifacts.' }
+      { question: 'Can I make a JPG transparent by converting to PNG?', answer: 'Converting JPG to PNG produces a lossless file ready for transparency. Because original JPGs have opaque backgrounds, once converted to PNG you can easily erase the background using our built-in 1-Click Background Remover or photo editor without generational compression artifacts.' }
     ],
     relatedFormats: ['jpeg-to-png', 'webp-to-png', 'avif-to-png', 'png-vs-jpg']
   },
@@ -706,7 +706,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { title: 'Client Proofing', description: 'Send high-resolution flattened preview images to clients without Photoshop.' }
     ],
     conversionSteps: [
-      { step: 1, title: 'Upload PSD File', description: 'Choose your Photoshop document from your device.' },
+      { step: 1, title: 'Select PSD File', description: 'Choose or drag your Photoshop document from your device into the converter.' },
       { step: 2, title: 'Composite Rendering', description: 'The composite raster layer is rendered cleanly to an offscreen canvas.' },
       { step: 3, title: 'Download Flattened PNG', description: 'Download the lightweight PNG for instant client sharing.' }
     ],
@@ -716,7 +716,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
     faq: [
       { question: 'Do I need Adobe Photoshop installed to convert PSD to PNG?', answer: 'No! ImageToPNG decodes and renders Photoshop PSD files directly in your web browser with no Adobe software or subscription needed.' },
       { question: 'Will transparent background layers in PSD remain transparent in PNG?', answer: 'Yes! If your Photoshop artwork has transparent canvas areas, the exported PNG will retain clean 8-bit alpha transparency.' },
-      { question: 'Can I view PSD files on mobile or Chromebook using this tool?', answer: 'Yes. You can upload and convert PSD files to PNG on any iPhone, iPad, Android phone, or Chromebook with a modern browser.' },
+      { question: 'Can I view PSD files on mobile or Chromebook using this tool?', answer: 'Yes. You can select and convert PSD files to PNG on any iPhone, iPad, Android phone, or Chromebook with a modern browser.' },
       { question: 'Are my confidential client PSD files uploaded to the cloud?', answer: 'No. Conversions happen locally on your computer. Your proprietary design mockups are never uploaded to any third-party server.' }
     ],
     relatedFormats: ['svg-to-png', 'jpg-to-png', 'png-vs-jpg']
@@ -768,12 +768,12 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { title: 'Photography Proofing', description: 'Send high-res photo samples to clients without waiting for Lightroom export queues.' }
     ],
     conversionSteps: [
-      { step: 1, title: 'Upload RAW Photo', description: 'Select your camera raw file (.cr2, .nef, .arw, .dng, .raw).' },
+      { step: 1, title: 'Select RAW Photo', description: 'Select or drag your camera raw file (.cr2, .nef, .arw, .dng, .raw) into the converter.' },
       { step: 2, title: 'In-Browser Demosaic Rendering', description: 'The sensor image stream is decoded cleanly into an offscreen canvas.' },
       { step: 3, title: 'Download Lossless PNG', description: 'Download the finished, universal PNG image.' }
     ],
     troubleshooting: [
-      { issue: 'Why are RAW files so slow to upload?', solution: 'RAW files are often 30MB–80MB in size. Because ImageToPNG processes files entirely locally in your browser, no network upload takes place, but decoding large images takes a couple seconds of local CPU processing.' }
+      { issue: 'Why do RAW files take a moment to process?', solution: 'RAW files are often 30MB–80MB in size. Because ImageToPNG processes files entirely locally in your browser, no network upload takes place, but decoding raw Bayer matrix mosaics takes a couple seconds of local CPU processing.' }
     ],
     faq: [
       { question: 'What camera brands are supported for RAW to PNG conversion?', answer: 'ImageToPNG supports major camera formats including Canon (.cr2, .cr3), Nikon (.nef), Sony (.arw), Adobe (.dng), Olympus (.orf), Panasonic (.rw2), and Fujifilm (.raf).' },
@@ -782,5 +782,79 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'Can I convert multiple RAW files in batch?', answer: 'Yes. Select multiple camera files to batch convert them in parallel and download all as a ZIP file.' }
     ],
     relatedFormats: ['jpg-to-png', 'tiff-to-png', 'png-vs-tiff']
+  },
+  {
+    slug: 'png-to-jpg',
+    sourceFormat: 'PNG',
+    targetFormat: 'JPG',
+    extension: '.png',
+    mimeTypes: ['image/png'],
+    magicBytes: '89 50 4E 47 0D 0A 1A 0A',
+    badge: 'File Size Reducer',
+    title: 'PNG to JPG Converter – Convert PNG to JPG Online Free',
+    metaTitle: 'PNG to JPG Converter – Compress PNG to JPG Free & Private',
+    metaDescription: 'Convert PNG images to compact JPG format online for free. Reduce file size by up to 80% with adjustable quality. 100% in-browser, no file uploads.',
+    h1: 'PNG to JPG Converter',
+    intro: 'Convert heavy Portable Network Graphics (.png) images into compact, fast-loading Joint Photographic Experts Group (.jpg) files directly in your web browser. Reduce storage weight by up to 80% for websites, emails, and forms while keeping full visual sharpness.',
+    geoDefinition: 'A PNG to JPG converter translates lossless 24-bit RGB or 32-bit RGBA Portable Network Graphics into quantized discrete cosine transform (DCT) JPEG rasters, flattening transparent alpha layers onto a solid background and drastically reducing byte weight.',
+    whatIsFormat: 'PNG is a lossless raster format that preserves crisp lines and alpha transparency but produces large files for photographic content. JPG utilizes lossy perceptual compression that discards imperceptible high-frequency visual details to achieve dramatically smaller file sizes ideal for web delivery, social media, and mobile storage.',
+    whyConvert: [
+      'Drastically reduce file size: Convert bulky multi-megabyte PNG files into lightweight JPGs that are up to 70–80% smaller.',
+      'Faster web loading: Improve Core Web Vitals and PageSpeed scores by serving optimized JPGs for continuous-tone photographic banners.',
+      'Universal compatibility: Meet strict file submission guidelines on portals and job application systems that reject PNGs.',
+      'Email attachments: Easily share pictures without hitting email attachment limits or high mobile data usage.'
+    ],
+    advantages: [
+      'Significantly smaller file size for photos and complex imagery.',
+      'Universal compatibility across every image viewer and hardware device.',
+      'Fast in-browser compression without cloud uploads or queues.'
+    ],
+    limitations: [
+      'JPG does not support transparent backgrounds; transparent areas are flattened onto solid white.',
+      'Lossy compression introduces minor compression artifacts if re-saved repeatedly.'
+    ],
+    transparencySupport: 'Because JPG does not support alpha channels, transparent pixels are automatically flattened onto a solid background (defaulting to pure white). If you require transparency, keep your images in PNG format or use our background color selector.',
+    qualityNotes: 'Our in-browser converter uses high-quality JPEG quantization (92% quality level by default) to achieve maximum compression without perceptible visual degradation.',
+    fileSizeNotes: 'Converting a photograph from PNG to JPG typically reduces file size by 60% to 85%.',
+    benchmarks: [
+      { metric: 'Compression Algorithm', sourceValue: 'Lossless DEFLATE (LZ77)', pngValue: 'Lossy DCT Quantization', advantage: 'Much smaller file size' },
+      { metric: 'Transparency Support', sourceValue: '8-bit Alpha Channel', pngValue: 'None (Opaque solid fill)', advantage: 'Flattened for web photos' },
+      { metric: 'Average File Size', sourceValue: '1.5MB – 5MB', pngValue: '200KB – 600KB (70% smaller)', advantage: 'Lightning-fast loading' },
+      { metric: 'Best Suited For', sourceValue: 'Logos, UI, Screenshots', pngValue: 'Photographs, Real-world scenes', advantage: 'Ideal for camera pictures' }
+    ],
+    developerSnippets: [
+      {
+        language: 'JavaScript (Canvas)',
+        title: 'Browser Canvas PNG to JPG',
+        code: `async function convertPngToJpg(file, quality = 0.92) {\n  const img = new Image();\n  img.src = URL.createObjectURL(file);\n  await img.decode();\n  const canvas = document.createElement('canvas');\n  canvas.width = img.naturalWidth;\n  canvas.height = img.naturalHeight;\n  const ctx = canvas.getContext('2d');\n  ctx.fillStyle = '#FFFFFF';\n  ctx.fillRect(0, 0, canvas.width, canvas.height);\n  ctx.drawImage(img, 0, 0);\n  return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));\n}`
+      }
+    ],
+    aiEcosystemNotes: 'AI image generators sometimes output PNG files with unnecessarily large file sizes. Converting to JPG makes them easy to upload to web portfolios and social media.',
+    useCases: [
+      { title: 'E-commerce & Web Publishing', description: 'Convert heavy PNG product photos to fast-loading JPGs for Shopify, WooCommerce, and WordPress.' },
+      { title: 'Document & Application Submissions', description: 'Comply with government, university, or job portals that only accept JPG/JPEG formats.' }
+    ],
+    conversionSteps: [
+      { step: 1, title: 'Choose or Drop PNG File', description: 'Select one or more .png images from your computer, phone, or tablet.' },
+      { step: 2, title: 'In-Browser JPEG Encoding', description: 'Your browser renders pixels onto an offscreen canvas and encodes a lightweight JPG stream.' },
+      { step: 3, title: 'Download Compressed JPG', description: 'Save your optimized JPG immediately or download all files as a ZIP archive.' }
+    ],
+    troubleshooting: [
+      { issue: 'Why did my transparent background turn white?', solution: 'JPG does not support transparent alpha channels. Transparent areas are automatically filled with white so the subject remains clearly visible.' }
+    ],
+    faq: [
+      { question: 'How do I convert PNG to JPG online for free?', answer: 'Select your PNG file or drag it into the converter. Your browser converts it to JPG in memory. Click "Download JPG" to save your compressed photo immediately.' },
+      { question: 'Will converting PNG to JPG reduce file size?', answer: 'Yes! Photographic PNG images are typically 60% to 80% smaller when converted to JPG, making them much faster to share and upload.' },
+      { question: 'What happens to transparent backgrounds when converting PNG to JPG?', answer: 'Since JPG files cannot store transparency, all transparent pixels are automatically converted to solid white.' },
+      { question: 'Are my PNG files uploaded to external servers?', answer: 'No. The conversion runs 100% locally in your device browser RAM with zero file uploads for complete data privacy.' },
+      { question: 'What is the file size limit for PNG to JPG conversion?', answer: 'You can convert images up to 100MB per file depending on your device browser memory, with no server-side queue limits.' }
+    ],
+    relatedFormats: ['jpg-to-png', 'jpeg-to-png', 'webp-to-png']
   }
 ];
+
+SUPPORTED_FORMATS.forEach((fmt) => {
+  fmt.lastUpdated = fmt.lastUpdated || 'October 1, 2026';
+  fmt.dateModified = fmt.dateModified || '2026-10-01';
+  fmt.previewImage = fmt.previewImage || `/images/converters/${fmt.slug}.webp`;
+});

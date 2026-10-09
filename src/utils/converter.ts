@@ -65,6 +65,8 @@ export interface ConversionOptions {
   targetWidth?: number;
   targetHeight?: number;
   backgroundColor?: string;
+  outputFormat?: 'image/png' | 'image/jpeg';
+  quality?: number;
 }
 
 /**
@@ -231,7 +233,11 @@ export async function convertImageFileToPng(
         ctx.imageSmoothingEnabled = true;
         ctx.imageSmoothingQuality = 'high';
 
-        if (options?.backgroundColor && options.backgroundColor !== 'transparent') {
+        const isJpg = options?.outputFormat === 'image/jpeg';
+        if (isJpg) {
+          ctx.fillStyle = options?.backgroundColor || '#FFFFFF';
+          ctx.fillRect(0, 0, targetW, targetH);
+        } else if (options?.backgroundColor && options.backgroundColor !== 'transparent') {
           ctx.fillStyle = options.backgroundColor;
           ctx.fillRect(0, 0, targetW, targetH);
         } else {
@@ -243,8 +249,11 @@ export async function convertImageFileToPng(
 
         onProgress?.(85);
 
+        const mime = isJpg ? 'image/jpeg' : 'image/png';
+        const quality = isJpg ? (options?.quality ?? 0.92) : 1.0;
+
         const pngBlob = await new Promise<Blob>((resolve, reject) => {
-          canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Canvas export failed'))), 'image/png');
+          canvas.toBlob((b) => (b ? resolve(b) : reject(new Error('Canvas export failed'))), mime, quality);
         });
 
         const pngUrl = URL.createObjectURL(pngBlob);
@@ -318,7 +327,11 @@ async function renderBlobToPngCanvas(
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    if (options?.backgroundColor && options.backgroundColor !== 'transparent') {
+    const isJpg = options?.outputFormat === 'image/jpeg';
+    if (isJpg) {
+      ctx.fillStyle = options?.backgroundColor || '#FFFFFF';
+      ctx.fillRect(0, 0, finalWidth, finalHeight);
+    } else if (options?.backgroundColor && options.backgroundColor !== 'transparent') {
       ctx.fillStyle = options.backgroundColor;
       ctx.fillRect(0, 0, finalWidth, finalHeight);
     } else {
@@ -329,14 +342,17 @@ async function renderBlobToPngCanvas(
 
     onProgress?.(90);
 
+    const mime = isJpg ? 'image/jpeg' : 'image/png';
+    const quality = isJpg ? (options?.quality ?? 0.92) : 1.0;
+
     const pngBlob = await new Promise<Blob>((resolve, reject) => {
       canvas.toBlob(
         (b) => {
           if (b) resolve(b);
-          else reject(new Error('Failed to create PNG blob.'));
+          else reject(new Error('Failed to create image blob.'));
         },
-        'image/png',
-        1.0
+        mime,
+        quality
       );
     });
 
@@ -357,13 +373,13 @@ async function renderBlobToPngCanvas(
 }
 
 /**
- * Creates a clean PNG filename based on the original filename
+ * Creates a clean filename based on the original filename and desired extension
  */
-export function getPngOutputFilename(originalName: string): string {
+export function getPngOutputFilename(originalName: string, ext: string = 'png'): string {
   const lastDotIndex = originalName.lastIndexOf('.');
   const baseName = lastDotIndex > 0 ? originalName.substring(0, lastDotIndex) : originalName;
   const cleanBase = baseName.trim().replace(/\s+/g, '-').replace(/[^a-zA-Z0-9_\-\.]/g, '');
-  return `${cleanBase || 'converted-image'}.png`;
+  return `${cleanBase || 'converted-image'}.${ext}`;
 }
 
 /**

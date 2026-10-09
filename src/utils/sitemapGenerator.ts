@@ -37,14 +37,13 @@ function escapeXml(unsafe: string): string {
  */
 export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com'): SitemapEntry[] {
   const normalizedBase = baseUrl.replace(/\/$/, '');
-  const today = new Date().toISOString().split('T')[0];
 
   const entries: SitemapEntry[] = [];
 
-  // 1. Primary Homepage & Universal Tool
+  // 1. Primary Homepage & Universal Tool (Updated: October 1, 2026)
   entries.push({
     loc: `${normalizedBase}/`,
-    lastmod: today,
+    lastmod: '2026-10-01',
     changefreq: 'daily',
     priority: '1.0',
     images: [
@@ -66,20 +65,22 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     ],
   });
 
-  // 2. All 12 High-Converting Dedicated Format Converter Pages
+  // 2. All 13 Dedicated Format Converter Pages with Unique Image & Matching Lastmod
   for (const fmt of SUPPORTED_FORMATS) {
     const isHighDemand = fmt.badge === 'High Demand' || ['jpg-to-png', 'webp-to-png', 'heic-to-png', 'svg-to-png'].includes(fmt.slug);
+    const targetFormat = fmt.targetFormat || 'PNG';
+    const lastmodDate = fmt.dateModified || '2026-10-01';
 
     entries.push({
       loc: `${normalizedBase}/${fmt.slug}`,
-      lastmod: today,
+      lastmod: lastmodDate,
       changefreq: 'weekly',
       priority: isHighDemand ? '0.9' : '0.85',
       images: [
         {
-          loc: `${normalizedBase}/image-to-png.webp`,
-          title: `${fmt.sourceFormat} to PNG Converter Workflow`,
-          caption: `Free online ${fmt.sourceFormat} to PNG converter with zero server uploads and lossless pixel encoding.`,
+          loc: `${normalizedBase}/images/converters/${fmt.slug}.png`,
+          title: `${fmt.sourceFormat} to ${targetFormat} Converter Technical Diagram`,
+          caption: `Official conversion diagram and byte architecture specification for converting ${fmt.sourceFormat} to ${targetFormat} locally in your web browser.`,
         },
         {
           loc: `${normalizedBase}/image-to-png-alpha-transparency-guide.webp`,
@@ -90,19 +91,19 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     });
   }
 
-  // 3. Technical Knowledge Base & Educational Guides Hub
+  // 3. Technical Knowledge Base & Educational Guides Hub (Updated: September 30, 2026)
   entries.push({
     loc: `${normalizedBase}/guides`,
-    lastmod: today,
+    lastmod: '2026-09-30',
     changefreq: 'weekly',
     priority: '0.8',
   });
 
-  // 4. Individual In-Depth Guides Articles
+  // 4. Individual In-Depth Guides Articles (Updated: September 30, 2026)
   for (const guide of GUIDES_DATA) {
     entries.push({
       loc: `${normalizedBase}/guides/${guide.slug}`,
-      lastmod: today,
+      lastmod: '2026-09-30',
       changefreq: 'monthly',
       priority: '0.75',
       images: [
@@ -115,23 +116,23 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     });
   }
 
-  // 5. Utility, Authority & Legal Trust Pages
-  const trustPages: Array<{ path: string; changefreq: SitemapEntry['changefreq']; priority: string }> = [
-    { path: '/about', changefreq: 'monthly', priority: '0.6' },
-    { path: '/security', changefreq: 'monthly', priority: '0.6' },
-    { path: '/status', changefreq: 'weekly', priority: '0.5' },
-    { path: '/contact', changefreq: 'monthly', priority: '0.5' },
-    { path: '/report-bug', changefreq: 'monthly', priority: '0.4' },
-    { path: '/privacy', changefreq: 'monthly', priority: '0.4' },
-    { path: '/terms', changefreq: 'monthly', priority: '0.4' },
-    { path: '/cookie-policy', changefreq: 'monthly', priority: '0.3' },
-    { path: '/imprint', changefreq: 'monthly', priority: '0.3' },
+  // 5. Utility, Authority & Legal Trust Pages with Exact Document Modification Dates
+  const trustPages: Array<{ path: string; lastmod: string; changefreq: SitemapEntry['changefreq']; priority: string }> = [
+    { path: '/about', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.6' },
+    { path: '/security', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.6' },
+    { path: '/status', lastmod: '2026-10-01', changefreq: 'weekly', priority: '0.5' },
+    { path: '/contact', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.5' },
+    { path: '/report-bug', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.4' },
+    { path: '/privacy', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.4' },
+    { path: '/terms', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.4' },
+    { path: '/cookie-policy', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.3' },
+    { path: '/imprint', lastmod: '2026-09-30', changefreq: 'monthly', priority: '0.3' },
   ];
 
   for (const page of trustPages) {
     entries.push({
       loc: `${normalizedBase}${page.path}`,
-      lastmod: today,
+      lastmod: page.lastmod,
       changefreq: page.changefreq,
       priority: page.priority,
     });

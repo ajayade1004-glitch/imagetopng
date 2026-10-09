@@ -1,70 +1,7 @@
-# ==============================================================================
 # Robots.txt for ImageToPNG (https://www.imagetopng.com)
-# Dedicated Permissions for Global Web & Generative AI Search Crawlers
-# ==============================================================================
+# Universal permissions for web and AI search crawlers
 
 User-agent: *
 Allow: /
 
-# OpenAI (ChatGPT, SearchGPT, ChatGPT-User)
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-# Perplexity AI
-User-agent: PerplexityBot
-Allow: /
-
-# Anthropic (Claude 3.5, Claude Sonnet, Claude Opus)
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-# Google (Gemini, Google AI Overviews, Search Grounding)
-User-agent: Googlebot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
-User-agent: GoogleOther
-Allow: /
-
-# Microsoft (Copilot, Bing AI)
-User-agent: Bingbot
-Allow: /
-
-# Apple (Apple Intelligence, Siri Search)
-User-agent: Applebot
-Allow: /
-
-User-agent: Applebot-Extended
-Allow: /
-
-# Meta (Meta AI, Llama)
-User-agent: Meta-ExternalAgent
-Allow: /
-
-# Common Crawl & Foundations
-User-agent: CCBot
-Allow: /
-
-User-agent: Cohere-ai
-Allow: /
-
-User-agent: Diffbot
-Allow: /
-
-User-agent: Bytespider
-Allow: /
-
-# Sitemaps & Machine LLMs Context
 Sitemap: https://www.imagetopng.com/sitemap.xml
-Sitemap: https://www.imagetopng.com/llms.txt

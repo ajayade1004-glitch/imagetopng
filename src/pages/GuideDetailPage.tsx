@@ -131,6 +131,43 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
           </div>
         </div>
 
+        {/* Relevant In-Browser Image Converters */}
+        <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200">
+          <div className="flex items-center gap-2 mb-3">
+            <Zap className="w-4 h-4 text-amber-500" />
+            <h2 className="font-bold text-slate-900 text-base">Recommended In-Browser Converters</h2>
+          </div>
+          <p className="text-xs text-slate-500 mb-4">
+            Convert your image formats directly in your browser with zero server uploads:
+          </p>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+            {[
+              { label: 'JPG to PNG', path: '/jpg-to-png' },
+              { label: 'WEBP to PNG', path: '/webp-to-png' },
+              { label: 'HEIC to PNG', path: '/heic-to-png' },
+              { label: 'SVG to PNG', path: '/svg-to-png' },
+              { label: 'PNG to JPG', path: '/png-to-jpg' },
+              { label: 'GIF to PNG', path: '/gif-to-png' },
+              { label: 'PSD to PNG', path: '/psd-to-png' },
+              { label: 'TIFF to PNG', path: '/tiff-to-png' },
+            ].map((tool) => (
+              <a
+                key={tool.path}
+                href={tool.path}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigate(tool.path);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="p-2.5 rounded-xl bg-slate-50 hover:bg-blue-50 border border-slate-200 hover:border-blue-300 font-semibold text-slate-700 hover:text-blue-700 transition-colors flex items-center justify-between"
+              >
+                <span>{tool.label}</span>
+                <ArrowRight className="w-3 h-3 text-slate-400" />
+              </a>
+            ))}
+          </div>
+        </div>
+
         {/* Related Guides */}
         {guide.relatedGuides.length > 0 && (
           <div className="mt-8 bg-white p-6 rounded-2xl border border-slate-200">

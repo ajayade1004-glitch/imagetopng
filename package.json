@@ -7,7 +7,8 @@
     "dev": "tsx server.ts",
     "start": "tsx server.ts",
     "generate:sitemap": "tsx scripts/generate-sitemap.ts",
-    "build": "tsx scripts/generate-sitemap.ts && vite build",
+    "generate:images": "tsx scripts/generate-converter-images.ts",
+    "build": "tsx scripts/generate-converter-images.ts && tsx scripts/generate-sitemap.ts && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"

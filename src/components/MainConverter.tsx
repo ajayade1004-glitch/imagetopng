@@ -20,6 +20,7 @@ import {
   Stamp,
   Palette,
   FileEdit,
+  Sparkles,
 } from 'lucide-react';
 import { ConvertedFile } from '../types';
 import {
@@ -53,6 +54,7 @@ interface MainConverterProps {
 }
 
 export const MainConverter: React.FC<MainConverterProps> = ({
+  targetFormat = 'PNG',
   sourceFormatFilter,
   className = '',
 }) => {
@@ -165,12 +167,18 @@ export const MainConverter: React.FC<MainConverterProps> = ({
         prev.map((f) => (f.id === item.id ? { ...f, status: 'converting', progress: 15 } : f))
       );
 
+      const isJpgTarget = targetFormat.toUpperCase() === 'JPG' || targetFormat.toUpperCase() === 'JPEG';
+
       try {
-        const result = await convertImageFileToPng(item.originalFile, (progress) => {
-          setFiles((prev) =>
-            prev.map((f) => (f.id === item.id ? { ...f, progress } : f))
-          );
-        });
+        const result = await convertImageFileToPng(
+          item.originalFile,
+          (progress) => {
+            setFiles((prev) =>
+              prev.map((f) => (f.id === item.id ? { ...f, progress } : f))
+            );
+          },
+          isJpgTarget ? { outputFormat: 'image/jpeg' } : undefined
+        );
 
         setFiles((prev) =>
           prev.map((f) =>
@@ -237,7 +245,8 @@ export const MainConverter: React.FC<MainConverterProps> = ({
 
   const handleSingleDownload = (file: ConvertedFile) => {
     if (!file.pngUrl) return;
-    const outputName = getPngOutputFilename(file.name);
+    const isJpgTarget = targetFormat.toUpperCase() === 'JPG' || targetFormat.toUpperCase() === 'JPEG';
+    const outputName = getPngOutputFilename(file.name, isJpgTarget ? 'jpg' : 'png');
     downloadFile(file.pngUrl, outputName);
   };
 
@@ -696,7 +705,7 @@ export const MainConverter: React.FC<MainConverterProps> = ({
                         <span>Download</span>
                       </button>
 
-                      {/* 2. EDIT IMAGE - Contains Palette, Privacy, Copy, Crop, Filters & Background */}
+                      {/* 2. EDIT IMAGE - Contains Palette, Privacy, Copy, Crop, Filters & Resize */}
                       <button
                         type="button"
                         onClick={() => handleOpenEditor(file, 'resize')}

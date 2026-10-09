@@ -79,9 +79,12 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
   const [invert, setInvert] = useState<number>(0);
   const [sepia, setSepia] = useState<number>(0);
 
-  // 4. Background Fill
+  // 4. Background Fill & 1-Click Background Remover
   const [bgType, setBgType] = useState<'transparent' | 'white' | 'black' | 'custom'>('transparent');
   const [customBgColor, setCustomBgColor] = useState<string>('#ffffff');
+  const [removeBgEnabled, setRemoveBgEnabled] = useState<boolean>(false);
+  const [removeBgColor, setRemoveBgColor] = useState<string>('#ffffff');
+  const [removeBgTolerance, setRemoveBgTolerance] = useState<number>(22);
 
   // 5. Rounded Corners
   const [cornerRadius, setCornerRadius] = useState<number>(0);
@@ -309,6 +312,36 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
     if (cornerRadius > 0) {
       ctx.restore();
     }
+
+    // Apply Background Remover (Color / Chroma Transparency Knockout)
+    if (removeBgEnabled) {
+      try {
+        const imgData = ctx.getImageData(0, 0, targetW, targetH);
+        const data = imgData.data;
+        const hex = removeBgColor.replace('#', '');
+        const rTarget = parseInt(hex.substring(0, 2), 16) || 255;
+        const gTarget = parseInt(hex.substring(2, 4), 16) || 255;
+        const bTarget = parseInt(hex.substring(4, 6), 16) || 255;
+        const tol = (removeBgTolerance / 100) * 441.67;
+        const feather = 16;
+
+        for (let i = 0; i < data.length; i += 4) {
+          const r = data[i];
+          const g = data[i + 1];
+          const b = data[i + 2];
+          const dist = Math.sqrt((r - rTarget) ** 2 + (g - gTarget) ** 2 + (b - bTarget) ** 2);
+          if (dist <= tol) {
+            data[i + 3] = 0;
+          } else if (dist <= tol + feather) {
+            const alphaFrac = (dist - tol) / feather;
+            data[i + 3] = Math.round(data[i + 3] * alphaFrac);
+          }
+        }
+        ctx.putImageData(imgData, 0, 0);
+      } catch (err) {
+        console.warn('Background removal canvas error:', err);
+      }
+    }
   }, [
     width,
     height,
@@ -325,6 +358,9 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
     bgType,
     customBgColor,
     cornerRadius,
+    removeBgEnabled,
+    removeBgColor,
+    removeBgTolerance,
   ]);
 
   // Re-render preview whenever parameters change
@@ -1160,8 +1196,9 @@ export const ImageEditorModal: React.FC<ImageEditorModalProps> = ({
               {/* 5. BACKGROUND COLOR TAB */}
               {activeTab === 'background' && (
                 <div className="space-y-4">
-                  <span className="font-bold text-slate-800 block text-xs">
-                    Alpha Transparency or Solid Fill
+                  {/* 1-Click Background Remover Tool */}
+                  <span className="font-bold text-slate-800 block text-xs pt-1">
+                    Choose Background Fill:
                   </span>
 
                   <div className="grid grid-cols-2 gap-2">

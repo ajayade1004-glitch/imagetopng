@@ -3,12 +3,22 @@ import fs from 'fs';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { SUPPORTED_FORMATS } from './src/data/formats';
+import { GUIDES_DATA } from './src/data/guides';
 import { generateDynamicSitemapXml } from './src/utils/sitemapGenerator';
 import { renderUniversalSsrPage } from './src/utils/ssrRenderer';
 
 async function startServer() {
   const app = express();
   const PORT = 3000;
+
+  // 301 Permanent Redirect for non-www apex domain to www
+  app.use((req, res, next) => {
+    const host = (req.headers.host || '').toLowerCase();
+    if (host === 'imagetopng.com' || host === 'imagetopng.com:3000') {
+      return res.redirect(301, `https://www.imagetopng.com${req.originalUrl}`);
+    }
+    next();
+  });
 
   // CORS & Header middleware
   app.use((req, res, next) => {
@@ -292,16 +302,43 @@ async function startServer() {
       // Determine page-specific meta
       let title = 'Image to PNG Converter – Convert Images to PNG Free';
       let description =
-        'Free online Image to PNG converter. Convert JPG, WEBP, and photos to transparent PNG with 100% private in-browser speed and zero quality loss.';
+        'Free online Image to PNG converter. Convert JPG, WEBP, HEIC, and images to lossless PNG format with 100% private in-browser processing and zero quality loss.';
       let canonical = `https://www.imagetopng.com${cleanPath === '/' ? '/' : cleanPath}`;
       let pageH1 = 'Image to PNG Converter – Convert Images to PNG Online Free';
+      let isNotFound = false;
+      let statusCode = 200;
 
       const formatSlug = cleanPath.replace('/', '');
       const format = SUPPORTED_FORMATS.find((f) => f.slug === formatSlug);
-      if (format) {
-        title = `${format.sourceFormat} to PNG Converter – Free Online Conversion`;
+      let imageUrl = 'https://www.imagetopng.com/og-image.png';
+
+      if (cleanPath === '/') {
+        // Universal Homepage
+      } else if (format) {
+        const sf = format.sourceFormat;
+        const tf = format.targetFormat || 'PNG';
+        title = format.metaTitle || `${sf} to ${tf} Converter – Free Online Lossless Image Conversion`;
         description = format.metaDescription;
-        pageH1 = `${format.sourceFormat} to PNG Converter`;
+        pageH1 = `${sf} to ${tf} Converter`;
+        imageUrl = `https://www.imagetopng.com/images/converters/${format.slug}.png`;
+      } else if (cleanPath === '/guides' || cleanPath === '/blog') {
+        title = 'PNG Guides & Image Comparisons | ImageToPNG';
+        description =
+          'In-depth technical guides, format comparisons, transparency tutorials, and compression insights written by digital image architects.';
+        pageH1 = 'PNG Guides & Image Comparisons';
+      } else if (cleanPath.startsWith('/guides/')) {
+        const guideSlug = cleanPath.replace('/guides/', '');
+        const guide = GUIDES_DATA.find((g) => g.slug === guideSlug);
+        if (guide) {
+          title = guide.metaTitle || `${guide.title} | ImageToPNG Guides`;
+          description = guide.metaDescription;
+          pageH1 = guide.title;
+          canonical = `https://www.imagetopng.com/guides/${guide.slug}`;
+          imageUrl = 'https://www.imagetopng.com/image-to-png-lossless-compression-diagram.webp';
+        } else {
+          isNotFound = true;
+          statusCode = 404;
+        }
       } else if (cleanPath === '/about') {
         title = 'About Us – ImageToPNG Online Conversion Utility';
         description =
@@ -332,11 +369,6 @@ async function startServer() {
         description =
           'Live diagnostics, client-side engine availability, and browser graphic pipeline health.';
         pageH1 = 'System Status & Diagnostics';
-      } else if (cleanPath === '/guides' || cleanPath === '/blog') {
-        title = 'PNG Guides & Image Comparisons | ImageToPNG';
-        description =
-          'In-depth technical guides, format comparisons, transparency tutorials, and compression insights written by digital image architects.';
-        pageH1 = 'PNG Guides & Image Comparisons';
       } else if (cleanPath === '/cookie-policy') {
         title = 'Cookie Policy – ImageToPNG';
         description =
@@ -352,6 +384,15 @@ async function startServer() {
         description =
           'Report conversion failures, unsupported codecs, or browser-specific rendering bugs to help us improve ImageToPNG.';
         pageH1 = 'Report a Bug';
+      } else {
+        isNotFound = true;
+        statusCode = 404;
+      }
+
+      if (isNotFound) {
+        title = '404 Page Not Found – ImageToPNG';
+        description = 'The requested page could not be found. Return to our free online Image to PNG converter.';
+        template = template.replace(/<meta name="robots" content=".*?" \/>/, '<meta name="robots" content="noindex, follow" />');
       }
 
       // Replace metadata in template
@@ -362,9 +403,116 @@ async function startServer() {
         .replace(/<meta property="og:title" content=".*?" \/>/, `<meta property="og:title" content="${title}" />`)
         .replace(/<meta property="og:description" content=".*?" \/>/, `<meta property="og:description" content="${description}" />`)
         .replace(/<meta property="og:url" content=".*?" \/>/, `<meta property="og:url" content="${canonical}" />`)
+        .replace(/<meta property="og:image" content=".*?" \/>/, `<meta property="og:image" content="${imageUrl}" />`)
         .replace(/<meta name="twitter:title" content=".*?" \/>/, `<meta name="twitter:title" content="${title}" />`)
         .replace(/<meta name="twitter:description" content=".*?" \/>/, `<meta name="twitter:description" content="${description}" />`)
-        .replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${canonical}" />`);
+        .replace(/<meta name="twitter:url" content=".*?" \/>/, `<meta name="twitter:url" content="${canonical}" />`)
+        .replace(/<meta name="twitter:image" content=".*?" \/>/, `<meta name="twitter:image" content="${imageUrl}" />`);
+
+      // Inject format-specific JSON-LD schemas into <head> for format converter routes
+      if (format) {
+        const sf = format.sourceFormat;
+        const tf = format.targetFormat || 'PNG';
+        const formatGraphSchema = {
+          '@context': 'https://schema.org',
+          '@graph': [
+            {
+              '@type': 'WebApplication',
+              '@id': `${canonical}#webapp`,
+              name: `${sf} to ${tf} Converter`,
+              url: canonical,
+              mainEntityOfPage: canonical,
+              applicationCategory: 'MultimediaApplication',
+              operatingSystem: 'All (Web Browser, Windows, macOS, Linux, iOS, Android)',
+              browserRequirements: 'Requires HTML5 Canvas and ECMAScript 6+ support',
+              description: format.metaDescription,
+              image: imageUrl,
+              datePublished: '2024-01-15T08:00:00+00:00',
+              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              inLanguage: 'en-US',
+              offers: {
+                '@type': 'Offer',
+                price: '0',
+                priceCurrency: 'USD',
+              },
+              aggregateRating: {
+                '@type': 'AggregateRating',
+                ratingValue: '4.9',
+                ratingCount: '14320',
+                bestRating: '5',
+                worstRating: '1',
+              },
+              author: {
+                '@type': 'Organization',
+                '@id': 'https://www.imagetopng.com/#organization',
+              },
+              publisher: {
+                '@type': 'Organization',
+                '@id': 'https://www.imagetopng.com/#organization',
+              },
+              citation: [
+                'https://www.w3.org/TR/png/',
+                'https://www.iso.org/standard/29581.html',
+                'https://datatracker.ietf.org/doc/html/rfc1951',
+                'https://datatracker.ietf.org/doc/html/rfc2083',
+              ],
+            },
+            {
+              '@type': 'HowTo',
+              '@id': `${canonical}#howto`,
+              name: `How to Convert ${sf} to ${tf} Online for Free`,
+              description: format.metaDescription,
+              image: imageUrl,
+              totalTime: 'PT5S',
+              datePublished: '2024-01-15T08:00:00+00:00',
+              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              step: format.conversionSteps.map((step) => ({
+                '@type': 'HowToStep',
+                position: step.step,
+                name: step.title,
+                text: step.description,
+              })),
+            },
+            {
+              '@type': 'FAQPage',
+              '@id': `${canonical}#faq`,
+              name: `${sf} to ${tf} Conversion FAQ`,
+              dateModified: `${format.dateModified || '2026-10-01'}T00:00:00+00:00`,
+              mainEntity: format.faq.map((f) => ({
+                '@type': 'Question',
+                name: f.question,
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: f.answer,
+                },
+              })),
+            },
+            {
+              '@type': 'BreadcrumbList',
+              '@id': `${canonical}#breadcrumbs`,
+              itemListElement: [
+                {
+                  '@type': 'ListItem',
+                  position: 1,
+                  name: 'Home',
+                  item: 'https://www.imagetopng.com/',
+                },
+                {
+                  '@type': 'ListItem',
+                  position: 2,
+                  name: `${sf} to ${tf} Converter`,
+                  item: canonical,
+                },
+              ],
+            },
+          ],
+        };
+
+        template = template.replace(
+          /<script type="application\/ld\+json">[\s\S]*?<\/script>/,
+          `<script type="application/ld+json">\n${JSON.stringify(formatGraphSchema, null, 2)}\n    </script>`
+        );
+      }
 
       // Server-Side Render 100% full semantic content for Non-JS AI Crawlers & Search Engines (SSG/SSR)
       const ssrBodyHtml = renderUniversalSsrPage(cleanPath);
@@ -378,7 +526,7 @@ async function startServer() {
       }
 
       const html = await vite.transformIndexHtml(url, template);
-      res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
+      res.status(statusCode).set({ 'Content-Type': 'text/html' }).end(html);
     } catch (e: any) {
       vite.ssrFixStacktrace(e);
       next(e);

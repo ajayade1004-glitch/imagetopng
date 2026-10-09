@@ -1,0 +1,105 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Gradient Background -->
+    <rect width="1200" height="630" fill="#0f172a" />
+    <circle cx="200" cy="150" r="350" fill="#ef4444" opacity="0.18" />
+    <circle cx="1000" cy="480" r="380" fill="#0055ff" opacity="0.18" />
+    <rect width="1200" height="630" fill="url(#grid)" opacity="0.08" />
+
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#ffffff" stroke-width="1" />
+      </pattern>
+    </defs>
+
+    <!-- Top Branding Bar -->
+    <g transform="translate(60, 48)">
+      <rect width="40" height="40" rx="10" fill="#0055ff" />
+      <path d="M12 28L20 12L28 28H12Z" fill="#ffffff" />
+      <text x="52" y="28" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="900" letter-spacing="-0.5">
+        ImageTo<tspan fill="#38bdf8">PNG</tspan>
+      </text>
+      <rect x="220" y="6" width="320" height="28" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <text x="380" y="25" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" text-anchor="middle" letter-spacing="0.5">
+        100% IN-BROWSER CONVERTER
+      </text>
+    </g>
+
+    <!-- Title and Subtitle -->
+    <g transform="translate(60, 130)">
+      <text x="0" y="44" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" letter-spacing="-1">
+        JPG to PNG Converter
+      </text>
+      <text x="0" y="86" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="500">
+        High-Speed In-Browser Transformation • Zero Server Uploads • 100% Private
+      </text>
+    </g>
+
+    <!-- Left Source Box -->
+    <g transform="translate(60, 250)">
+      <rect width="420" height="260" rx="20" fill="#1e293b" stroke="#334155" stroke-width="2" />
+      <rect x="24" y="24" width="70" height="32" rx="8" fill="#fee2e2" />
+      <text x="59" y="45" fill="#ef4444" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="900" text-anchor="middle">
+        JPG
+      </text>
+      <text x="106" y="46" fill="#cbd5e1" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">
+        JPEG Raster Image
+      </text>
+
+      <rect x="24" y="74" width="372" height="1" fill="#334155" />
+
+      <!-- Specs list -->
+      <text x="24" y="112" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">Codec / Format:</text>
+      <text x="24" y="136" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700">24-bit Lossy DCT Compressed</text>
+
+      <text x="24" y="176" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">Magic Bytes:</text>
+      <text x="24" y="200" fill="#38bdf8" font-family="monospace" font-size="14" font-weight="700">FF D8 FF E0</text>
+
+      <rect x="24" y="220" width="130" height="24" rx="6" fill="#0f172a" />
+      <text x="89" y="236" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" text-anchor="middle">INPUT FORMAT</text>
+    </g>
+
+    <!-- Center Arrow & Process Pill -->
+    <g transform="translate(515, 330)">
+      <circle cx="85" cy="50" r="42" fill="#0055ff" />
+      <path d="M72 50H98M98 50L88 40M98 50L88 60" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      
+      <rect x="20" y="105" width="130" height="26" rx="13" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5" />
+      <text x="85" y="122" fill="#93c5fd" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="800" text-anchor="middle">
+        LOCAL RAM
+      </text>
+    </g>
+
+    <!-- Right Destination Box -->
+    <g transform="translate(720, 250)">
+      <rect width="420" height="260" rx="20" fill="#1e293b" stroke="#3b82f6" stroke-width="2" />
+      <rect x="24" y="24" width="70" height="32" rx="8" fill="#dbeafe" />
+      <text x="59" y="45" fill="#1d4ed8" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="900" text-anchor="middle">
+        PNG
+      </text>
+      <text x="106" y="46" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700">
+        32-bit RGBA Lossless DEFLATE
+      </text>
+
+      <rect x="24" y="74" width="372" height="1" fill="#334155" />
+
+      <!-- Output Specs list -->
+      <text x="24" y="112" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">Standard &amp; Quality:</text>
+      <text x="24" y="136" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700">ISO/IEC 15948:2004 Compliant</text>
+
+      <text x="24" y="176" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">Transparency Support:</text>
+      <text x="24" y="200" fill="#4ade80" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700">8-bit Alpha Channel (256 Opacity Levels)</text>
+
+      <rect x="24" y="220" width="140" height="24" rx="6" fill="#0f172a" />
+      <text x="94" y="236" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" text-anchor="middle">OUTPUT MASTER</text>
+    </g>
+
+    <!-- Bottom Footer Bar -->
+    <g transform="translate(60, 560)">
+      <text x="0" y="20" fill="#64748b" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600">
+        ISO/IEC 15948:2004 Standard Compliant • DEFLATE Algorithm • Client-Side Only • No Upload Limits
+      </text>
+      <text x="1080" y="20" fill="#38bdf8" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" text-anchor="end">
+        https://www.imagetopng.com/jpg-to-png
+      </text>
+    </g>
+  </svg>

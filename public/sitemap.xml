@@ -4,7 +4,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.imagetopng.com/</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -25,13 +25,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/jpg-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>JPG to PNG Converter Workflow</image:title>
-      <image:caption>Free online JPG to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/jpg-to-png.png</image:loc>
+      <image:title>JPG to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting JPG to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -41,13 +41,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/jpeg-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>JPEG to PNG Converter Workflow</image:title>
-      <image:caption>Free online JPEG to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/jpeg-to-png.png</image:loc>
+      <image:title>JPEG to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting JPEG to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -57,13 +57,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/webp-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>WEBP to PNG Converter Workflow</image:title>
-      <image:caption>Free online WEBP to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/webp-to-png.png</image:loc>
+      <image:title>WEBP to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting WEBP to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -73,13 +73,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/gif-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>GIF to PNG Converter Workflow</image:title>
-      <image:caption>Free online GIF to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/gif-to-png.png</image:loc>
+      <image:title>GIF to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting GIF to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -89,13 +89,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/bmp-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>BMP to PNG Converter Workflow</image:title>
-      <image:caption>Free online BMP to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/bmp-to-png.png</image:loc>
+      <image:title>BMP to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting BMP to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -105,13 +105,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/svg-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>SVG to PNG Converter Workflow</image:title>
-      <image:caption>Free online SVG to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/svg-to-png.png</image:loc>
+      <image:title>SVG to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting SVG to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -121,13 +121,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/avif-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>AVIF to PNG Converter Workflow</image:title>
-      <image:caption>Free online AVIF to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/avif-to-png.png</image:loc>
+      <image:title>AVIF to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting AVIF to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -137,13 +137,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/ico-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>ICO to PNG Converter Workflow</image:title>
-      <image:caption>Free online ICO to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/ico-to-png.png</image:loc>
+      <image:title>ICO to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting ICO to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -153,13 +153,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/tiff-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>TIFF to PNG Converter Workflow</image:title>
-      <image:caption>Free online TIFF to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/tiff-to-png.png</image:loc>
+      <image:title>TIFF to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting TIFF to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -169,13 +169,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/heic-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>HEIC to PNG Converter Workflow</image:title>
-      <image:caption>Free online HEIC to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/heic-to-png.png</image:loc>
+      <image:title>HEIC to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting HEIC to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -185,13 +185,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/psd-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>PSD to PNG Converter Workflow</image:title>
-      <image:caption>Free online PSD to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/psd-to-png.png</image:loc>
+      <image:title>PSD to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting PSD to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -201,13 +201,13 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/raw-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
-      <image:loc>https://www.imagetopng.com/image-to-png.webp</image:loc>
-      <image:title>RAW to PNG Converter Workflow</image:title>
-      <image:caption>Free online RAW to PNG converter with zero server uploads and lossless pixel encoding.</image:caption>
+      <image:loc>https://www.imagetopng.com/images/converters/raw-to-png.png</image:loc>
+      <image:title>RAW to PNG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting RAW to PNG locally in your web browser.</image:caption>
     </image:image>
     <image:image>
       <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
@@ -216,14 +216,30 @@
     </image:image>
   </url>
   <url>
+    <loc>https://www.imagetopng.com/png-to-jpg</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.imagetopng.com/images/converters/png-to-jpg.png</image:loc>
+      <image:title>PNG to JPG Converter Technical Diagram</image:title>
+      <image:caption>Official conversion diagram and byte architecture specification for converting PNG to JPG locally in your web browser.</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.imagetopng.com/image-to-png-alpha-transparency-guide.webp</image:loc>
+      <image:title>PNG Transparency &amp; Alpha Channel Preservation</image:title>
+      <image:caption>How transparency and alpha opacity levels are preserved when converting PNG to PNG.</image:caption>
+    </image:image>
+  </url>
+  <url>
     <loc>https://www.imagetopng.com/guides</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/how-to-convert-image-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -234,7 +250,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/png-vs-jpg</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -245,7 +261,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/png-vs-webp</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -256,7 +272,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/png-vs-avif</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -267,7 +283,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/what-is-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -278,7 +294,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/png-transparency</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -289,7 +305,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/why-png-files-are-large</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -300,7 +316,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/png-image-quality</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -311,7 +327,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/how-to-convert-jpg-to-png</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -322,7 +338,7 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/guides/image-format-guide</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
     <image:image>
@@ -333,55 +349,55 @@
   </url>
   <url>
     <loc>https://www.imagetopng.com/about</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/security</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/status</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/contact</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/report-bug</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/privacy</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/terms</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/cookie-policy</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.imagetopng.com/imprint</loc>
-    <lastmod>2026-10-02</lastmod>
+    <lastmod>2026-09-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>

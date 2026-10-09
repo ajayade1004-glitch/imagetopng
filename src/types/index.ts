@@ -31,7 +31,7 @@ export interface DeveloperSnippet {
 export interface FormatData {
   slug: string;
   sourceFormat: string;
-  targetFormat: 'PNG';
+  targetFormat: 'PNG' | 'JPG' | 'JPEG';
   extension: string;
   mimeTypes: string[];
   magicBytes: string;
@@ -61,6 +61,9 @@ export interface FormatData {
   longTailKeywords?: string[];
   osGuides?: { os: string; title: string; steps: string[] }[];
   softwareWorkflows?: { software: string; title: string; description: string }[];
+  lastUpdated?: string;
+  dateModified?: string;
+  previewImage?: string;
 }
 
 export interface GuideArticle {
