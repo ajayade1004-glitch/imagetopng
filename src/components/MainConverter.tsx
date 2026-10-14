@@ -155,7 +155,7 @@ export const MainConverter: React.FC<MainConverterProps> = ({
                   ...f,
                   status: 'error',
                   errorMessage:
-                    'This image exceeds 50MB and may exhaust your browser memory. Please select a smaller file.',
+                    'This image exceeds 100MB and may exhaust your browser memory. Please select a file under 100MB.',
                 }
               : f
           )

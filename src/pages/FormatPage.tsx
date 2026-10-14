@@ -154,7 +154,7 @@ export const FormatPage: React.FC<FormatPageProps> = ({ format, onNavigate }) =>
               ISO/IEC 15948:2004 Compliant
             </span>
             <span className="text-[11px] font-bold text-slate-600 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
-              Last Updated: <time dateTime={format.dateModified || '2026-10-09'}>{format.lastUpdated || 'October 9, 2026'}</time>
+              Last Updated: <time dateTime={format.dateModified || '2026-10-14'}>{format.lastUpdated || 'October 14, 2026'}</time>
             </span>
             <span className="text-[11px] font-bold text-emerald-900 bg-emerald-100/80 px-2.5 py-0.5 rounded-full border border-emerald-300 flex items-center gap-1">
               <ShieldCheck className="w-3 h-3 text-emerald-700" />

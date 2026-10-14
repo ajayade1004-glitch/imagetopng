@@ -86,12 +86,12 @@ export const ImageToPngVideoWalkthrough: React.FC = () => {
           <span className="w-3 h-3 rounded-full bg-amber-500 inline-block" />
           <span className="w-3 h-3 rounded-full bg-emerald-500 inline-block" />
           <span className="ml-2 text-xs font-mono text-slate-400">
-            Video Tutorial: How to Convert Image to PNG Online
+            Animated Walkthrough: How to Convert Image to PNG Online
           </span>
         </div>
         <div className="flex items-center gap-2 text-xs text-emerald-400 font-semibold">
           <ShieldCheck className="w-3.5 h-3.5" />
-          <span>100% Client-Side Video Demo</span>
+          <span>100% In-Browser Interactive Demo</span>
         </div>
       </div>
 
@@ -102,7 +102,7 @@ export const ImageToPngVideoWalkthrough: React.FC = () => {
           controls
           poster="/image-to-png.webp"
           className="sr-only"
-          aria-label="Image to PNG Video Tutorial"
+          aria-label="Image to PNG Animated Walkthrough"
         >
           <track kind="captions" src="/captions-en.vtt" label="English" srcLang="en" default />
           <source src="/image-to-png.webp" type="video/mp4" />

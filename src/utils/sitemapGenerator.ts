@@ -40,10 +40,10 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
 
   const entries: SitemapEntry[] = [];
 
-  // 1. Primary Homepage & Universal Tool (Updated: October 9, 2026)
+  // 1. Primary Homepage & Universal Tool (Updated: October 14, 2026)
   entries.push({
     loc: `${normalizedBase}/`,
-    lastmod: '2026-10-09',
+    lastmod: '2026-10-14',
     changefreq: 'daily',
     priority: '1.0',
     images: [
@@ -69,7 +69,7 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
   for (const fmt of SUPPORTED_FORMATS) {
     const isHighDemand = fmt.badge === 'High Demand' || ['jpg-to-png', 'webp-to-png', 'heic-to-png', 'svg-to-png'].includes(fmt.slug);
     const targetFormat = fmt.targetFormat || 'PNG';
-    const lastmodDate = fmt.dateModified || '2026-10-09';
+    const lastmodDate = fmt.dateModified || '2026-10-14';
 
     entries.push({
       loc: `${normalizedBase}/${fmt.slug}`,
@@ -91,10 +91,10 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     });
   }
 
-  // 3. Technical Knowledge Base & Educational Guides Hub (Updated: October 9, 2026)
+  // 3. Technical Knowledge Base & Educational Guides Hub (Updated: October 14, 2026)
   entries.push({
     loc: `${normalizedBase}/guides`,
-    lastmod: '2026-10-09',
+    lastmod: '2026-10-14',
     changefreq: 'weekly',
     priority: '0.8',
   });

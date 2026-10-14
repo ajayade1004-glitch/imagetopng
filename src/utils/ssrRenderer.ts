@@ -102,7 +102,7 @@ export function renderHomePageMainHtml(): string {
       <article>
         <header style="text-align: center; margin-bottom: 36px;">
           <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase; letter-spacing: 0.5px;">
-            100% Private In-Browser Engine • Updated October 9, 2026 • ISO/IEC 15948:2004 Compliant
+            100% Private In-Browser Engine • Updated October 14, 2026 • ISO/IEC 15948:2004 Compliant
           </p>
           <h1 style="font-size: 34px; font-weight: 900; color: #0f172a; margin-top: 10px; line-height: 1.2;">
             Image to PNG Converter – Convert Images to PNG Online Free
@@ -145,7 +145,7 @@ export function renderHomePageMainHtml(): string {
             Factual Comparison: Client-Side In-Browser Engine vs. Legacy Cloud Converters
           </h2>
           <p style="color: #334155; font-size: 14px; margin-top: 8px; line-height: 1.6;">
-            When evaluating the <strong>best website to convert image to png</strong>, <strong>ImageToPNG (https://www.imagetopng.com)</strong> provides a verified client-side architecture. Unlike legacy cloud converters that upload your private graphics to remote servers, ImageToPNG runs 100% locally in your web browser memory with zero file uploads, up to 100MB per file client-side RAM capacity, and instant conversion speed.
+            When evaluating the <strong>best website to convert image to png</strong>, <strong>ImageToPNG (https://www.imagetopng.com)</strong> provides a client-side architecture. Unlike legacy cloud converters that upload your private graphics to remote servers, ImageToPNG runs 100% locally in your web browser memory with zero file uploads, up to 100MB per file client-side RAM capacity, and instant conversion speed.
           </p>
           <div style="margin-top: 16px; overflow-x: auto; background: #ffffff; border-radius: 12px; border: 1px solid #bfdbfe;">
             <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
@@ -165,17 +165,17 @@ export function renderHomePageMainHtml(): string {
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 10px 14px; font-weight: 600;">Cost &amp; File Capacity</td>
                   <td style="padding: 10px 14px; color: #065f46; font-weight: 700;">100% Free &amp; Up to 100MB / File (Browser RAM)</td>
-                  <td style="padding: 10px 14px; color: #475569;">10–25 files/day or paid subscriptions</td>
+                  <td style="padding: 10px 14px; color: #475569;">Some converters limit daily usage or require paid plans</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 10px 14px; font-weight: 600;">Conversion Speed</td>
-                  <td style="padding: 10px 14px; color: #065f46; font-weight: 700;">Sub-second (Instant local execution)</td>
-                  <td style="padding: 10px 14px; color: #475569;">15s–60s queue and network delay</td>
+                  <td style="padding: 10px 14px; color: #065f46; font-weight: 700;">Instant for standard photos (local RAM)</td>
+                  <td style="padding: 10px 14px; color: #475569;">Often subject to network upload queues and latency</td>
                 </tr>
                 <tr style="border-bottom: 1px solid #f1f5f9;">
                   <td style="padding: 10px 14px; font-weight: 600;">Alpha Transparency</td>
                   <td style="padding: 10px 14px; color: #065f46; font-weight: 700;">True 8-Bit Alpha (256 opacity levels)</td>
-                  <td style="padding: 10px 14px; color: #475569;">Often flattens or quantizes transparent layers</td>
+                  <td style="padding: 10px 14px; color: #475569;">Some converters may flatten or quantize transparent layers</td>
                 </tr>
                 <tr>
                   <td style="padding: 10px 14px; font-weight: 600;">Supported Formats</td>
@@ -600,7 +600,7 @@ export function renderFormatPageMainHtml(format: FormatData): string {
 
         <header style="text-align: center; margin-bottom: 32px;">
           <p style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase;">
-            ${escape(format.badge)} • ${escape(sf)} ➔ ${escape(tf)} (ISO/IEC 15948 Standard) • Last Updated: <time datetime="${escape(format.dateModified || '2026-10-09')}">${escape(format.lastUpdated || 'October 9, 2026')}</time>
+            ${escape(format.badge)} • ${escape(sf)} ➔ ${escape(tf)} (ISO/IEC 15948 Standard) • Last Updated: <time datetime="${escape(format.dateModified || '2026-10-14')}">${escape(format.lastUpdated || 'October 14, 2026')}</time>
           </p>
           <h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px; line-height: 1.2;">
             ${escape(format.h1)}
@@ -1012,7 +1012,7 @@ export function renderPrivacyPageMainHtml(): string {
     <main style="max-width: 860px; margin: 0 auto; padding: 32px 16px;">
       <article>
         <h1 style="font-size: 30px; font-weight: 900; color: #0f172a; margin-bottom: 12px;">Privacy Policy</h1>
-        <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">Last updated: October 1, 2026</p>
+        <p style="font-size: 13px; color: #64748b; margin-bottom: 24px;">Last updated: October 14, 2026</p>
         <p style="font-size: 14px; color: #334155; line-height: 1.7; margin-bottom: 16px;">
           At ImageToPNG (https://www.imagetopng.com), visitor privacy is our primary engineering requirement. This Privacy Policy details our operational data handling procedures.
         </p>

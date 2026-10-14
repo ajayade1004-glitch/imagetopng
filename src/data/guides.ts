@@ -193,7 +193,7 @@ export const GUIDES_DATA: GuideArticle[] = [
       {
         sectionHeading: 'Why Alpha Transparency Matters for UI Design',
         paragraphs: [
-          'Smooth alpha transparency allows digital artists and web designers to create translucent drop shadows, glassmorphism UI cards, glowing highlights, and soft anti-aliased edges that blend seamlessly across light, dark, or patterned backgrounds.'
+          'True 8-bit alpha transparency allows digital artists and web designers to create translucent drop shadows, glassmorphism UI cards, glowing highlights, and soft anti-aliased edges that blend seamlessly across light, dark, or patterned backgrounds.'
         ]
       }
     ],

@@ -152,7 +152,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
           {/* Trust Badge with Date & Author Metadata */}
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200 mb-3 shadow-2xs">
             <ShieldCheck className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-            <span>100% Private In-Browser Tool • Updated October 9, 2026 • ISO/IEC 15948:2004 Compliant</span>
+            <span>100% Private In-Browser Tool • Updated October 14, 2026 • ISO/IEC 15948:2004 Compliant</span>
           </div>
 
           {/* H1 Heading (Exactly One H1) */}

@@ -188,7 +188,7 @@ export const FreePngSamples: React.FC = () => {
       name: 'Abstract Gradient Orb',
       format: 'PNG (RGBA 32-bit)',
       size: '28.4 KB',
-      description: 'Continuous radial gradient demonstrating 256 levels of smooth alpha opacity.',
+      description: 'Continuous radial gradient demonstrating 256 levels of alpha opacity.',
       badge: 'Alpha Blending',
     },
   ];

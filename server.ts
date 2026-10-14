@@ -300,9 +300,9 @@ async function startServer() {
       let template = fs.readFileSync(path.resolve(import.meta.dirname, 'index.html'), 'utf-8');
 
       // Determine page-specific meta
-      let title = 'Image to PNG Converter – Convert Images to PNG Free';
+      let title = 'Image to PNG Converter – 100% Free & Lossless (Online)';
       let description =
-        'Free online Image to PNG converter. Convert JPG, WEBP, HEIC, and images to lossless PNG format with 100% private in-browser processing and zero quality loss.';
+        'Convert any image to PNG online for free. Lossless quality, transparent background support, batch conversion, and 100% private in-browser processing.';
       let canonical = `https://www.imagetopng.com${cleanPath === '/' ? '/' : cleanPath}`;
       let pageH1 = 'Image to PNG Converter – Convert Images to PNG Online Free';
       let isNotFound = false;
@@ -428,7 +428,7 @@ async function startServer() {
               description: format.metaDescription,
               image: imageUrl,
               datePublished: '2024-01-15T08:00:00+00:00',
-              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-14'}T00:00:00+00:00`,
               inLanguage: 'en-US',
               offers: {
                 '@type': 'Offer',
@@ -465,7 +465,7 @@ async function startServer() {
               image: imageUrl,
               totalTime: 'PT5S',
               datePublished: '2024-01-15T08:00:00+00:00',
-              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-14'}T00:00:00+00:00`,
               step: format.conversionSteps.map((step) => ({
                 '@type': 'HowToStep',
                 position: step.step,
@@ -477,7 +477,7 @@ async function startServer() {
               '@type': 'FAQPage',
               '@id': `${canonical}#faq`,
               name: `${sf} to ${tf} Conversion FAQ`,
-              dateModified: `${format.dateModified || '2026-10-09'}T00:00:00+00:00`,
+              dateModified: `${format.dateModified || '2026-10-14'}T00:00:00+00:00`,
               mainEntity: format.faq.map((f) => ({
                 '@type': 'Question',
                 name: f.question,

@@ -224,7 +224,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
       { question: 'How do I convert WebP to PNG without losing quality?', answer: 'Our converter uses high-precision offscreen Canvas rasterization that maps every pixel losslessly from WebP to PNG with zero downsampling or re-quantization.' },
       { question: 'Why do images saved from Google or websites save as .webp?', answer: 'Web browsers and content delivery networks (CDNs) automatically deliver WebP to save bandwidth. ImageToPNG allows you to convert them back to standard PNG with one click.' },
       { question: 'Can I batch convert 50+ WebP images at once?', answer: 'Yes! You can drag and drop dozens of WebP files into the queue. They convert instantaneously in your browser and can be downloaded together in a ZIP file.' },
-      { question: 'Does converting WebP to PNG cost money or require sign-up?', answer: 'No. ImageToPNG is completely free with no signup, no subscriptions, and no limits on the number of conversions.' }
+      { question: 'Does converting WebP to PNG cost money or require sign-up?', answer: 'No. ImageToPNG is completely free with no signup, no subscriptions, and generous file capacity up to 100MB per file.' }
     ],
     relatedFormats: ['jpg-to-png', 'gif-to-png', 'svg-to-png'],
     longTailKeywords: [
@@ -894,7 +894,7 @@ export const SUPPORTED_FORMATS: FormatData[] = [
 ];
 
 SUPPORTED_FORMATS.forEach((fmt) => {
-  fmt.lastUpdated = fmt.lastUpdated || 'October 9, 2026';
-  fmt.dateModified = fmt.dateModified || '2026-10-09';
+  fmt.lastUpdated = fmt.lastUpdated || 'October 14, 2026';
+  fmt.dateModified = fmt.dateModified || '2026-10-14';
   fmt.previewImage = fmt.previewImage || `/images/converters/${fmt.slug}.webp`;
 });
