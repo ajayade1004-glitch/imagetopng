@@ -99,14 +99,15 @@ export function getDynamicSitemapEntries(baseUrl = 'https://www.imagetopng.com')
     priority: '0.8',
   });
 
-  // 4. Individual In-Depth Guides Articles (Updated with New High-CPC Guides)
+  // 4. Individual In-Depth Guides Articles (Updated with New Flagship Master Guide)
   for (const guide of GUIDES_DATA) {
+    const isMaster = guide.slug === 'ultimate-image-to-png-master-guide';
     const isNew = ['how-to-convert-png-image-into-jpg', 'transparent-png-maker-guide'].includes(guide.slug);
     entries.push({
       loc: `${normalizedBase}/guides/${guide.slug}`,
-      lastmod: isNew ? '2026-10-09' : '2026-09-30',
-      changefreq: 'monthly',
-      priority: isNew ? '0.85' : '0.75',
+      lastmod: isMaster ? '2026-10-15' : isNew ? '2026-10-09' : '2026-09-30',
+      changefreq: isMaster ? 'weekly' : 'monthly',
+      priority: isMaster ? '0.95' : isNew ? '0.85' : '0.75',
       images: [
         {
           loc: `${normalizedBase}/image-to-png-lossless-compression-diagram.webp`,

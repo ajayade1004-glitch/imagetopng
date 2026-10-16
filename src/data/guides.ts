@@ -1,4 +1,5 @@
 import { GuideArticle } from '../types';
+import { ultimateMasterGuideArticle } from './masterGuideData';
 
 export const GUIDES_DATA: GuideArticle[] = [
   {
@@ -395,5 +396,8 @@ export const GUIDES_DATA: GuideArticle[] = [
       }
     ],
     relatedGuides: ['png-vs-jpg', 'how-to-convert-image-to-png', 'image-format-guide']
-  }
+  },
+  ultimateMasterGuideArticle
 ];
+
+

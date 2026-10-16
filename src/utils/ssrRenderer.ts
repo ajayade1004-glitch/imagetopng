@@ -910,10 +910,54 @@ export function renderGuidesHubMainHtml(guides: GuideArticle[]): string {
 }
 
 export function renderGuideArticleMainHtml(guide: GuideArticle): string {
+  const wordCount = guide.content.reduce((acc, sec) => {
+    const pWords = sec.paragraphs.reduce((pAcc, p) => pAcc + p.split(/\s+/).filter(Boolean).length, 0);
+    const lWords = (sec.listItems || []).reduce((lAcc, l) => lAcc + l.split(/\s+/).filter(Boolean).length, 0);
+    const cWords = sec.callout ? (sec.callout.title + ' ' + sec.callout.text).split(/\s+/).filter(Boolean).length : 0;
+    return acc + pWords + lWords + cWords;
+  }, (guide.title + ' ' + guide.summary).split(/\s+/).filter(Boolean).length);
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: guide.title,
+    description: guide.metaDescription,
+    wordCount: wordCount,
+    author: {
+      '@type': 'Organization',
+      name: 'ImageToPNG Engineering Team',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ImageToPNG',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.imagetopng.com/favicon.svg',
+      },
+    },
+    dateModified: '2026-10-15',
+    mainEntityOfPage: `https://www.imagetopng.com/guides/${guide.slug}`,
+  };
+
+  const tableOfContentsHtml = guide.content.length > 5 ? `
+    <nav aria-label="Table of Contents" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin: 24px 0;">
+      <p style="font-size: 13px; font-weight: 800; color: #0f172a; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+        Table of Contents (${guide.content.length} In-Depth Chapters)
+      </p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 8px; font-size: 13px;">
+        ${guide.content.map((sec, idx) => `
+          <a href="#chapter-${idx + 1}" style="color: #0055ff; text-decoration: none; padding: 4px 0; display: block;">
+            <strong style="color: #64748b;">${idx + 1}.</strong> ${escape(sec.sectionHeading.replace(/^Chapter \d+:\s*|^[\d.]+\s*/, ''))}
+          </a>
+        `).join('')}
+      </div>
+    </nav>
+  ` : '';
+
   const contentSections = guide.content
     .map(
-      (sec) => `
-        <section style="margin-bottom: 32px;">
+      (sec, idx) => `
+        <section id="chapter-${idx + 1}" style="margin-bottom: 36px; padding-top: 16px; border-top: 1px solid #f1f5f9;">
           <h2 style="font-size: 22px; font-weight: 800; color: #0f172a; margin-bottom: 12px;">${escape(sec.sectionHeading)}</h2>
           ${sec.paragraphs.map((p) => `<p style="font-size: 15px; color: #334155; line-height: 1.7; margin-bottom: 12px;">${escape(p)}</p>`).join('')}
           ${sec.listItems && sec.listItems.length > 0 ? `<ul style="padding-left: 20px; font-size: 14px; color: #334155; line-height: 1.7; margin-bottom: 16px;">${sec.listItems.map((li) => `<li>${escape(li)}</li>`).join('')}</ul>` : ''}
@@ -925,6 +969,10 @@ export function renderGuideArticleMainHtml(guide: GuideArticle): string {
 
   return `
     <main style="max-width: 860px; margin: 0 auto; padding: 32px 16px;">
+      <script type="application/ld+json">
+        ${JSON.stringify(articleSchema)}
+      </script>
+
       <article>
         <!-- Breadcrumbs -->
         <nav aria-label="Breadcrumb" style="font-size: 12px; color: #64748b; margin-bottom: 16px;">
@@ -934,13 +982,18 @@ export function renderGuideArticleMainHtml(guide: GuideArticle): string {
         </nav>
 
         <header style="margin-bottom: 32px;">
-          <span style="font-size: 12px; font-weight: 700; color: #0055ff; text-transform: uppercase;">${escape(guide.category)} • ${escape(guide.readingTime)} • Updated ${escape(guide.lastUpdated)}</span>
+          <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 8px;">
+            <span style="font-size: 11px; font-weight: 800; color: #0055ff; text-transform: uppercase; background: #eff6ff; padding: 3px 8px; border-radius: 4px; border: 1px solid #bfdbfe;">${escape(guide.category)}</span>
+            <span style="font-size: 12px; color: #64748b;">${escape(guide.readingTime)} • Updated ${escape(guide.lastUpdated)}</span>
+          </div>
           <h1 style="font-size: 32px; font-weight: 900; color: #0f172a; margin-top: 8px; line-height: 1.25;">
             ${escape(guide.title)}
           </h1>
           <p style="font-size: 16px; color: #475569; margin-top: 12px; line-height: 1.6; font-style: italic; border-left: 3px solid #cbd5e1; padding-left: 14px;">
             ${escape(guide.summary)}
           </p>
+
+          ${tableOfContentsHtml}
         </header>
 
         <div>

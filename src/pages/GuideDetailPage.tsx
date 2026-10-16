@@ -10,12 +10,23 @@ interface GuideDetailPageProps {
 }
 
 export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavigate }) => {
+  // Calculate dynamic article word count
+  const wordCount = React.useMemo(() => {
+    return guide.content.reduce((acc, sec) => {
+      const pWords = sec.paragraphs.reduce((pAcc, p) => pAcc + p.split(/\s+/).filter(Boolean).length, 0);
+      const lWords = (sec.listItems || []).reduce((lAcc, l) => lAcc + l.split(/\s+/).filter(Boolean).length, 0);
+      const cWords = sec.callout ? (sec.callout.title + ' ' + sec.callout.text).split(/\s+/).filter(Boolean).length : 0;
+      return acc + pWords + lWords + cWords;
+    }, (guide.title + ' ' + guide.summary).split(/\s+/).filter(Boolean).length);
+  }, [guide]);
+
   // Schema.org Article JSON-LD
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: guide.title,
     description: guide.metaDescription,
+    wordCount: wordCount,
     author: {
       '@type': 'Organization',
       name: 'ImageToPNG Engineering Team',
@@ -28,7 +39,7 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
         url: 'https://www.imagetopng.com/favicon.svg',
       },
     },
-    dateModified: '2026-09-30',
+    dateModified: '2026-10-15',
     mainEntityOfPage: `https://www.imagetopng.com/guides/${guide.slug}`,
   };
 
@@ -72,16 +83,43 @@ export const GuideDetailPage: React.FC<GuideDetailPageProps> = ({ guide, onNavig
           <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed border-l-2 border-blue-600 pl-4 py-0.5">
             {guide.summary}
           </p>
+
+          {/* Interactive Table of Contents for Long-Form Articles */}
+          {guide.content.length > 5 && (
+            <div className="mt-8 pt-6 border-t border-slate-100">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-slate-700 mb-3 flex items-center gap-2">
+                <BookOpen className="w-4 h-4 text-blue-600" />
+                <span>Table of Contents ({guide.content.length} In-Depth Chapters)</span>
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                {guide.content.map((sec, idx) => (
+                  <a
+                    key={idx}
+                    href={`#chapter-${idx + 1}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const el = document.getElementById(`chapter-${idx + 1}`);
+                      el?.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="p-2 rounded-lg bg-slate-50 hover:bg-blue-50 hover:text-blue-700 transition-colors border border-slate-100 line-clamp-1 text-slate-600"
+                  >
+                    <span className="font-semibold text-slate-400 mr-1.5">{idx + 1}.</span>
+                    {sec.sectionHeading.replace(/^Chapter \d+:\s*|^[\d.]+\s*/, '')}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </header>
 
         {/* Ad slot placeholder */}
         <AdPlaceholder format="horizontal" />
 
         {/* Article Body */}
-        <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 space-y-8 text-slate-700">
+        <div className="bg-white p-6 sm:p-10 rounded-2xl border border-slate-200 space-y-10 text-slate-700">
           {guide.content.map((section, idx) => (
-            <section key={idx} className="space-y-4">
-              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+            <section key={idx} id={`chapter-${idx + 1}`} className="space-y-4 scroll-mt-20">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight pt-2 border-t border-slate-100 first:border-t-0 first:pt-0">
                 {section.sectionHeading}
               </h2>
 
